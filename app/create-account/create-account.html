@@ -1,0 +1,27 @@
+<div ng-controller="createAccountCtrl"  layout="column" layout-align="center center" layout-fill="layout-fill" id="createAccountsPage">
+    <div layout="column" class="loginBox md-whiteframe-z1">
+        <md-toolbar>
+            <h2 class="md-toolbar-tools"><span>Pluttbook</span></h2>
+        </md-toolbar>
+        <md-content layout="column" class="md-padding">
+            <md-input-container>
+                <label>EmailAddress</label>
+                <input type="email" ng-model="username"/>
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="password"/>
+            </md-input-container>
+            <md-input-container>
+                <label>Confirm Password</label>
+                <input type="password" ng-model="password"/>
+            </md-input-container>
+            <div layout="row" layout-align="center center" class="submit-btn">
+                <md-button ng-click="createAccount()"class="md-raised md-primary" id="loginButton">Create Account</md-button>
+            </div>
+            <div layout="row" layout-align="center center" class="submit-btn">
+                <md-button href="/#/login" md-no-ink="md-no-ink">Already a member? Login</md-button>
+            </div>
+        </md-content>
+    </div>
+</div>

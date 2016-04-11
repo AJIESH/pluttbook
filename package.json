@@ -1,0 +1,25 @@
+{
+  "name": "playgorund",
+  "version": "1.0.0",
+  "description": "demo project with gulp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nick plutt",
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.5.3",
+    "angular-animate": "^1.5.3",
+    "angular-aria": "^1.5.3",
+    "angular-material": "^1.0.7",
+    "angular-messages": "^1.5.3",
+    "angular-route": "^1.5.3",
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.2.2",
+    "gulp-tslint": "^4.3.4",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

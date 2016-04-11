@@ -1,0 +1,20 @@
+#createAccountsPage {
+    background-color: lightgoldenrodyellow;
+}
+
+#createAccountsPage #loginButton {
+    width: 100%;
+}
+
+#createAccountsPage .loginBox {
+    max-width:  90%;
+    width: 500px
+}
+
+#createAccountsPage .stretch input  {
+    width: 100%
+}
+
+#createAccountsPage .submit-btn {
+    padding-top: 20px;
+}
