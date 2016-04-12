@@ -3,10 +3,11 @@ var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var nodemon = require('gulp-nodemon');
 
 gulp.task('connect', function(){
 	connect.server({
-		root:'./',
+		root:'./public',
 		port:4000,
 		livereload: true
 	})
@@ -14,31 +15,49 @@ gulp.task('connect', function(){
 
 gulp.task('build-js', function(){
 	console.log('Bundling application javascript');
-	var stream = browserify('./app/app.js',{debug: true})
+	var stream = browserify('./public/app/app.js',{debug: true})
 		.bundle()
 		.pipe(source('concat-app.js'))
-		.pipe(gulp.dest('./'))
+		.pipe(gulp.dest('./public'))
 		.pipe(connect.reload());
 	return stream;
 });
 
 gulp.task('build-html', function(){
     console.log('Bundling application html');
-    gulp.src('./app/**/*.html')
+    gulp.src('./public/app/**/*.html')
         .pipe(connect.reload());
 });
 
 gulp.task('build-css', function(){
-	gulp.src('./app/**/*.css')
+	gulp.src('./public/app/**/*.css')
 		.pipe(concat('index.css'))
-		.pipe(gulp.dest('./'))
+		.pipe(gulp.dest('./public'))
 		.pipe(connect.reload());
 });
 
-gulp.task('watch', function(){
-	gulp.watch('app/**/*.js', ['build-js']);
-	gulp.watch('app/**/*.html', ['build-html']);
-	gulp.watch('app/**/*.css', ['build-css']);
+gulp.task('server-start', function(){
+	server.use(require('connect-livereload')({port:4002}));
 });
 
-gulp.task('default', ['build-js', 'build-html', 'build-css', 'watch', 'connect']);
+gulp.task('server-restart', function(){
+	server.close();
+	server.listen(4000);
+});
+
+gulp.task('watch-server', function () {
+	nodemon({
+		script: 'server.js',
+		ext: 'js',
+		env: { 'NODE_ENV': 'development' }
+	})
+})
+
+
+gulp.task('watch', function(){
+	gulp.watch('./public/app/**/*.js', ['build-js']);
+	gulp.watch('./public/app/**/*.html', ['build-html']);
+	gulp.watch('./public/app/**/*.css', ['build-css']);
+});
+
+gulp.task('default', ['build-js', 'build-html', 'build-css', 'watch', 'watch-server']);
