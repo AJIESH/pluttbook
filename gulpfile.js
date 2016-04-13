@@ -36,22 +36,13 @@ gulp.task('build-css', function(){
 		.pipe(connect.reload());
 });
 
-gulp.task('server-start', function(){
-	server.use(require('connect-livereload')({port:4002}));
-});
-
-gulp.task('server-restart', function(){
-	server.close();
-	server.listen(4000);
-});
-
 gulp.task('watch-server', function () {
 	nodemon({
 		script: 'server.js',
 		ext: 'js',
 		env: { 'NODE_ENV': 'development' }
-	})
-})
+	});
+});
 
 
 gulp.task('watch', function(){
