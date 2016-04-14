@@ -1,14 +1,13 @@
+var users = require('../models/user.js');
+
 module.exports.controller = function(app, db){
   app.post('/api/createAccount', function(req, res){
-      var collection = db.get('user_accounts');
-      collection.insert({
-         "email" : req.email,
-         "password" : req.password
-      }, function(err, doc){
-          if(err){
-              res.sendStatus(401);
-          }
-          else{
+      var user = new users({
+          email: req.body.email,
+          password: req.body.password
+      });
+      user.save(function(err){
+          if(!err){
               res.sendStatus(200);
           }
       });
