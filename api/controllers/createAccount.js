@@ -2,7 +2,7 @@ var users = require('../models/user.js');
 
 module.exports.controller = function(app, db){
   app.post('/api/createAccount', function(req, res){
-      var user = new users({
+      var user = new users.schema({
           email: req.body.email,
           password: req.body.password
       });

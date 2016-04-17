@@ -4,6 +4,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var oauthServer = require('oauth2-server');
 var port = 4000;
 
 //Database configuration =================================================
@@ -16,6 +17,11 @@ app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({
     extended: true
 })); // to support URL-encoded bodies
+app.oauth = oauthServer({
+    model: require('./api/dbFunctions/OAuth.js'),
+    grants: ['password'],
+    debug: true
+});
 
 //Dynamically include models=============================================
 var models;
@@ -23,6 +29,14 @@ fs.readdirSync('./api/models').forEach(function(file){
     if(file.substr(-3) == '.js'){
         models = require('./api/models/' + file);
         models.model(db);
+    }
+});
+
+//Dynamically include database functions==================================
+var dbFunction;
+fs.readdirSync('./api/dbFunctions').forEach(function(file){
+    if(file.substr(-3) == '.js'){
+        dbFunction = require('./api/dbFunctions/' + file);
     }
 });
 

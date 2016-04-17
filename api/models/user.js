@@ -1,5 +1,5 @@
 module.exports.model = function(db){
-    var schema =  db.Schema({
+    var schema =  new db.Schema({
         email: {
             type: String,
             required: true,
@@ -11,5 +11,5 @@ module.exports.model = function(db){
         }
     });
 
-   module.exports = db.model('user_accounts', schema);
+   module.exports.schema = db.model('user_accounts', schema);
 };
