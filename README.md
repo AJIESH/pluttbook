@@ -1,7 +1,9 @@
 # pluttbook
 
 Features:
+- OAuth login
 - Post statuses and photos
+- Comment and like statuses and photos
 - Encrypted chat
 - Friend requests
 - Key by key search
