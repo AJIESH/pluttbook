@@ -3,20 +3,20 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports.controller = function(app, db){
   app.post('/api/createAccount', function(req, res){
-      emailUnique(req, res);
+      emailUnique(req, res, hashPassword);
   });
 };
 
-function emailUnique(req, res){
+function emailUnique(req, res, callback){
     OAuthUsersModel.schema.findOne({ email: req.body.email }, function(err, obj){
-        obj == null ? hashPassword(req, res) : res.send('User already exists.');
+        obj == null ? callback(req, res, saveUser) : res.send('User already exists.');
     });
 }
 
-function hashPassword(req, res){
+function hashPassword(req, res, callback){
     bcrypt.hash(req.body.password, null, null, function(err, hash) {
         req.body.password = hash;
-        err === null ? saveUser(req, res) : res.send(500);
+        err === null ? callback(req, res) : res.send(500);
     });
 }
 

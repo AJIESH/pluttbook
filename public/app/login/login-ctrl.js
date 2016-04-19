@@ -6,7 +6,7 @@ module.exports = function($scope, loginFactory) {
 
     function bundleLoginCredentials(){
         return {
-            email: $scope.email,
+            username: $scope.email,
             password: $scope.password
         };
     }
