@@ -50,12 +50,13 @@ module.exports.grantTypeAllowed = function (clientId, grantType, callback) {
 module.exports.saveAccessToken = function(token, client, expires, user, callback) {
     console.log('in saveToken (token: ' + token + ')');
 
+    console.dir(expires);
     var accessToken = new OAuthTokensModel.schema({
-        accessToken: token.accessToken,
-        accessTokenExpiresOn: expires,
+        accessToken: token,
+        expires: expires,
         clientId: client.clientId,
-        refreshToken: token.refreshToken,
-        refreshTokenExpiresOn: token.refreshTokenExpiresOn,
+        //refreshToken: token.refreshToken,
+        //refreshTokenExpiresOn: token.refreshTokenExpiresOn,
         userId: user.id
     });
 

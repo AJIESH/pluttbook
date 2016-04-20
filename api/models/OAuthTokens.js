@@ -1,10 +1,10 @@
 module.exports.model = function(db){
     var OAuthToken =  new db.Schema({
         accessToken: { type: String },
-        accessTokenExpiresOn: { type: Date },
+        expires: { type: Date },
         clientId: { type: String },
-        refreshToken: { type: String },
-        refreshTokenExpiresOn: { type: Date },
+        //refreshToken: { type: String },
+        //refreshTokenExpiresOn: { type: Date },
         userId: { type: String }
     });
 
