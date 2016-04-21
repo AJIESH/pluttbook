@@ -1,0 +1,21 @@
+<div ng-controller="headerCtrl">
+    <div layout="column" layout-align="center center" layout-fill="layout-fill" id="newsFeed">
+        <div class="newsItem md-whiteframe-1dp" ng-repeat="newItem in nws">
+            <header layout="row" layout-align="space-between start" class="layout-align-space-between-start layout-row">
+                <div class="user layout-align-start-center layout-row" layout="row" layout-align="start center">
+                    <img class="avatar" ng-src="./avatar.jpg">
+                    <div layout="column" class="layout-column">
+                        <div class="title">
+                            <span class=" username md-accent-color">{{newItem.name}}</span>
+                        </div>
+                        <div class="time">{{newItem.time}}</div>
+                    </div>
+                </div>
+            </header>
+            <div class="content">
+                <div class="status">{{newItem.status}}</div>
+            </div>
+        </div>
+    </div>
+    <div ng-include src="newsFeedHtml"></div>
+</div>

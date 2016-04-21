@@ -30,6 +30,7 @@ gulp.task('build-html', function(){
 });
 
 gulp.task('build-css', function(){
+	console.log('Bundling application css');
 	gulp.src('./public/app/**/*.css')
 		.pipe(concat('index.css'))
 		.pipe(gulp.dest('./public'))
@@ -43,7 +44,6 @@ gulp.task('watch-server', function () {
 		env: { 'NODE_ENV': 'development' }
 	});
 });
-
 
 gulp.task('watch', function(){
 	gulp.watch('./public/app/**/*.js', ['build-js']);

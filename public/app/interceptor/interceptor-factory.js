@@ -1,4 +1,4 @@
-module.exports = function(localStorageService) {
+module.exports = function($window, localStorageService) {
     return {
         request: request
     };
@@ -8,6 +8,9 @@ module.exports = function(localStorageService) {
             var authData = localStorageService.get('authorizationData');
             if (authData) {
                 config.headers.Authorization = 'Bearer ' + authData.token;
+            }
+            else{
+                $window.location.href = '/#/login';
             }
         }
         return config;

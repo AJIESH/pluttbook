@@ -4,10 +4,6 @@ module.exports = function($scope, loginFactory) {
         loginFactory.login(loginCredentials);
     };
 
-    $scope.test = function(){
-        loginFactory.test();
-    };
-
     function bundleLoginCredentials(){
         return {
             username: $scope.email,

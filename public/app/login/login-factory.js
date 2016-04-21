@@ -1,7 +1,6 @@
-module.exports = function($http, localStorageService){
+module.exports = function($http, $window, localStorageService){
     return {
-        login : login,
-        test: test
+        login : login
     };
 
     function login(loginCredentials) {
@@ -14,17 +13,9 @@ module.exports = function($http, localStorageService){
         }
     }
 
-    function test() {
-        $http.get('api/secret')
-            .success(function(){
-                console.log('Success fuck sticks!');
-            })
-            .error(function(){
-                console.log('fuck this shit!');
-            })
-    }
     function loginSuccess(token, loginCredentials){
         saveTokenToLocalStorage(token,loginCredentials);
+        $window.location.href = '/#/news-feed';
     }
 
     function saveTokenToLocalStorage(token, loginCredentials){

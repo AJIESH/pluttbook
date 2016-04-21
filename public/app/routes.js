@@ -1,5 +1,7 @@
 var loginCtrl = require('./login/login-ctrl');
-var register = require('./create-account/create-account-ctrl');
+var createAccountCtrl = require('./create-account/create-account-ctrl');
+var newsFeedCtrl = require('./news-feed/news-feed-ctrl');
+var headerCtrl = require('./header/header-ctrl');
 
 module.exports = function($routeProvider){
   $routeProvider
@@ -9,7 +11,11 @@ module.exports = function($routeProvider){
   })
   .when('/create-account', {
           templateUrl: './app/create-account/create-account.html',
-          controller: register
+          controller: createAccountCtrl
+  })
+  .when('/news-feed', {
+          templateUrl: './app/header/header.html',
+          controller: headerCtrl
   })
   .otherwise({redirectTo: '/login'});
 };
