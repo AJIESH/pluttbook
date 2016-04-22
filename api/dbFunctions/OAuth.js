@@ -9,7 +9,7 @@ module.exports.getAccessToken = function(bearerToken, callback) {
     console.log('in getAccessToken (bearerToken: ' + bearerToken + ')');
 
     OAuthTokensModel.schema.findOne({ accessToken: bearerToken }, function(err, obj){
-        err == null ?  callback(false, obj) : callback(true);
+        err == null ?  callback(false, obj) : callback(false);
     });
 };
 
@@ -18,7 +18,7 @@ module.exports.getClient = function(clientId, clientSecret, callback) {
     console.log('in getClient (clientId: ' + clientId + ', clientSecret: ' + clientSecret + ')');
 
     OAuthClientsModel.schema.findOne({ clientId: clientId, clientSecret: clientSecret }, function(err, obj){
-        err == null ?  callback(false, obj) : callback(true);
+        err == null ?  callback(false, obj) : callback(false);
     });
 };
 
@@ -27,7 +27,7 @@ module.exports.getRefreshToken = function(refreshToken, callback) {
     console.log('in getRefreshToken (refreshToken: ' + refreshToken + ')');
 
     OAuthTokensModel.schema.findOne({ refreshToken: refreshToken }, function(err, obj){
-        err == null ?  callback(false, obj) : callback(true);
+        err == null ?  callback(false, obj) : callback(false);
     });
 };
 
@@ -35,10 +35,15 @@ module.exports.getRefreshToken = function(refreshToken, callback) {
 module.exports.getUser = function(email, password, callback) {
     console.log('in getUser (username: ' + email + ', password: ' + password + ')');
 
-    OAuthUsersModel.schema.findOne({ email: email}, function(err, obj){
-        bcrypt.compare(password, obj.password, function(err, res) {
-            res ? callback(false, obj) : callback(true);
-        });
+    OAuthUsersModel.schema.findOne({ email: email }, function(err, obj){
+        if(obj !== null){
+            bcrypt.compare(password, obj.password, function(err, res) {
+                res ? callback(false, obj) : callback(false);
+            });
+        }
+        else{
+            callback(false);
+        }
     });
 };
 

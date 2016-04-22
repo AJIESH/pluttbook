@@ -1,6 +1,7 @@
 module.exports = function($window, localStorageService) {
     return {
-        request: request
+        request: request,
+        response: response
     };
 
     function request(config) {
@@ -15,6 +16,14 @@ module.exports = function($window, localStorageService) {
         }
         return config;
     }
+
+    function response(response){
+        if(response.status === 401 && $window.location !== '/#/login'){
+            $window.location.href = '/#/login';
+        }
+        return response
+    }
+
 
     function urlPublic(url){
         var publicRoutesArray = [

@@ -19,8 +19,7 @@ app.use(bodyParser.urlencoded({
 })); // to support URL-encoded bodies
 app.oauth = oauthServer({
     model: require('./api/dbFunctions/OAuth.js'),
-    grants: ['password'],
-    debug: true
+    grants: ['password']
 });
 
 //Dynamically include models=============================================

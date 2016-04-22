@@ -27,6 +27,26 @@ html {
 #createAccountsPage .submit-btn {
     padding-top: 20px;
 }
+#loginPage {
+   background-color : #e9eaed;
+}
+
+#loginPage #loginButton {
+    width: 100%;
+}
+
+#loginPage .loginBox {
+    max-width:  90%;
+    width: 500px
+}
+
+#loginPage .stretch input  {
+    width: 100%
+}
+
+#loginPage .submit-btn {
+    padding-top: 20px;
+}
 #newsFeed {
     background-color : #e9eaed;
 }
@@ -88,24 +108,3 @@ html {
 }
 
 
-
-#loginPage {
-   background-color : #e9eaed;
-}
-
-#loginPage #loginButton {
-    width: 100%;
-}
-
-#loginPage .loginBox {
-    max-width:  90%;
-    width: 500px
-}
-
-#loginPage .stretch input  {
-    width: 100%
-}
-
-#loginPage .submit-btn {
-    padding-top: 20px;
-}

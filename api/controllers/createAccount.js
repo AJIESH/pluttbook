@@ -16,7 +16,7 @@ function emailUnique(req, res, callback){
 function hashPassword(req, res, callback){
     bcrypt.hash(req.body.password, null, null, function(err, hash) {
         req.body.password = hash;
-        err === null ? callback(req, res) : res.send(500);
+        err === null ? callback(req, res) : res.sendStatus(500);
     });
 }
 
