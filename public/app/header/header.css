@@ -23,26 +23,3 @@
     -ms-flex-direction: row;
     flex-direction: row;
 }
-
-#header .ms-search-bar {
-    height: 64px;
-    font-size: 13px;
-}
-
-#header layout {
-    min-height: initial;
-}
-
-#header #search-bar-expander {
-    padding-top: 0px;
-    padding-right: 20px;
-    padding-bottom: 0px;
-    padding-left: 20px;
-    width: 64px!important;
-    height: 64px!important;
-    line-height: 64px!important;
-}
-
-/*#header .icon-magnify {*/
-    /*content: "./magnify.svg";*/
-/*}*/

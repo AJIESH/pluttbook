@@ -12,7 +12,8 @@ var loginCtrl = require('./login/login-ctrl.js'),
     createAccountFactory = require('./create-account/create-account-factory.js'),
     interceptorFactory = require('./interceptor/interceptor-factory.js'),
     newsFeedCtrl = require('./news-feed/news-feed-ctrl.js'),
-    headerCtrl = require('./header/header-ctrl.js');
+    headerCtrl = require('./header/header-ctrl.js'),
+    searchBarCtrl = require('./search-bar/search-bar-ctrl.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
 
@@ -33,6 +34,9 @@ app.controller('newsFeedCtrl', ['$scope', newsFeedCtrl]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$scope', headerCtrl]);
+
+//Creates search bar modules
+app.controller('searchBarCtrl', ['$scope', searchBarCtrl]);
 
 //Interceptor modules
 app.factory('interceptor', ['$window', 'localStorageService',interceptorFactory])

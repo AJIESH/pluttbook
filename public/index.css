@@ -53,28 +53,6 @@ html {
     flex-direction: row;
 }
 
-#header .ms-search-bar {
-    height: 64px;
-    font-size: 13px;
-}
-
-#header layout {
-    min-height: initial;
-}
-
-#header #search-bar-expander {
-    padding-top: 0px;
-    padding-right: 20px;
-    padding-bottom: 0px;
-    padding-left: 20px;
-    width: 64px!important;
-    height: 64px!important;
-    line-height: 64px!important;
-}
-
-/*#header .icon-magnify {*/
-    /*content: "./magnify.svg";*/
-/*}*/
 #loginPage {
    background-color : #e9eaed;
 }
@@ -156,3 +134,24 @@ html {
 }
 
 
+
+#searchBar .ms-search-bar {
+    height: 64px;
+    font-size: 13px;
+}
+
+#searchBar layout {
+    min-height: initial;
+}
+
+#searchBar #ms-search-bar-expander, #ms-search-bar-clear {
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    width: 64px!important;
+    height: 64px!important;
+    line-height: 64px!important;
+    border-right: medium;
+}
