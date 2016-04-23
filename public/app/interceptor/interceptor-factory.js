@@ -11,7 +11,7 @@ module.exports = function($window, localStorageService) {
                 config.headers.Authorization = 'Bearer ' + authData.token;
             }
             else{
-                $window.location.href = '/#/login';
+                redirectToLogin();
             }
         }
         return config;
@@ -40,5 +40,9 @@ module.exports = function($window, localStorageService) {
             }
         }
         return urlPublic;
+    }
+
+    function redirectToLogin(){
+        $window.location.href = '/#/login';
     }
 };

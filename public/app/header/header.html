@@ -1,21 +1,21 @@
-<div ng-controller="headerCtrl">
-    <div layout="column" layout-align="center center" layout-fill="layout-fill" id="newsFeed">
-        <div class="newsItem md-whiteframe-1dp" ng-repeat="newItem in nws">
-            <header layout="row" layout-align="space-between start" class="layout-align-space-between-start layout-row">
-                <div class="user layout-align-start-center layout-row" layout="row" layout-align="start center">
-                    <img class="avatar" ng-src="./avatar.jpg">
-                    <div layout="column" class="layout-column">
-                        <div class="title">
-                            <span class=" username md-accent-color">{{newItem.name}}</span>
+<div ng-controller="headerCtrl" id="header">
+    <div id="layout-vertical-navigation" class="template-layout layout-row-flex" layout="row" flex>
+        <div id="content-container" flex-layout="column" class="layout-column-flex">
+            <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp md-default-theme">
+                <div layout="row" layout-align="start center" class="layout-align-start-center layout-row">
+                    <ms-search-bar clear-on-collapse debounce="200" class="ms-search-bar ng-isolate-scope">
+                        <div flex-layout="row" layout-align="start center" class="layout-align-start-center layout-row flex">
+                            <label>
+                                <i class="icon s24 material-icons md-default-theme" id="search-bar-expander">search</i>
+                                <!--<md-icon id="ms-search-bar-expander" md-font-icon="magnify" aria-label="search"></md-icon>-->
+                                <md-icon id="ms-search-bar-collapser" md-font-icon="icon-close" class="icon s24 ng-isolate-scope md-font icon-close material-icons md-default-theme" aria-label="icon-close" role="img"></md-icon>
+                            </label>
                         </div>
-                        <div class="time">{{newItem.time}}</div>
-                    </div>
+                    </ms-search-bar>
                 </div>
-            </header>
-            <div class="content">
-                <div class="status">{{newItem.status}}</div>
-            </div>
+            </md-toolbar>
         </div>
     </div>
+
     <div ng-include src="newsFeedHtml"></div>
 </div>

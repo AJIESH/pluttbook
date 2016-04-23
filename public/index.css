@@ -27,6 +27,54 @@ html {
 #createAccountsPage .submit-btn {
     padding-top: 20px;
 }
+#header #layout-horizontal-navigation {
+    height: 100%;
+    max-height: 100%;
+}
+
+#header #content-container {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#header #toolbar {
+    height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    z-index: 55!important;
+}
+
+#header .layout-row {
+    webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+#header .ms-search-bar {
+    height: 64px;
+    font-size: 13px;
+}
+
+#header layout {
+    min-height: initial;
+}
+
+#header #search-bar-expander {
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    width: 64px!important;
+    height: 64px!important;
+    line-height: 64px!important;
+}
+
+/*#header .icon-magnify {*/
+    /*content: "./magnify.svg";*/
+/*}*/
 #loginPage {
    background-color : #e9eaed;
 }
