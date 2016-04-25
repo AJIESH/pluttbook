@@ -1,11 +1,14 @@
 <div ng-controller="searchBarCtrl" id="searchBar">
-    <ms-search-bar clear-on-collapse debounce="200" class="ms-search-bar ng-isolate-scope">
+    <div layout="row" layout-align="start center" class="layout-align-start-center layout-row">
         <div flex-layout="row" layout-align="start center" class="layout-align-start-center layout-row flex">
             <label>
                 <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-expander" ng-click="toggleSearch()" ng-show="!showSearch">search</i>
                 <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-clear" ng-click="toggleSearch()" ng-show="showSearch">clear</i>
-                <md-icon id="ms-search-bar-collapser" md-font-icon="icon-close" class="icon s24 ng-isolate-scope md-font icon-close material-icons md-default-theme" aria-label="icon-close" role="img"></md-icon>
             </label>
+            <md-input-container md-no-float flex id="search-bar" ng-show="showSearch">
+                <input placeholder="Search" id="input">
+            </md-input-container>
         </div>
-    </ms-search-bar>
+        <div class="toolbar-separator" ng-show="!showSearch"></div>
+    </div>
 </div>

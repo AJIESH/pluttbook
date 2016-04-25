@@ -1,8 +1,3 @@
-#searchBar .ms-search-bar {
-    height: 64px;
-    font-size: 13px;
-}
-
 #searchBar layout {
     min-height: initial;
 }
@@ -17,4 +12,12 @@
     height: 64px!important;
     line-height: 64px!important;
     border-right: medium;
+}
+
+#searchBar #search-bar {
+    height: 32px;
+}
+
+#searchBar #input {
+    border-color: transparent;
 }

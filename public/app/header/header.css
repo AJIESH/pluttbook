@@ -23,3 +23,10 @@
     -ms-flex-direction: row;
     flex-direction: row;
 }
+
+
+#header .toolbar-separator {
+    height: 64px;
+    width: 1px;
+    background: rgba(0,0,0,.12);
+}

@@ -53,6 +53,13 @@ html {
     flex-direction: row;
 }
 
+
+#header .toolbar-separator {
+    height: 64px;
+    width: 1px;
+    background: rgba(0,0,0,.12);
+}
+
 #loginPage {
    background-color : #e9eaed;
 }
@@ -72,6 +79,26 @@ html {
 
 #loginPage .submit-btn {
     padding-top: 20px;
+}
+#logo {
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+}
+
+#logo .logo-image {
+    display: block;
+    background: #039BE5;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFF;
+    border-radius: 2px;
 }
 #newsFeed {
     background-color : #e9eaed;
@@ -135,11 +162,6 @@ html {
 
 
 
-#searchBar .ms-search-bar {
-    height: 64px;
-    font-size: 13px;
-}
-
 #searchBar layout {
     min-height: initial;
 }
@@ -154,4 +176,12 @@ html {
     height: 64px!important;
     line-height: 64px!important;
     border-right: medium;
+}
+
+#searchBar #search-bar {
+    height: 32px;
+}
+
+#searchBar #input {
+    border-color: transparent;
 }

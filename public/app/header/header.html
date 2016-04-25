@@ -1,10 +1,19 @@
 <div ng-controller="headerCtrl" id="header">
     <div id="layout-vertical-navigation" class="template-layout layout-row-flex" layout="row" flex>
         <div id="content-container" flex-layout="column" class="layout-column-flex">
-            <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp md-default-theme">
-                <div layout="row" layout-align="start center" class="layout-align-start-center layout-row">
-                    <div ng-include src="searchBar"></div>
-                </div>
+            <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp md-default-theme" layout="row">
+                <div ng-include src="logo"></div>
+                <div class="toolbar-separator"></div>
+                <div ng-include src="searchBar"></div>
+                <md-menu-bar id="user-menu">
+                    <md-menu md-position-mode="left bottom" class="md-menu">
+                        <md-button>
+                            <div layout="row" layout-align="space-between center" class="ng-scope layout-align-space-between-center layout-row">
+                                <span class="username hide-xs">John Doe</span>
+                            </div>
+                        </md-button>
+                    </md-menu>
+                </md-menu-bar>
             </md-toolbar>
         </div>
     </div>
