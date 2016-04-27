@@ -5,12 +5,21 @@
                 <div layout="row" layout-align="start center" class="layout-align-start-center header-row">
                     <div ng-include src="logo"></div>
                     <div class="toolbar-separator"></div>
-                    <div ng-include src="searchBar"></div>
+                    <div flex-layout="row" layout-align="start center" class="layout-align-start-center layout-row flex">
+                        <label>
+                            <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-expander" ng-click="toggleSearch()" ng-show="!showSearch">search</i>
+                            <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-clear" ng-click="toggleSearch()" ng-show="showSearch">clear</i>
+                        </label>
+                        <md-input-container md-no-float flex id="search-bar" ng-show="showSearch">
+                            <input placeholder="Search" id="input">
+                        </md-input-container>
+                    </div>
+                    <div class="toolbar-separator" ng-show="!showSearch"></div>
                 </div>
-                <div layout="row" layout-align="start center" class="layout-align-start-center header-row" id="optionsRow">
+                <div layout="row" layout-align="start center" class="layout-align-start-center header-row" id="optionsRow" ng-show="!showSearch">
                     <md-menu-bar id="user-menu">
                         <md-menu md-position-mode="left bottom" class="md-menu" id="options">
-                            <md-button id="optionsButton">
+                            <md-button id="optionsButton" ng-click="$mdOpenMenu()">
                                 <div layout="row">
                                     <div class="avatar-wrapper">
                                         <img class="avatar" ng-src="./avatar.jpg">

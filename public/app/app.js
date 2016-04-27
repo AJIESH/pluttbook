@@ -33,7 +33,7 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 app.controller('newsFeedCtrl', ['$scope', newsFeedCtrl]);
 
 //Creates header modules
-app.controller('headerCtrl', ['$scope', headerCtrl]);
+app.controller('headerCtrl', ['$scope', '$mdDialog', headerCtrl]);
 
 //Creates search bar modules
 app.controller('searchBarCtrl', ['$scope', searchBarCtrl]);

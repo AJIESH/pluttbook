@@ -85,7 +85,7 @@ html {
     padding-left: 5px;
     padding-right: 0px;
     width: 20px !important;
-    padding-top: 16px;
+    padding-top: 17px;
     line-height: 0px !important;
 }
 
@@ -94,6 +94,26 @@ html {
     padding-top: 13px;
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+#header #ms-search-bar-expander, #ms-search-bar-clear {
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    width: 64px!important;
+    height: 64px!important;
+    line-height: 64px!important;
+    border-right: medium;
+}
+
+#header #search-bar {
+    height: 32px;
+}
+
+#header #input {
+    border-color: transparent;
 }
 
 #loginPage {
