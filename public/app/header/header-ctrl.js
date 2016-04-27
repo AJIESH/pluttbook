@@ -1,4 +1,4 @@
-module.exports = function($scope) {
+module.exports = function($scope, $controller) {
 
     $scope.newsFeedHtml = './app/news-feed/news-feed.html';
     $scope.searchBar = './app/search-bar/search-bar.html';
@@ -9,8 +9,4 @@ module.exports = function($scope) {
         status: 'Hello World!',
         time: '32 min'
     }];
-
-    $scope.search = function(){
-        console.log('Search');
-    }
 };

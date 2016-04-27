@@ -30,3 +30,39 @@
     width: 1px;
     background: rgba(0,0,0,.12);
 }
+
+#header #user-menu, #optionsRow, #content-container {
+    width: 100%;
+}
+
+#header #options {
+    float: right;
+}
+
+#header .avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#header #down {
+    padding-left: 5px;
+    padding-right: 0px;
+    width: 20px !important;
+    padding-top: 16px;
+    line-height: 0px !important;
+}
+
+#header #optionsButton {
+    height: 64px;
+    padding-top: 13px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

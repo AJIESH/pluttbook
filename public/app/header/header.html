@@ -2,18 +2,30 @@
     <div id="layout-vertical-navigation" class="template-layout layout-row-flex" layout="row" flex>
         <div id="content-container" flex-layout="column" class="layout-column-flex">
             <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp md-default-theme" layout="row">
-                <div ng-include src="logo"></div>
-                <div class="toolbar-separator"></div>
-                <div ng-include src="searchBar"></div>
-                <md-menu-bar id="user-menu">
-                    <md-menu md-position-mode="left bottom" class="md-menu">
-                        <md-button>
-                            <div layout="row" layout-align="space-between center" class="ng-scope layout-align-space-between-center layout-row">
-                                <span class="username hide-xs">John Doe</span>
-                            </div>
-                        </md-button>
-                    </md-menu>
-                </md-menu-bar>
+                <div layout="row" layout-align="start center" class="layout-align-start-center header-row">
+                    <div ng-include src="logo"></div>
+                    <div class="toolbar-separator"></div>
+                    <div ng-include src="searchBar"></div>
+                </div>
+                <div layout="row" layout-align="start center" class="layout-align-start-center header-row" id="optionsRow">
+                    <md-menu-bar id="user-menu">
+                        <md-menu md-position-mode="left bottom" class="md-menu" id="options">
+                            <md-button id="optionsButton">
+                                <div layout="row">
+                                    <div class="avatar-wrapper">
+                                        <img class="avatar" ng-src="./avatar.jpg">
+                                    </div>
+                                    <span class="username">John Doe</span>
+                                    <i class="icon s24 material-icons md-default-theme" id="down">arrow_drop_down</i>
+                                </div>
+                            </md-button>
+                            <md-menu-content>
+                                <md-menu-item><md-button ng-click="">Edit</md-button></md-menu-item>
+                                <md-menu-item><md-button ng-click="">Remove</md-button></md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-bar>
+                </div>
             </md-toolbar>
         </div>
     </div>
