@@ -1,4 +1,4 @@
-module.exports = function($scope, $mdDialog) {
+module.exports = function($scope, $mdDialog, headerFactory) {
 
     $scope.newsFeedHtml = './app/news-feed/news-feed.html';
     $scope.searchBar = './app/search-bar/search-bar.html';
@@ -8,5 +8,9 @@ module.exports = function($scope, $mdDialog) {
 
     $scope.toggleSearch = function(){
         $scope.showSearch = $scope.showSearch ? false : true;
-    }
+    };
+
+    $scope.logout = function(){
+        headerFactory.logout();
+    };
 };

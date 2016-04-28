@@ -7,10 +7,10 @@ module.exports = function($http, $window, localStorageService){
         return  $http.post('api/login', formatData(loginCredentials), {headers:{'Content-Type': 'application/x-www-form-urlencoded'}})
             .success(loginSuccess)
             .error(loginError);
+    }
 
-        function loginError(response){
-            console.log(response);
-        }
+    function loginError(response){
+        console.log(response);
     }
 
     function loginSuccess(token, loginCredentials){

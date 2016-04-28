@@ -116,6 +116,23 @@ html {
     border-color: transparent;
 }
 
+.md-open-menu-container {
+    top: 64px;
+    left: 1146px;
+    transform-origin: left top 0px;
+    position: fixed;
+    z-index: 100;
+}
+
+#menu-divider {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 1px;
+    min-height: 1px;
+    max-height: 1px;
+    width: 100%;
+}
+
 #loginPage {
    background-color : #e9eaed;
 }
