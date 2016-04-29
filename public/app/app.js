@@ -11,10 +11,10 @@ var loginCtrl = require('./login/login-ctrl.js'),
     createAccountCtrl = require('./create-account/create-account-ctrl.js'),
     createAccountFactory = require('./create-account/create-account-factory.js'),
     interceptorFactory = require('./interceptor/interceptor-factory.js'),
-    newsFeedCtrl = require('./news-feed/news-feed-ctrl.js'),
+    feedCtrl = require('./feed-content/feed-content-ctrl.js'),
     headerCtrl = require('./header/header-ctrl.js'),
     headerFactory = require('./header/header-factory.js'),
-    searchBarCtrl = require('./search-bar/search-bar-ctrl.js');
+    newsFeedCtrl = require('./news-feed/news-feed-ctrl.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
 
@@ -30,15 +30,15 @@ app.factory('loginFactory', ['$http', '$window', 'localStorageService', loginFac
 app.controller('createAccountCtrl', ['$scope', 'createAccountFactory', createAccountCtrl]);
 app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
-//Create news feed modules
-app.controller('newsFeedCtrl', ['$scope', newsFeedCtrl]);
+//Create content feed modules
+app.controller('feedCtrl', ['$scope', feedCtrl]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$scope', '$mdDialog', 'headerFactory', headerCtrl]);
 app.factory('headerFactory', ['$http', '$window', 'localStorageService', headerFactory]);
 
-//Creates search bar modules
-app.controller('searchBarCtrl', ['$scope', searchBarCtrl]);
+//Create news feed modules
+app.controller('newsFeedCtrl', ['$scope', newsFeedCtrl]);
 
 //Interceptor modules
 app.factory('interceptor', ['$window', 'localStorageService',interceptorFactory])

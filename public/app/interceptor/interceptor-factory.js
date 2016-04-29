@@ -12,6 +12,7 @@ module.exports = function($window, localStorageService) {
             }
             else{
                 redirectToLogin();
+                config = null;
             }
         }
         return config;

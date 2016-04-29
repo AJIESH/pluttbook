@@ -10,12 +10,26 @@ module.exports = function($http, $window, localStorageService){
     }
 
     function getToken(){
-        return {
-            token: localStorageService.get('authorizationData').token
-        };
+        var authData =  localStorageService.get('authorizationData');
+
+        if(authData){
+            var token =  {
+                token: localStorageService.get('authorizationData').token
+            };
+
+            if(token.token === null){
+                redirectToLogin();
+            }
+        }
+        else{
+            redirectToLogin()
+        }
+
+        return token;
     }
 
-    function redirectToLogin(){
+    function redirectToLogin() {
+        localStorageService.clearAll();
         $window.location.href = '/#/login';
     }
 };

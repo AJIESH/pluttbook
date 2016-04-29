@@ -27,6 +27,10 @@ html {
 #createAccountsPage .submit-btn {
     padding-top: 20px;
 }
+
+#createAccountsPage #lastName {
+    float: right;
+}
 #header #layout-horizontal-navigation {
     height: 100%;
     max-height: 100%;
@@ -118,7 +122,7 @@ html {
 
 .md-open-menu-container {
     top: 64px;
-    left: 1146px;
+    left: 84%;
     transform-origin: left top 0px;
     position: fixed;
     z-index: 100;
@@ -133,26 +137,68 @@ html {
     width: 100%;
 }
 
-#loginPage {
-   background-color : #e9eaed;
+#feedContent {
+    background-color : #e9eaed;
 }
 
-#loginPage #loginButton {
-    width: 100%;
-}
-
-#loginPage .loginBox {
+#feedContent .newsItem {
     max-width:  90%;
     width: 500px
 }
 
-#loginPage .stretch input  {
-    width: 100%
+#feedContent .newsItem {
+    margin-bottom: 32px;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #FFFFFF;
 }
 
-#loginPage .submit-btn {
-    padding-top: 20px;
+#feedContent header {
+    padding-top: 16px;
+    padding-right: 0px;
+    padding-bottom: 8px;
+    padding-left: 16px;
 }
+
+#feedContent .user .layout-column {
+    min-height: initial;
+}
+
+#feedContent .avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#feedContent .title {
+    font-weight: 500;
+}
+
+#feedContent .username {
+    text-align: left;
+    margin-right: 4px;
+}
+
+#feedContent .time {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+#feedContent .status {
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+
+
 #logo {
     padding-top: 16px;
     padding-right: 16px;
@@ -173,88 +219,23 @@ html {
     color: #FFF;
     border-radius: 2px;
 }
-#newsFeed {
-    background-color : #e9eaed;
+#loginPage {
+   background-color : #e9eaed;
 }
 
-#newsFeed .newsItem {
+#loginPage #loginButton {
+    width: 100%;
+}
+
+#loginPage .loginBox {
     max-width:  90%;
     width: 500px
 }
 
-#newsFeed .newsItem {
-    margin-bottom: 32px;
-    overflow: hidden;
-    border-radius: 2px;
-    background: #FFFFFF;
+#loginPage .stretch input  {
+    width: 100%
 }
 
-#newsFeed header {
-    padding-top: 16px;
-    padding-right: 0px;
-    padding-bottom: 8px;
-    padding-left: 16px;
-}
-
-#newsFeed .user .layout-column {
-    min-height: initial;
-}
-
-#newsFeed .avatar {
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
-    line-height: 40px;
-    margin: 0 8px 0 0;
-    border-radius: 50%;
-    font-size: 17px;
-    font-weight: 500;
-    text-align: center;
-    color: #FFFFFF;
-}
-
-#newsFeed .title {
-    font-weight: 500;
-}
-
-#newsFeed .username {
-    text-align: left;
-    margin-right: 4px;
-}
-
-#newsFeed .time {
-    color: rgba(0, 0, 0, 0.54);
-}
-
-#newsFeed .status {
-    padding-bottom: 8px;
-    padding-top: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-
-
-#searchBar layout {
-    min-height: initial;
-}
-
-#searchBar #ms-search-bar-expander, #ms-search-bar-clear {
-    cursor: pointer;
-    padding-top: 0px;
-    padding-right: 20px;
-    padding-bottom: 0px;
-    padding-left: 20px;
-    width: 64px!important;
-    height: 64px!important;
-    line-height: 64px!important;
-    border-right: medium;
-}
-
-#searchBar #search-bar {
-    height: 32px;
-}
-
-#searchBar #input {
-    border-color: transparent;
+#loginPage .submit-btn {
+    padding-top: 20px;
 }

@@ -6,6 +6,8 @@ module.exports = function($scope, createAccountFactory) {
 
     function bundleAccountDetails(){
         return {
+            firstName: $scope.firstName,
+            lastName: $scope.lastName,
             email: $scope.email,
             password: $scope.password,
             confirmPassword: $scope.confirmPassword

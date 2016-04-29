@@ -18,3 +18,7 @@
 #createAccountsPage .submit-btn {
     padding-top: 20px;
 }
+
+#createAccountsPage #lastName {
+    float: right;
+}

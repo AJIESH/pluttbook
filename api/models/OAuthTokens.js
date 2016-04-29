@@ -8,5 +8,5 @@ module.exports.model = function(db){
         userId: { type: String }
     });
 
-    module.exports.schema = db.model('OAuthToken', OAuthToken);
+    module.exports.schema = db.model('OAuthTokens', OAuthToken);
 };

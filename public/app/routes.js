@@ -14,8 +14,8 @@ module.exports = function($routeProvider){
           controller: createAccountCtrl
   })
   .when('/news-feed', {
-          templateUrl: './app/header/header.html',
-          controller: headerCtrl
+          templateUrl: './app/news-feed/news-feed.html',
+          controller: newsFeedCtrl
   })
   .otherwise({redirectTo: '/login'});
 };

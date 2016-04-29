@@ -1,18 +1,6 @@
 module.exports = function($scope) {
 
-    $scope.news = [{
-        name: 'Nick Plutt',
-        status: 'Hello World!',
-        time: '32 min'
-    },
-        {
-            name: 'Nick Plutt',
-            status: 'Hello World!',
-            time: '32 min'
-        },
-        {
-            name: 'Nick Plutt',
-            status: 'Hello World!',
-            time: '32 min'
-        }];
+    $scope.header = './app/header/header.html';
+    $scope.feedContent = './app/feed-content/feed-content.html';
+
 };

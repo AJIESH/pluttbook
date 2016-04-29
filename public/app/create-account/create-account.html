@@ -4,8 +4,18 @@
             <h2 class="md-toolbar-tools"><span>Pluttbook</span></h2>
         </md-toolbar>
         <md-content layout="column" class="md-padding">
+            <div class="row">
+                <md-input-container id="firstName">
+                    <label>First Name</label>
+                    <input type="text" ng-model="firstName"/>
+                </md-input-container>
+                <md-input-container id="lastName">
+                    <label>Last Name</label>
+                    <input type="text" ng-model="lastName"/>
+                </md-input-container>
+            </div>
             <md-input-container>
-                <label>EmailAddress</label>
+                <label>Email Address</label>
                 <input type="email" ng-model="email"/>
             </md-input-container>
             <md-input-container>
