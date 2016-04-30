@@ -3,7 +3,7 @@ var UserInfo = require('../dbFunctions/UserInfo.js');
 var bcrypt = require('bcrypt-nodejs');
 var request, result, email, password, firstName, lastName;
 
-module.exports.controller = function(app, db){
+module.exports.controller = function(app){
   app.post('/api/createAccount', function(req, res){
       request = req;
       result = res;

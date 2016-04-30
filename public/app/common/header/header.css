@@ -1,0 +1,105 @@
+#header #layout-horizontal-navigation {
+    height: 100%;
+    max-height: 100%;
+}
+
+#header #content-container {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#header #toolbar {
+    height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    z-index: 55!important;
+}
+
+#header .layout-row {
+    webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+
+#header .toolbar-separator {
+    height: 64px;
+    width: 1px;
+    background: rgba(0,0,0,.12);
+}
+
+#header #user-menu, #optionsRow, #content-container {
+    width: 100%;
+}
+
+#header #options {
+    float: right;
+}
+
+#header .avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#header #down {
+    padding-left: 5px;
+    padding-right: 0px;
+    width: 20px !important;
+    padding-top: 17px;
+    line-height: 0px !important;
+}
+
+#header #optionsButton {
+    height: 64px;
+    padding-top: 13px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#header #ms-search-bar-expander, #ms-search-bar-clear {
+    cursor: pointer;
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    width: 64px!important;
+    height: 64px!important;
+    line-height: 64px!important;
+    border-right: medium;
+}
+
+#header #search-bar {
+    height: 32px;
+}
+
+#header #input {
+    border-color: transparent;
+}
+
+.md-open-menu-container {
+    top: 64px;
+    /*left: 84%;*/
+    transform-origin: left top 0px;
+    position: fixed;
+    z-index: 100;
+}
+
+#menu-divider {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 1px;
+    min-height: 1px;
+    max-height: 1px;
+    width: 100%;
+}

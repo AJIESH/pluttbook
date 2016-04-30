@@ -1,0 +1,12 @@
+#createStatus .profile-box {
+    margin-bottom: 0px;
+}
+
+#createStatus textarea {
+    font-size: 13px;
+    width: 100%;
+    height: 140px;
+    border: none;
+    padding: 16px;
+    resize: vertical;
+}

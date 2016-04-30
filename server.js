@@ -44,7 +44,7 @@ var route;
 fs.readdirSync('./api/controllers').forEach(function(file){
    if(file.substr(-3) == '.js'){
        route = require('./api/controllers/' + file);
-       route.controller(app, db);
+       route.controller(app);
    }
 });
 

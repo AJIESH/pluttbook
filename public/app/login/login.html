@@ -1,4 +1,4 @@
-<div ng-controller="loginCtrl"  layout="column" layout-align="center center" layout-fill="layout-fill" id="loginPage">
+<div ng-controller="loginCtrl as vm"  layout="column" layout-align="center center" layout-fill="layout-fill" id="loginPage">
   <div layout="column" class="loginBox md-whiteframe-z1">
     <md-toolbar>
       <h2 class="md-toolbar-tools"><span>Pluttbook</span></h2>
@@ -6,14 +6,14 @@
     <md-content layout="column" class="md-padding">
       <md-input-container>
         <label>EmailAddress</label>
-        <input type="email" ng-model="email"/>
+        <input type="email" ng-model="vm.email"/>
       </md-input-container>
       <md-input-container>
         <label>Password</label>
-        <input type="password" ng-model="password"/>
+        <input type="password" ng-model="vm.password"/>
       </md-input-container>
       <div layout="row" layout-align="center center">
-        <md-button ng-click="login()" class="md-raised md-primary" id="loginButton">Login</md-button>
+        <md-button ng-click="vm.login()" class="md-raised md-primary" id="loginButton">Login</md-button>
       </div>
       <div layout="row" layout-align="center center">
         <md-button href="/#/create-account" md-no-ink="md-no-ink">Create Account</md-button>

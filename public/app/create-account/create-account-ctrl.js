@@ -1,16 +1,21 @@
-module.exports = function($scope, createAccountFactory) {
-    $scope.createAccount = function(){
+module.exports = function(createAccountFactory) {
+    var vm = this;
+    //---Functions---
+    vm.createAccount = createAccount;
+
+    function createAccount(){
         var accountDetails = bundleAccountDetails();
+        console.log(accountDetails);
         createAccountFactory.createAccount(accountDetails);
     };
 
     function bundleAccountDetails(){
         return {
-            firstName: $scope.firstName,
-            lastName: $scope.lastName,
-            email: $scope.email,
-            password: $scope.password,
-            confirmPassword: $scope.confirmPassword
+            firstName: vm.firstName,
+            lastName: vm.lastName,
+            email: vm.email,
+            password: vm.password,
+            confirmPassword: vm.confirmPassword
         };
     }
 };

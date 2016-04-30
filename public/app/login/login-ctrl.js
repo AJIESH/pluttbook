@@ -1,13 +1,17 @@
-module.exports = function($scope, loginFactory) {
-    $scope.login = function(){
+module.exports = function(loginFactory) {
+    var vm = this;
+    //---Functions---
+    vm.login = login;
+
+    function login(){
         var loginCredentials = bundleLoginCredentials();
         loginFactory.login(loginCredentials);
     };
 
     function bundleLoginCredentials(){
         return {
-            username: $scope.email,
-            password: $scope.password
+            username: vm.email,
+            password: vm.password
         };
     }
 };

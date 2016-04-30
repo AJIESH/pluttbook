@@ -1,0 +1,44 @@
+<div ng-controller="headerCtrl as vm" id="header">
+    <div id="layout-vertical-navigation" class="template-layout layout-row-flex" layout="row" flex>
+        <div id="content-container" flex-layout="column" class="layout-column-flex">
+            <md-toolbar id="toolbar" class="md-menu-toolbar md-whiteframe-1dp md-default-theme" layout="row">
+                <div layout="row" layout-align="start center" class="layout-align-start-center header-row">
+                    <div ng-include src="vm.logo"></div>
+                    <div class="toolbar-separator"></div>
+                    <div flex-layout="row" layout-align="start center" class="layout-align-start-center layout-row flex">
+                        <label>
+                            <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-expander" ng-click="vm.toggleSearch()" ng-show="!vm.showSearch">search</i>
+                            <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-clear" ng-click="vm.toggleSearch()" ng-show="vm.showSearch">clear</i>
+                        </label>
+                        <md-input-container md-no-float flex id="search-bar" ng-show="vm.showSearch">
+                            <input placeholder="Search" id="input">
+                        </md-input-container>
+                    </div>
+                    <div class="toolbar-separator" ng-show="!vm.showSearch"></div>
+                </div>
+                <div layout="row" layout-align="start center" class="layout-align-start-center header-row" id="optionsRow" ng-show="!vm.showSearch">
+                    <md-menu-bar id="user-menu">
+                        <md-menu md-position-mode="left bottom" class="md-menu" id="options">
+                            <md-button id="optionsButton" ng-click="$mdOpenMenu($event)">
+                                <div layout="row">
+                                    <div class="avatar-wrapper">
+                                        <img class="avatar" ng-src="./avatar.jpg">
+                                    </div>
+                                    <span class="username">John Doe</span>
+                                    <i class="icon s24 material-icons md-default-theme" id="down">arrow_drop_down</i>
+                                </div>
+                            </md-button>
+                            <div class="md-open-menu-container md-whiteframe-z2">
+                                <md-menu-content id="menu-content" width="3">
+                                    <md-menu-item><md-button>My Profile</md-button></md-menu-item>
+                                    <md-menu-divider role="separator" id="menu-divider"></md-menu-divider>
+                                    <md-menu-item><md-button ng-click="vm.logout()">Logout</md-button></md-menu-item>
+                                </md-menu-content>
+                            </div>
+                        </md-menu>
+                    </md-menu-bar>
+                </div>
+            </md-toolbar>
+        </div>
+    </div>
+</div>

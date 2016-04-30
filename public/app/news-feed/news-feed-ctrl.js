@@ -1,6 +1,8 @@
-module.exports = function($scope) {
-
-    $scope.header = './app/header/header.html';
-    $scope.feedContent = './app/feed-content/feed-content.html';
+module.exports = function() {
+    var vm = this;
+    //---Variables---
+    vm.header = './app/common/header/header.html';
+    vm.createStatus = './app/common/create-status/create-status.html';
+    vm.feedContent = './app/common/feed-content/feed-content.html';
 
 };

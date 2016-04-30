@@ -1,7 +1,6 @@
 var loginCtrl = require('./login/login-ctrl');
 var createAccountCtrl = require('./create-account/create-account-ctrl');
 var newsFeedCtrl = require('./news-feed/news-feed-ctrl');
-var headerCtrl = require('./header/header-ctrl');
 
 module.exports = function($routeProvider){
   $routeProvider

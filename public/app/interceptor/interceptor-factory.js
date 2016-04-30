@@ -6,7 +6,7 @@ module.exports = function($window, localStorageService) {
 
     function request(config) {
         if(!urlPublic(config.url)) {
-            var authData = localStorageService.get('authorizationData');
+            var authData = getAuthData();
             if (authData) {
                 config.headers.Authorization = 'Bearer ' + authData.token;
             }
@@ -15,12 +15,17 @@ module.exports = function($window, localStorageService) {
                 config = null;
             }
         }
+        else{
+            if(getAuthData()){
+                $window.location.href = '/#/news-feed'
+            }
+        }
         return config;
     }
 
     function response(response){
         if(response.status === 401 && $window.location !== '/#/login'){
-            $window.location.href = '/#/login';
+            redirectToLogin()
         }
         return response
     }
@@ -45,5 +50,9 @@ module.exports = function($window, localStorageService) {
 
     function redirectToLogin(){
         $window.location.href = '/#/login';
+    }
+
+    function getAuthData(){
+        return localStorageService.get('authorizationData');
     }
 };

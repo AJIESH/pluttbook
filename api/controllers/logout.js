@@ -1,10 +1,12 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
+
 var request, result;
-module.exports.controller = function(app, db){
+module.exports.controller = function(app){
     app.post('/api/logout', app.oauth.authorise(), function(req, res){
         request = req;
         result = res;
-        OAuthTokens.getTokensUserId(req.body.token, removeTokensUnderUserId);
+
+        OAuthTokens.getTokensUserId(request, result, removeTokensUnderUserId);
     });
 };
 
