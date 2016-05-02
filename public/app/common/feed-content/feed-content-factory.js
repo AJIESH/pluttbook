@@ -1,17 +1,23 @@
-module.exports = function($http){
+module.exports = function($http, $q){
+    var statuses = $q.defer();
+
     return {
-        postStatus: postStatus
+        getStatuses: getStatuses,
+        getStatus: getStatus,
+        setStatusesToDefered: setStatusesToDefered
     };
 
-    function postStatus(status) {
-        return $http.post('api/status', status);
+    function getStatuses() {
+         $http.get('api/status').then(function(data){
+             statuses.resolve(data);
+         });
     }
 
-    function postStatusSuccess(response){
-        console.log(response);
+    function getStatus(){
+       return statuses.promise;
     }
 
-    function postStatusError(response){
-        console.log(response);
+    function setStatusesToDefered(){
+        statuses = $q.defer();
     }
 };

@@ -34,8 +34,8 @@ app.controller('createAccountCtrl', ['createAccountFactory', createAccountCtrl])
 app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
-app.controller('feedCtrl', [feedCtrl]);
-app.factory('feedFactory', ['$http', feedFactory]);
+app.controller('feedCtrl', ['feedFactory', feedCtrl]);
+app.factory('feedFactory', ['$http', '$q', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', 'headerFactory', headerCtrl]);

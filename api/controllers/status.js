@@ -8,31 +8,56 @@ module.exports.controller = function(app){
         request = req;
         result = res;
 
-        if(!validGetRequest(result)){
+        if(!validPost(result)){
             result.sendStatus(400);
         }
 
         OAuthTokens.getTokensUserId(request, result, saveStatus);
     });
+
+    app.get('/api/status', app.oauth.authorise(), function(req, res){
+        request = req;
+        result = res;
+
+        OAuthTokens.getTokensUserId(request, result, getStatus);
+    });
 };
 
 function saveStatus(id, err){
     if(id !== null && err === false){
-        var email = id;
         var status = request.body.status;
         var date = new Date();
 
-        Statuses.saveStatus(email, status, date, finish)
+        Statuses.saveStatus(id, status, date, finishPost)
     }
     else{
         result.sendStatus(500);
     }
 }
 
-function finish(err){
+function finishPost(err){
     (!err) ? result.sendStatus(200) : result.sendStatus(500);
 }
 
-function validGetRequest(){
+function getStatus(id, err){
+    if(id !== null && err === false){
+        Statuses.getStatuses(id, finishGet)
+    }
+    else{
+        result.sendStatus(500);
+    }
+}
+
+function finishGet(statuses, err){
+    if(!err){
+        result.setHeader('Content-Type', 'application/json');
+        result.send(JSON.stringify(statuses));
+    }
+    else{
+        result.sendStatus(500);
+    }
+}
+
+function validPost(){
     return request.body.status !== null;
 }

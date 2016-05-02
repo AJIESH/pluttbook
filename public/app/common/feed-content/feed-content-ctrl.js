@@ -1,19 +1,15 @@
-module.exports = function() {
+module.exports = function(feedFactory) {
     var vm = this;
     //--Variables---
-    vm.news = [{
-        name: 'Nick Plutt',
-        status: 'Hello World!',
-        time: '32 min'
-    },
-        {
-            name: 'Nick Plutt',
-            status: 'Hello World!',
-            time: '32 min'
-        },
-        {
-            name: 'Nick Plutt',
-            status: 'Hello World!',
-            time: '32 min'
-        }];
+
+    feedFactory.getStatuses();
+    getStat();
+
+    function getStat(){
+        feedFactory.getStatus().then(function(data){
+            vm.news = data.data;
+            feedFactory.setStatusesToDefered();
+            getStat();
+        });
+    }
 };
