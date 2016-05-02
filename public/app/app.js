@@ -12,10 +12,12 @@ var loginCtrl = require('./login/login-ctrl.js'),
     createAccountFactory = require('./create-account/create-account-factory.js'),
     interceptorFactory = require('./interceptor/interceptor-factory.js'),
     feedCtrl = require('./common/feed-content/feed-content-ctrl.js'),
+    feedFactory = require('./common/feed-content/feed-content-factory.js'),
     headerCtrl = require('./common/header/header-ctrl.js'),
     headerFactory = require('./common/header/header-factory.js'),
     newsFeedCtrl = require('./news-feed/news-feed-ctrl.js'),
-    createStatusCtrl = require('./common/create-status/create-status-ctrl.js');
+    createStatusCtrl = require('./common/create-status/create-status-ctrl.js'),
+    createStatusFactory = require('./common/create-status/create-status-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
 
@@ -33,6 +35,7 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
 app.controller('feedCtrl', [feedCtrl]);
+app.factory('feedFactory', ['$http', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', 'headerFactory', headerCtrl]);
@@ -42,8 +45,8 @@ app.factory('headerFactory', ['$http', '$window', 'localStorageService', headerF
 app.controller('newsFeedCtrl', [newsFeedCtrl]);
 
 //Creates status modules
-app.controller('createStatusCtrl', ['createStatusFactory', createStatusCtrl]);
-app.factory('createStatusFactory', ['$http'])
+app.controller('createStatusCtrl', ['createStatusFactory', 'feedFactory', createStatusCtrl]);
+app.factory('createStatusFactory', ['$http', createStatusFactory]);
 
 //Interceptor modules
 app.factory('interceptor', ['$window', 'localStorageService',interceptorFactory])

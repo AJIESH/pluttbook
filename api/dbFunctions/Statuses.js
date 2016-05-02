@@ -1,11 +1,12 @@
 var Statuses = require('../models/Statuses.js');
 
-module.exports.saveStatus = function(email, status, status, callback){
+module.exports.saveStatus = function(email, status, date, callback){
     var status = Statuses.schema({
-        email: email,
-        status: status
+        userId: email,
+        status: status,
+        dateTime: date
     });
-    userInfo.save(function(err){
+    status.save(function(err){
         err === null ? callback(false) : callback(true);
-    })
+    });
 };

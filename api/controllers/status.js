@@ -4,11 +4,11 @@ var Statuses = require('../dbFunctions/Statuses.js');
 var request, result, status;
 
 module.exports.controller = function(app){
-    app.post('/api/statuses', app.oauth.authorise(), function(req, res){
+    app.post('/api/status', app.oauth.authorise(), function(req, res){
         request = req;
         result = res;
 
-        if(!validGetData(result)){
+        if(!validGetRequest(result)){
             result.sendStatus(400);
         }
 
@@ -19,9 +19,8 @@ module.exports.controller = function(app){
 function saveStatus(id, err){
     if(id !== null && err === false){
         var email = id;
-        var status = request.param('status');
+        var status = request.body.status;
         var date = new Date();
-        console.log(email + " " + status + " " + date);
 
         Statuses.saveStatus(email, status, date, finish)
     }
@@ -34,6 +33,6 @@ function finish(err){
     (!err) ? result.sendStatus(200) : result.sendStatus(500);
 }
 
-function validGetData(data){
-    return data.param('status') !== null;
+function validGetRequest(){
+    return request.body.status !== null;
 }

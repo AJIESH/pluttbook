@@ -1,7 +1,21 @@
 <div ng-controller="createStatusCtrl as vm"  layout="column" layout-align="center center" layout-fill="layout-fill" id="createStatus">
     <div class="profile-box add-post md-whitefram-1dp">
         <div class="form flex">
-            <textarea placeholder="Write something.." class="ng-scope"></textarea>
+            <textarea placeholder="Write something.." ng-model="vm.status"></textarea>
+            <footer layout="row" layout-align="space-between center" class="layout-align-space-between-center layout-row">
+                <div layout="row" layout-align="start center" class="layout-align-start-center layout-row">
+                    <md-button class="md-icon-button">
+                        <i class="icon s24 material-icons md-default-theme">insert_photo</i>
+                    </md-button>
+                    <md-button class="md-icon-button">
+                        <i class="icon s24 material-icons md-default-theme">person_add</i>
+                    </md-button>
+                    <md-button class="md-icon-button">
+                        <i class="icon s24 material-icons md-default-theme">location_on</i>
+                    </md-button>
+                </div>
+                <md-button id="post-button" ng-click="vm.postStatus()">POST</md-button>
+            </footer>
         </div>
     </div>
 </div>

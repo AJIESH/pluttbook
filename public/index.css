@@ -64,8 +64,12 @@ html {
 * {
     box-sizing: border-box;
 }
+#createStatus {
+    margin-bottom: 32px;
+}
 #createStatus .profile-box {
     margin-bottom: 0px;
+    width: 100%;
 }
 
 #createStatus textarea {
@@ -75,6 +79,17 @@ html {
     border: none;
     padding: 16px;
     resize: vertical;
+}
+
+#createStatus #post-button {
+    background-color: #3F51B5;
+    color: #FFFFFF;
+}
+
+#createStatus footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid;
+    border-top-color: #e9eaed;
 }
 #feedContent {
     background-color : #e9eaed;
@@ -252,7 +267,7 @@ html {
 
 #logo .logo-image {
     display: block;
-    background: #039BE5;
+    background: #3F51B5;
     width: 32px;
     min-width: 32px;
     height: 32px;

@@ -1,6 +1,6 @@
 module.exports.model = function(db){
     var schema =  new db.Schema({
-        email: { type: String },
+        userId: { type: String },
         status: { type: String },
         dateTime: { type: Date }
     }, {collection: 'statuses'});

@@ -1,5 +1,9 @@
+#createStatus {
+    margin-bottom: 32px;
+}
 #createStatus .profile-box {
     margin-bottom: 0px;
+    width: 100%;
 }
 
 #createStatus textarea {
@@ -9,4 +13,15 @@
     border: none;
     padding: 16px;
     resize: vertical;
+}
+
+#createStatus #post-button {
+    background-color: #3F51B5;
+    color: #FFFFFF;
+}
+
+#createStatus footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid;
+    border-top-color: #e9eaed;
 }
