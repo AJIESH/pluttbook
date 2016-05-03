@@ -7,6 +7,7 @@ module.exports.getAuthTokenFromHeader = function(request, result){
     }
 };
 
-module.exports.getUnixTime = function(date){
+module.exports.getUnixTime = function(){
+    var date = new Date();
     return Date.parse(date)/1000;
 }

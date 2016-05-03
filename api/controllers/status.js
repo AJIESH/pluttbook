@@ -37,7 +37,7 @@ function getUserInfo(id, err){
 function saveStatus(userInfo, err){
     if(err === false && userInfo !== null){
         var status = request.body.status;
-        var date = HelperFuncs.getUnixTime(new Date());
+        var date = HelperFuncs.getUnixTime();
 
         Statuses.saveStatus(userInfo.userId, status, date, userInfo.firstName, userInfo.lastName, finishPost);
     }

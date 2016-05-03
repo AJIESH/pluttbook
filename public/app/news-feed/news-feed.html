@@ -1,7 +1,6 @@
 <div ng-controller="newsFeedCtrl as vm"  id="newsFeed">
     <div ng-include src="vm.header"></div>
-    <div class="newsFeed layout-column flex-order-gt-sm-1 flex-order-2 flex-gt-sm-55 flex-gt-md-65 flex-100"
-         layout="column" flex="100" flex-gt-sm="55" flex-gt-md="65" flex-order="2" flex-order-gt-sm="1">
+    <div class="newsFeed layout-column">
         <div ng-include src="vm.createStatus"></div>
         <div ng-include src="vm.feedContent"></div>
     </div>
