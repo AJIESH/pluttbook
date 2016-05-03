@@ -5,7 +5,6 @@ module.exports = function(createAccountFactory) {
 
     function createAccount(){
         var accountDetails = bundleAccountDetails();
-        console.log(accountDetails);
         createAccountFactory.createAccount(accountDetails);
     };
 

@@ -26,8 +26,8 @@ function hashPassword(err){
     }
 }
 
-function saveUserInfo(err){
-    (!err) ? UserInfo.saveUserInfo(email, firstName, lastName, finish) : result.send(500);
+function saveUserInfo(userId, err){
+    (!err) ? UserInfo.saveUserInfo(userId, email, firstName, lastName, finish) : result.sendStatus(500);
 }
 
 function finish(err){

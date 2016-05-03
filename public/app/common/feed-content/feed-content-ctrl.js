@@ -3,13 +3,13 @@ module.exports = function(feedFactory) {
     //--Variables---
 
     feedFactory.getStatuses();
-    getStat();
+    getStatuses();
 
-    function getStat(){
+    function getStatuses(){
         feedFactory.getStatus().then(function(data){
             vm.news = data.data;
             feedFactory.setStatusesToDefered();
-            getStat();
+            getStatuses();
         });
     }
 };

@@ -6,3 +6,7 @@ module.exports.getAuthTokenFromHeader = function(request, result){
         result.sendStatus(401);
     }
 };
+
+module.exports.getUnixTime = function(date){
+    return Date.parse(date)/1000;
+}

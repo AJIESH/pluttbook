@@ -1,5 +1,6 @@
 module.exports.model = function(db){
     var schema =  new db.Schema({
+        userId: {type: String},
         email: { type: String },
         firstName: { type: String },
         lastName: { type: String }

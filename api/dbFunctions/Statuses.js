@@ -1,10 +1,12 @@
 var Statuses = require('../models/Statuses.js');
 
-module.exports.saveStatus = function(id, status, date, callback){
+module.exports.saveStatus = function(id, status, date, firstName, lastName, callback){
     var status = Statuses.schema({
         userId: id,
         status: status,
-        dateTime: date
+        dateTime: date,
+        firstName: firstName,
+        lastName: lastName
     });
     status.save(function(err){
         err === null ? callback(false) : callback(true);
@@ -12,7 +14,7 @@ module.exports.saveStatus = function(id, status, date, callback){
 };
 
 module.exports.getStatuses = function(id, callback){
-    var statuses = Statuses.schema.find({userId: id}, function(err, obj){
+    Statuses.schema.find({userId: id}).select('-userId').populate('-userId').exec(function(err, obj){
         (err === null) ? callback(obj, false) : callback(null, true);
     })
 };

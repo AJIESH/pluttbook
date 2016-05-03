@@ -1,14 +1,25 @@
 var OAuthUsersModel = require('../models/OAuthUsers.js');
 
+//Doesn't currently work
 module.exports.getUserId = function(email, callback){
     OAuthUsersModel.schema.findOne({email: email}, function(err, obj){
-        err === null ? callback(obj.ObjectId, false) : callback(true);
+        if(err === null && obj !== null){
+            callback(obj.ObjectId, false)
+        }
+        else{
+            callback(true);
+        }
     });
 };
 
 module.exports.emailUnique = function(email, callback){
     OAuthUsersModel.schema.findOne({ email: email }, function(err, obj){
-        obj === null ? callback(false) : callback(true);
+        if(err === null && obj === null){
+            callback(false);
+        }
+        else{
+            callback(true);
+        }
     });
 };
 
@@ -17,7 +28,7 @@ module.exports.saveUser = function(email, password, callback, req, res){
         email: email,
         password: password
     });
-    user.save(function(err){
-        err === null ? callback(false) : callback(true);
+    user.save(function(err, obj){
+        err === null ? callback(obj.id, false) : callback(true);
     });
 }
