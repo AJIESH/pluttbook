@@ -49,7 +49,7 @@ app.controller('createStatusCtrl', ['createStatusFactory', 'feedFactory', create
 app.factory('createStatusFactory', ['$http', createStatusFactory]);
 
 //Interceptor modules
-app.factory('interceptor', ['$window', 'localStorageService',interceptorFactory])
+app.factory('interceptor', ['$q', '$window', 'localStorageService',interceptorFactory])
     .config(function($httpProvider){
        $httpProvider.interceptors.push('interceptor');
     });

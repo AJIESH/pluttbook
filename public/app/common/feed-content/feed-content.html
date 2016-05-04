@@ -15,5 +15,24 @@
         <div class="content">
             <div class="status">{{newsItem.status}}</div>
         </div>
+        <div layout="row" layout-align="start center">
+            <md-button>
+                <div layout="row" layout-align="start center">
+                    <i class="icon s18 material-icons md-default-theme news-feed-icon">thumb_up</i>
+                    <span class="news-feed-button-text">Like(1)</span>
+                </div>
+            </md-button>
+            <md-button>
+                <div layout="row" layout-align="start center">
+                    <i class="icon s18 material-icons md-default-theme news-feed-icon">insert_comment</i>
+                    <span class="news-feed-button-text">Comment(1)</span>
+                </div>
+            </md-button>
+        </div>
+        <div class="profile-box add-post md-whitefram-1dp">
+            <div class="form flex">
+                <textarea placeholder="Add a comment.." ng-model="vm.comment"></textarea>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,7 +1,8 @@
-module.exports = function($window, localStorageService) {
+module.exports = function($q, $window, localStorageService) {
     return {
         request: request,
-        response: response
+        response: response,
+        responseError: responseError
     };
 
     function request(config) {
@@ -15,19 +16,22 @@ module.exports = function($window, localStorageService) {
                 config = null;
             }
         }
-        else{
-            if(getAuthData()){
-                $window.location.href = '/#/news-feed'
-            }
+        else if(urlPublic(config.url) && getAuthData()){
+            $window.location.href = '/#/news-feed'
         }
         return config;
     }
 
     function response(response){
-        if(response.status === 401 && $window.location !== '/#/login'){
-            redirectToLogin()
-        }
         return response
+    }
+
+    function responseError(response){
+        var status = response.status;
+        if(status === 401 && $window.location !== '/#/login'){
+            redirectToLogin();
+        }
+        return response;
     }
 
 
@@ -49,6 +53,7 @@ module.exports = function($window, localStorageService) {
     }
 
     function redirectToLogin(){
+        localStorageService.clearAll();
         $window.location.href = '/#/login';
     }
 
