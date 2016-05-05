@@ -3,6 +3,8 @@ module.exports = function($http, $q){
 
     return {
         getStatuses: getStatuses,
+        postLike: postLike,
+        postComment: postComment,
         getStatus: getStatus,
         formatStatusTime: formatStatusTime
     };
@@ -12,6 +14,18 @@ module.exports = function($http, $q){
              statuses.resolve(data);
              statuses = $q.defer();
          });
+    }
+
+    function postLike(statusId){
+        $http.post('api/like', statusId).then(function(data){
+            statuses = $q.defer();
+        });
+    }
+
+    function postComment(comment){
+        $http.post('api/comment', comment).then(function(data){
+            statuses = $q.defer();
+        });
     }
 
     function getStatus(){
@@ -24,7 +38,6 @@ module.exports = function($http, $q){
         var difference = currentTime - unix;
         //Converts to minutes if less than 60
         if(Math.floor(difference / 60) < 60){
-            console.log(currentTime + ' ' + unix);
             return Math.floor(difference / 60).toString() + ' mins';
         }
         else if(Math.floor(difference / 3600) < 24){

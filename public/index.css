@@ -52,7 +52,7 @@ html {
     padding-top: 20px;
 }
 #newsFeed {
-    background-color : #e9eaed;
+    background-color : rgb(245,245,245);
 }
 #newsFeed .newsFeed {
     overflow: hidden;
@@ -92,7 +92,7 @@ html {
     border-top-color: #e9eaed;
 }
 #feedContent {
-    background-color : #e9eaed;
+    background-color : rgb(245,245,245);
 }
 
 #feedContent .newsItem {
@@ -112,6 +112,15 @@ html {
     padding-bottom: 8px;
     padding-left: 16px;
 }
+
+#feedContent footer{
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    background-color: rgba(0,0,0,.06);
+}
+
 
 #feedContent .user .layout-column {
     min-height: initial;
@@ -163,12 +172,22 @@ html {
 #feedContent textarea {
     font-size: 13px;
     width: 100%;
-    height: 140px;
+    height: 90px;
     border: none;
     padding: 16px;
     resize: vertical;
 }
 
+#feedContent .add-post {
+    width: 100%
+}
+
+#feedContent .post-button {
+    background-color: #3F51B5;
+    color: #FFFFFF;
+    margin-top: 10px;
+    margin-left: 0px;
+}
 
 
 #header #layout-horizontal-navigation {

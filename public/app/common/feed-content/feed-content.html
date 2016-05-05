@@ -16,7 +16,7 @@
             <div class="status">{{newsItem.status}}</div>
         </div>
         <div layout="row" layout-align="start center">
-            <md-button>
+            <md-button ng-click="vm.likeStatus(newsItem._id)">
                 <div layout="row" layout-align="start center">
                     <i class="icon s18 material-icons md-default-theme news-feed-icon">thumb_up</i>
                     <span class="news-feed-button-text">Like(1)</span>
@@ -29,10 +29,20 @@
                 </div>
             </md-button>
         </div>
-        <div class="profile-box add-post md-whitefram-1dp">
-            <div class="form flex">
-                <textarea placeholder="Add a comment.." ng-model="vm.comment"></textarea>
+        <footer layout="column">
+            <div layout="row" class="comment">
+                <img class="avatar" ng-src="./avatar.jpg">
+                <div layout="column" class="add-post">
+                    <div class="add-post md-whitefram-1dp">
+                        <div class="form flex">
+                            <textarea placeholder="Add a comment.." ng-model="vm.comment"></textarea>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <md-button class="post-button" ng-class="vm.postComment(newsItem._id, vm.comment)">Post Comment</md-button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </footer>
     </div>
 </div>
