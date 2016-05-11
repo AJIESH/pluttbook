@@ -1,5 +1,4 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
-var UserInfo = require('../dbFunctions/UserInfo.js');
 var Statuses = require('../dbFunctions/Statuses.js');
 var HelperFuncs = require('../common/helperFunctions.js');
 
@@ -10,11 +9,11 @@ module.exports.controller = function(app){
         request = req;
         result = res;
 
-        if(!validPost(result)){
+        if(!validPost()){
             result.sendStatus(400);
         }
 
-        OAuthTokens.getTokensUserId(request, result, getUserInfo);
+        OAuthTokens.getTokensUserId(request, result, saveStatus);
     });
 
     app.get('/api/status', app.oauth.authorise(), function(req, res){
@@ -25,21 +24,12 @@ module.exports.controller = function(app){
     });
 };
 
-function getUserInfo(id, err){
-    if(err === false && id != null){
-        UserInfo.getUserInfo(id, saveStatus);
-    }
-    else{
-        result.sendStatus(500);
-    }
-}
-
-function saveStatus(userInfo, err){
-    if(err === false && userInfo !== null){
+function saveStatus(userId, err){
+    if(err === false && userId !== null){
         var status = request.body.status;
         var date = HelperFuncs.getUnixTime();
 
-        Statuses.saveStatus(userInfo.userId, status, date, userInfo.firstName, userInfo.lastName, finishPost);
+        Statuses.saveStatus(userId, status, date, finishPost);
     }
     else{
         result.sendStatus(500);

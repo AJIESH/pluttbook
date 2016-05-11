@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var oauthServer = require('oauth2-server');
+var validate = require('express-validation');
 var port = 4000;
 
 //Database configuration =================================================
