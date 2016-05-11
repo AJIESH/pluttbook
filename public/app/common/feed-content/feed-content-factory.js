@@ -5,7 +5,8 @@ module.exports = function($http, $q){
         getStatuses: getStatuses,
         postLike: postLike,
         postComment: postComment,
-        getStatus: getStatus,
+        setStatusPromise: setStatusPromise,
+        setStatusDefer: setStatusDefer,
         formatStatusTime: formatStatusTime
     };
 
@@ -17,9 +18,7 @@ module.exports = function($http, $q){
     }
 
     function postLike(statusId){
-        $http.post('api/like', statusId).then(function(data){
-            statuses = $q.defer();
-        });
+        return $http.post('api/like', statusId);
     }
 
     function postComment(comment){
@@ -28,8 +27,12 @@ module.exports = function($http, $q){
         });
     }
 
-    function getStatus(){
+    function setStatusPromise(){
        return statuses.promise;
+    }
+
+    function setStatusDefer(){
+        statuses = $q.defer();
     }
 
     function formatStatusTime(unix){
