@@ -1,4 +1,4 @@
-module.exports = function($http, $q){
+module.exports = function($http, $q, quickSortFactory){
     var statuses = $q.defer();
 
     return {
@@ -7,7 +7,8 @@ module.exports = function($http, $q){
         postComment: postComment,
         setStatusPromise: setStatusPromise,
         setStatusDefer: setStatusDefer,
-        formatStatusTime: formatStatusTime
+        formatStatusTime: formatStatusTime,
+        sortStatusesByDate: sortStatusesByDate
     };
 
     function getStatuses() {
@@ -49,5 +50,13 @@ module.exports = function($http, $q){
         else if(Math.floor(difference / 86400)< 7){
             return Math.floor(difference / 86400) + ' days';
         }
+    }
+
+    function sortStatusesByDate(statusArray){
+        return quickSortFactory.quickSort(statusArray, dateComparator);
+    }
+
+    function dateComparator(a, b){
+        return a.dateTime > b.dateTime;
     }
 };

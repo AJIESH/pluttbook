@@ -27,7 +27,8 @@ module.exports.controller = function(app){
 function saveStatus(userId, err){
     if(err === false && userId !== null){
         var status = request.body.status;
-        var date = HelperFuncs.getUnixTime();
+        var date = 1463099333;
+        //var date = HelperFuncs.getUnixTime();
 
         Statuses.saveStatus(userId, status, date, finishPost);
     }

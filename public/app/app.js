@@ -17,7 +17,8 @@ var loginCtrl = require('./login/login-ctrl.js'),
     headerFactory = require('./common/header/header-factory.js'),
     newsFeedCtrl = require('./news-feed/news-feed-ctrl.js'),
     createStatusCtrl = require('./common/create-status/create-status-ctrl.js'),
-    createStatusFactory = require('./common/create-status/create-status-factory.js');
+    createStatusFactory = require('./common/create-status/create-status-factory.js'),
+    quickSortFactory = require('./helper/quickSort.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
 
@@ -35,7 +36,7 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
 app.controller('feedCtrl', ['feedFactory', feedCtrl]);
-app.factory('feedFactory', ['$http', '$q', feedFactory]);
+app.factory('feedFactory', ['$http', '$q', 'quickSortFactory', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', 'headerFactory', headerCtrl]);
@@ -47,6 +48,9 @@ app.controller('newsFeedCtrl', [newsFeedCtrl]);
 //Creates status modules
 app.controller('createStatusCtrl', ['createStatusFactory', 'feedFactory', createStatusCtrl]);
 app.factory('createStatusFactory', ['$http', createStatusFactory]);
+
+//Creates helper modules
+app.factory('quickSortFactory', [quickSortFactory]);
 
 //Interceptor modules
 app.factory('interceptor', ['$q', '$window', 'localStorageService',interceptorFactory])

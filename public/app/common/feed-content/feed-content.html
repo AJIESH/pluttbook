@@ -1,5 +1,5 @@
 <div ng-controller="feedCtrl as vm"  layout="column" layout-align="center center" layout-fill="layout-fill" id="feedContent">
-    <div class="newsItem md-whiteframe-1dp" ng-repeat="newsItem in vm.news | orderBy: dateTime : true">
+    <div class="newsItem md-whiteframe-1dp" ng-repeat="newsItem in vm.news">
         <header layout="row" layout-align="space-between start" class="layout-align-space-between-start layout-row">
             <div class="user layout-align-start-center layout-row" layout="row" layout-align="start center">
                 <img class="avatar" ng-src="./avatar.jpg">
