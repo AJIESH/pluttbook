@@ -22,11 +22,11 @@ module.exports.controller = function(app){
         }
     }
 
-    function finishPost(comments, err){
+    function finishPost(status, err){
         if(!err){
-            var sortedComments = HelperFuncs.quickSort(comments, commentSort);
+            status.comments = HelperFuncs.quickSort(status.comments, commentSort);
             result.setHeader('Content-Type', 'application/json');
-            result.send(JSON.stringify(sortedComments));
+            result.send(JSON.stringify(status));
         }
         else{
             result.sendStatus(500);

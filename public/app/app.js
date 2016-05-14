@@ -38,7 +38,7 @@ app.controller('feedCtrl', ['feedFactory', feedCtrl]);
 app.factory('feedFactory', ['$http', '$q', feedFactory]);
 
 //Creates header modules
-app.controller('headerCtrl', ['$mdDialog', 'headerFactory', headerCtrl]);
+app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', headerCtrl]);
 app.factory('headerFactory', ['$http', '$window', 'localStorageService', headerFactory]);
 
 //Create news feed modules

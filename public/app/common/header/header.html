@@ -19,7 +19,7 @@
                 <div layout="row" layout-align="start center" class="layout-align-start-center header-row" id="optionsRow" ng-show="!vm.showSearch">
                     <md-menu-bar id="user-menu">
                         <md-menu md-position-mode="left bottom" class="md-menu" id="options">
-                            <md-button id="optionsButton" ng-click="$mdOpenMenu($event)">
+                            <md-button id="optionsButton" ng-click="$mdOpenMenu()">
                                 <div layout="row">
                                     <div class="avatar-wrapper">
                                         <img class="avatar" ng-src="./avatar.jpg">
@@ -29,7 +29,7 @@
                                     <i class="icon s24 material-icons md-default-theme" id="down">arrow_drop_down</i>
                                 </div>
                             </md-button>
-                            <div class="md-open-menu-container md-whiteframe-z2">
+                            <div class="md-open-menu-container md-whiteframe-z2" ng-mouseleave="vm.closeMenu()">
                                 <md-menu-content id="menu-content" width="3">
                                     <md-menu-item><md-button>My Profile</md-button></md-menu-item>
                                     <md-menu-divider role="separator" id="menu-divider"></md-menu-divider>

@@ -1,8 +1,9 @@
-module.exports = function($mdDialog, headerFactory) {
+module.exports = function($mdDialog, $mdMenu, headerFactory) {
     var vm = this;
     //---Functions---
     vm.toggleSearch = toggleSearch;
     vm.logout = logout;
+    vm.closeMenu = closeMenu;
     //---Variables---
     vm.logo = './app/common/logo/logo.html';
     vm.showSearch = false;
@@ -27,4 +28,8 @@ module.exports = function($mdDialog, headerFactory) {
     function logout() {
         headerFactory.logout();
     };
+
+    function closeMenu(){
+        $mdMenu.hide();
+    }
 };
