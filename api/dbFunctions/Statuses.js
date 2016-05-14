@@ -47,7 +47,6 @@ module.exports.hasUserLiked = function(statusId, userId, callback){
 };
 
 module.exports.saveComment = function(statusId, comment, date, userId, callback){
-    console.log(statusId + ' ' + comment + ' ' + date + ' ' + userId);
     Statuses.schema.findByIdAndUpdate(
         statusId,
         {$push: {'comments':

@@ -6,6 +6,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var oauthServer = require('oauth2-server');
 var validate = require('express-validation');
+var async = require('async');
 var port = 4000;
 
 //Database configuration =================================================
@@ -33,12 +34,12 @@ fs.readdirSync('./api/models').forEach(function(file){
 });
 
 //Dynamically include database functions==================================
-var dbFunction;
-fs.readdirSync('./api/dbFunctions').forEach(function(file){
-    if(file.substr(-3) == '.js'){
-        dbFunction = require('./api/dbFunctions/' + file);
-    }
-});
+//var dbFunction;
+//fs.readdirSync('./api/dbFunctions').forEach(function(file){
+//    if(file.substr(-3) == '.js'){
+//        dbFunction = require('./api/dbFunctions/' + file);
+//    }
+//});
 
 //Dynamically include routes==============================================
 var route;

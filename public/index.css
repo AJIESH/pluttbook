@@ -178,7 +178,7 @@ html {
 #feedContent textarea {
     font-size: 13px;
     width: 100%;
-    height: 90px;
+    height: 60px;
     border: none;
     padding: 16px;
     resize: vertical;
@@ -195,6 +195,15 @@ html {
     margin-left: 0px;
 }
 
+#feedContent .comments {
+    font-size: 13px;
+    padding-bottom: 15px;
+}
+
+#feedContent .commentText {
+    margin: 0px;
+    
+}
 
 #header #layout-horizontal-navigation {
     height: 100%;
@@ -302,6 +311,9 @@ html {
     width: 100%;
 }
 
+#header .firstname {
+    padding-right: 8px;
+}
 #logo {
     padding-top: 16px;
     padding-right: 16px;

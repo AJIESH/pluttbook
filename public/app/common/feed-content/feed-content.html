@@ -27,21 +27,29 @@
             <md-button>
                 <div layout="row" layout-align="start center">
                     <i class="icon s18 material-icons md-default-theme news-feed-icon">insert_comment</i>
-                    <span class="news-feed-button-text">Comment(1)</span>
-                </div>
+                    <span class="news-feed-button-text">Comment(</span>
+                    <span class="news-feed-button-text-right">{{vm.countComments($index)}}</span>
+                    <span class="news-feed-button-text-right">)</span>                </div>
             </md-button>
         </div>
         <footer layout="column">
+            <div class="comments" layout="row" layout-align="start-center" ng-repeat="comment in newsItem.comments track by $index">
+                <img class="avatar" ng-src="./avatar.jpg">
+                <div layout="column">
+                    <div class="time">{{vm.formatStatusTime(comment.dateTime)}}</div>
+                    <p class="commentText">{{comment.text}}</p>
+                </div>
+            </div>
             <div layout="row" class="comment">
                 <img class="avatar" ng-src="./avatar.jpg">
                 <div layout="column" class="add-post">
                     <div class="add-post md-whitefram-1dp">
                         <div class="form flex">
-                            <textarea placeholder="Add a comment.." ng-model="vm.comment"></textarea>
+                            <textarea placeholder="Add a comment.." ng-model="vm.commentBox[$index]"></textarea>
                         </div>
                     </div>
                     <div layout="row">
-                        <md-button class="post-button" ng-click="vm.commentOnStatus(newsItem._id, vm.comment, $index)">Post Comment</md-button>
+                        <md-button class="post-button" ng-click="vm.commentOnStatus($index)">Post Comment</md-button>
                     </div>
                 </div>
             </div>

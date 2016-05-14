@@ -3,10 +3,12 @@ module.exports = function(feedFactory) {
     //---Functions---
     vm.formatStatusTime = formatStatusTime;
     vm.countLikes = countLikes;
+    vm.countComments = countComments;
     vm.likeStatus = likeStatus;
     vm.commentOnStatus = commentOnStatus;
     //---Variables---
     vm.news = null;
+    vm.commentBox = [];
 
     activate();
 
@@ -18,6 +20,7 @@ module.exports = function(feedFactory) {
     function getStatuses() {
         feedFactory.setStatusPromise().then(function (data) {
             vm.news = data.data;
+            createBlankCommentBoxArray();
             getStatuses();
         });
     }
@@ -28,6 +31,10 @@ module.exports = function(feedFactory) {
 
     function countLikes(index){
         return vm.news[index].likes.length;
+    }
+
+    function countComments(index){
+        return vm.news[index].comments.length;
     }
 
     function likeStatus(statusId, index) {
@@ -43,13 +50,16 @@ module.exports = function(feedFactory) {
             }
         });
 
-    };
+    }
 
-    function commentOnStatus(statusId, comment, index) {
+    function commentOnStatus(index) {
         var obj = {
-            statusId: statusId,
-            comment: comment
+            statusId: vm.news[index]._id,
+            comment: vm.commentBox[index]
         };
+
+        vm.commentBox[index] = '';
+
         feedFactory.postComment(obj).then(function(data){
             if(data.status === 200){
                 updateStatusSuccess(data.data, index);
@@ -66,5 +76,11 @@ module.exports = function(feedFactory) {
 
     function updateStatusError(err){
         console.log('Like status error');
+    }
+
+    function createBlankCommentBoxArray(){
+        for(var i=0; i<vm.news.length; i++){
+            vm.commentBox.push('');
+        }
     }
 };

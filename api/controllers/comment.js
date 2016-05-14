@@ -11,24 +11,29 @@ module.exports.controller = function(app){
 
         OAuthTokens.getTokensUserId(request, result, saveComment);
     });
+
+    function saveComment(userId, err){
+        if(err === false && userId != null){
+            var date = HelperFuncs.getUnixTime();
+            Statuses.saveComment(request.body.statusId, request.body.comment, date, userId, finishPost);
+        }
+        else{
+            result.sendStatus(500);
+        }
+    }
+
+    function finishPost(comments, err){
+        if(!err){
+            var sortedComments = HelperFuncs.quickSort(comments, commentSort);
+            result.setHeader('Content-Type', 'application/json');
+            result.send(JSON.stringify(sortedComments));
+        }
+        else{
+            result.sendStatus(500);
+        }
+    }
 };
 
-function saveComment(userId, err){
-    if(err === false && userId != null){
-        var date = HelperFuncs.getUnixTime();
-        Statuses.saveComment(request.body.statusId, request.body.comment, date, userId, finishPost);
-    }
-    else{
-        result.sendStatus(500);
-    }
-}
-
-function finishPost(likes, err){
-    if(!err){
-        result.setHeader('Content-Type', 'application/json');
-        result.send(JSON.stringify(likes));
-    }
-    else{
-        result.sendStatus(500);
-    }
+function commentSort(a, b){
+    return a.dateTime < b.dateTime;
 }

@@ -22,7 +22,7 @@ module.exports = function($http, $q){
     }
 
     function postComment(comment){
-        $http.post('api/comment', comment);
+        return $http.post('api/comment', comment);
     }
 
     function setStatusPromise(){

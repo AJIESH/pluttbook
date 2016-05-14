@@ -1,6 +1,7 @@
 module.exports = function($http, $window, localStorageService){
     return {
-        logout : logout
+        logout : logout,
+        getUserInfo: getUserInfo
     };
 
     function logout() {
@@ -9,6 +10,9 @@ module.exports = function($http, $window, localStorageService){
             .error(redirectToLogin);
     }
 
+    function getUserInfo(){
+        return $http.get('api/userInfo', {});
+    }
     function redirectToLogin() {
         localStorageService.clearAll();
         $window.location.href = '/#/login';

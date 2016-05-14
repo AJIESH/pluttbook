@@ -16,6 +16,7 @@
     "angular-material": "^1.0.7",
     "angular-messages": "^1.5.3",
     "angular-route": "^1.5.3",
+    "async": "^2.0.0-rc.4",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "browserify": "^13.0.0",

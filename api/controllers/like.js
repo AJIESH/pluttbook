@@ -1,6 +1,6 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
-var UserInfo = require('../dbFunctions/UserInfo.js');
 var Statuses = require('../dbFunctions/Statuses.js');
+var async = require('async');
 
 var request, result, userId;
 
