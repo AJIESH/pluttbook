@@ -1,7 +1,6 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
 var UserInfo = require('../dbFunctions/UserInfo.js');
 var Statuses = require('../dbFunctions/Statuses.js');
-var HelperFuncs = require('../common/helperFunctions.js');
 
 var request, result, userId;
 
@@ -29,7 +28,7 @@ function saveLike(obj, err){
         Statuses.saveLike(request.body.statusId, this.userId, finishPost);
     }
     else if(err === false && obj.length !== 0) {
-        result.sendStatus(400);
+        Statuses.removeLike(request.body.statusId, this.userId, finishPost);
     }
     else{
         result.sendStatus(500);

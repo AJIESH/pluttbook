@@ -2,6 +2,7 @@ module.exports = function(feedFactory) {
     var vm = this;
     //---Functions---
     vm.formatStatusTime = formatStatusTime;
+    vm.countLikes = countLikes;
     vm.likeStatus = likeStatus;
     vm.commentOnStatus = commentOnStatus;
     //---Variables---
@@ -16,7 +17,7 @@ module.exports = function(feedFactory) {
 
     function getStatuses() {
         feedFactory.setStatusPromise().then(function (data) {
-            vm.news = feedFactory.sortStatusesByDate(data.data);
+            vm.news = data.data;
             getStatuses();
         });
     }
@@ -25,33 +26,45 @@ module.exports = function(feedFactory) {
         return feedFactory.formatStatusTime(unix);
     }
 
-    function likeStatus(statusId) {
+    function countLikes(index){
+        return vm.news[index].likes.length;
+    }
+
+    function likeStatus(statusId, index) {
         var obj = {
             statusId: statusId
         };
-        feedFactory.postLike(obj)
-            .success(likeStatusSuccess)
-            .error(likeStatusError);
-    }
+        feedFactory.postLike(obj).then(function(data){
+            if(data.status === 200){
+                updateStatusSuccess(data.data, index);
+            }
+            else{
+                updateStatusError(data);
+            }
+        });
 
-    function likeStatusSuccess(statusData){
-        //statusDictionary[statusData._id] = statusData;
-        //statusDictionary
-    }
+    };
 
-    function likeStatusError(){
-        console.log('Like status error');
-    }
-
-    function countLikes(newsIndex){
-        return vm.news[newsIndex].comments.length;
-    }
-
-    function commentOnStatus(statusId, comment) {
+    function commentOnStatus(statusId, comment, index) {
         var obj = {
             statusId: statusId,
             comment: comment
         };
-        feedFactory.postComment(obj);
+        feedFactory.postComment(obj).then(function(data){
+            if(data.status === 200){
+                updateStatusSuccess(data.data, index);
+            }
+            else{
+                updateStatusError(data);
+            }
+        });
+    }
+
+    function updateStatusSuccess(statusData, index){
+        vm.news[index] = statusData;
+    }
+
+    function updateStatusError(err){
+        console.log('Like status error');
     }
 };

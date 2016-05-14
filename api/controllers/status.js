@@ -27,8 +27,7 @@ module.exports.controller = function(app){
 function saveStatus(userId, err){
     if(err === false && userId !== null){
         var status = request.body.status;
-        var date = 1463099333;
-        //var date = HelperFuncs.getUnixTime();
+        var date = HelperFuncs.getUnixTime();
 
         Statuses.saveStatus(userId, status, date, finishPost);
     }
@@ -52,8 +51,9 @@ function getStatus(id, err){
 
 function finishGet(statuses, err){
     if(!err){
+        var sortedStatuses = sortByDate(statuses);
         result.setHeader('Content-Type', 'application/json');
-        result.send(JSON.stringify(statuses));
+        result.send(JSON.stringify(sortedStatuses));
     }
     else{
         result.sendStatus(500);
@@ -62,4 +62,15 @@ function finishGet(statuses, err){
 
 function validPost(){
     return request.body.status !== null;
+}
+
+function sortByDate(statuses){
+    for(var i=0; i<statuses.length; i++){
+        statuses[i].comments = HelperFuncs.quickSort(statuses[i].comments, customSort);
+    }
+   return HelperFuncs.quickSort(statuses, customSort);
+}
+
+function customSort(a, b){
+    return a.dateTime > b.dateTime;
 }

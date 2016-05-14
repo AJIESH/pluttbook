@@ -31,19 +31,6 @@ html {
 #createAccountsPage #lastName {
     float: right;
 }
-#newsFeed {
-    background-color : rgb(245,245,245);
-}
-#newsFeed .newsFeed {
-    overflow: hidden;
-    padding:8px;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-* {
-    box-sizing: border-box;
-}
 #loginPage {
    background-color : #e9eaed;
 }
@@ -63,6 +50,19 @@ html {
 
 #loginPage .submit-btn {
     padding-top: 20px;
+}
+#newsFeed {
+    background-color : rgb(245,245,245);
+}
+#newsFeed .newsFeed {
+    overflow: hidden;
+    padding:8px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+* {
+    box-sizing: border-box;
 }
 #createStatus {
     margin-bottom: 32px;
@@ -90,6 +90,12 @@ html {
     background-color: #FFFFFF;
     border-top: 1px solid;
     border-top-color: #e9eaed;
+}
+
+.news-feed-button-text-right {
+    padding-left: 0px;
+    font-size: 11px;
+    font-weight: 400;
 }
 #feedContent {
     background-color : rgb(245,245,245);

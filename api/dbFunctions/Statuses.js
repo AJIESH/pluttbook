@@ -17,7 +17,6 @@ module.exports.getStatuses = function(id, callback){
     });
 };
 
-
 module.exports.saveLike = function(statusId, userId, callback){
     Statuses.schema.findByIdAndUpdate(
         statusId,
@@ -28,11 +27,35 @@ module.exports.saveLike = function(statusId, userId, callback){
     });
 };
 
+module.exports.removeLike = function(statusId, userId, callback){
+    Statuses.schema.findByIdAndUpdate(
+        statusId,
+        {$pull: {'likes': {userId: userId}}},
+        {new: true, runValidators: true}
+    ).exec(function(err, obj){
+            (err === null) ? callback(obj, false) : callback(null, true);
+    });
+};
+
 module.exports.hasUserLiked = function(statusId, userId, callback){
     Statuses.schema.find({$and: [
         {_id: statusId},
         {'likes.userId': userId}
     ]}).exec(function(err, obj){
         (err === null) ? callback(obj, false) : callback(obj, true);
+    });
+};
+
+module.exports.saveComment = function(statusId, comment, date, userId, callback){
+    console.log(statusId + ' ' + comment + ' ' + date + ' ' + userId);
+    Statuses.schema.findByIdAndUpdate(
+        statusId,
+        {$push: {'comments':
+            {userId: userId,
+             text: comment,
+             dateTime: date}}},
+        {new: true, runValidators: true}
+    ).exec(function(err, obj){
+        (err === null) ? callback(obj, false) : callback(null, true);
     });
 };
