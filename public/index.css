@@ -64,7 +64,77 @@ html {
 * {
     box-sizing: border-box;
 }
+#profile {
+    background-color : rgb(245,245,245);
+}
+#profile .profile-news {
+    overflow: hidden;
+    padding:8px;
+    margin-left: 5%;
+    margin-right: 35%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#profile .background {
+    height: 320px;
+    background-image: url("./background.jpg");
+    background-size: auto;
+    padding: 24px;
+    position: relative;
+}
+
+#profile .user-info {
+    margin-left: 5%;
+    position: absolute;
+    bottom: 24px;
+}
+
+#profile .avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 8px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#profile .avatar.huge {
+    width: 96px;
+    min-width: 96px;
+    height: 96px;
+    line-height: 96px;
+}
+
+#profile .name {
+    padding-left: 16px;
+    padding-top: 30px;
+    font-size: 34px;
+    color: #FFF;
+}
+
+#profile .add-friend-button {
+    background-color: #3F51B5;
+    color: #FFFFFF;
+}
+
+#profile .connect-column {
+    float: right;
+    padding-right: 120px;
+}
+
+#profile .connect {
+    position: absolute;
+    bottom: 24px;
+}
 #createStatus {
+    margin-top: 32px;
     margin-bottom: 32px;
 }
 #createStatus .profile-box {
@@ -313,6 +383,10 @@ html {
 
 #header .firstname {
     padding-right: 8px;
+}
+
+#header .home-icon {
+    cursor: pointer;
 }
 #logo {
     padding-top: 16px;

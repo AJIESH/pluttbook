@@ -107,3 +107,7 @@
 #header .firstname {
     padding-right: 8px;
 }
+
+#header .home-icon {
+    cursor: pointer;
+}

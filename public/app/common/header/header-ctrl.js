@@ -1,8 +1,10 @@
 module.exports = function($mdDialog, $mdMenu, headerFactory) {
     var vm = this;
     //---Functions---
+    vm.goToNewsFeed = goToNewsFeed;
     vm.toggleSearch = toggleSearch;
     vm.logout = logout;
+    vm.goToProfile = goToProfile;
     vm.closeMenu = closeMenu;
     //---Variables---
     vm.logo = './app/common/logo/logo.html';
@@ -11,7 +13,7 @@ module.exports = function($mdDialog, $mdMenu, headerFactory) {
 
     activate();
 
-    function activate() {
+    function activate(){
         getUserInfo();
     }
 
@@ -21,13 +23,21 @@ module.exports = function($mdDialog, $mdMenu, headerFactory) {
         });
     }
 
-    function toggleSearch() {
-        vm.showSearch = vm.showSearch ? false : true;
-    };
+    function goToNewsFeed(){
+        headerFactory.goToNewsFeed();
+    }
 
-    function logout() {
+    function toggleSearch(){
+        vm.showSearch = vm.showSearch ? false : true;
+    }
+
+    function logout(){
         headerFactory.logout();
-    };
+    }
+
+    function goToProfile(){
+        headerFactory.goToProfile();
+    }
 
     function closeMenu(){
         $mdMenu.hide();

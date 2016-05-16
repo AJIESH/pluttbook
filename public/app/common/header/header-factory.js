@@ -1,10 +1,16 @@
 module.exports = function($http, $window, localStorageService){
     return {
+        goToNewsFeed: goToNewsFeed,
         logout : logout,
-        getUserInfo: getUserInfo
+        getUserInfo: getUserInfo,
+        goToProfile: goToProfile
     };
 
-    function logout() {
+    function goToNewsFeed(){
+        $window.location.href = '/#/news-feed'
+    }
+
+    function logout(){
         return  $http.post('api/logout',{})
             .success(redirectToLogin)
             .error(redirectToLogin);
@@ -13,7 +19,12 @@ module.exports = function($http, $window, localStorageService){
     function getUserInfo(){
         return $http.get('api/userInfo', {});
     }
-    function redirectToLogin() {
+
+    function goToProfile(){
+        $window.location.href = '/#/profile';
+    }
+
+    function redirectToLogin(){
         localStorageService.clearAll();
         $window.location.href = '/#/login';
     }
