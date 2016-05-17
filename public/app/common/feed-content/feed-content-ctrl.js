@@ -1,4 +1,4 @@
-module.exports = function(feedFactory) {
+module.exports = function($scope, feedFactory) {
     var vm = this;
     //---Functions---
     vm.formatStatusTime = formatStatusTime;
@@ -7,22 +7,13 @@ module.exports = function(feedFactory) {
     vm.likeStatus = likeStatus;
     vm.commentOnStatus = commentOnStatus;
     //---Variables---
-    vm.news = null;
+    $scope.statuses = feedFactory.statuses;
     vm.commentBox = [];
 
     activate();
 
     function activate() {
         feedFactory.getStatuses();
-        getStatuses();
-    }
-
-    function getStatuses() {
-        feedFactory.setStatusPromise().then(function (data) {
-            vm.news = data.data;
-            createBlankCommentBoxArray();
-            getStatuses();
-        });
     }
 
     function formatStatusTime(unix) {
@@ -30,11 +21,11 @@ module.exports = function(feedFactory) {
     }
 
     function countLikes(index){
-        return vm.news[index].likes.length;
+        return $scope.statuses.statuses[index].likes.length;
     }
 
     function countComments(index){
-        return vm.news[index].comments.length;
+        return $scope.statuses.statuses[index].comments.length;
     }
 
     function likeStatus(statusId, index) {
@@ -54,11 +45,11 @@ module.exports = function(feedFactory) {
 
     function commentOnStatus(index) {
         var obj = {
-            statusId: vm.news[index]._id,
-            comment: vm.commentBox[index]
+            statusId: $scope.statuses.statuses[index]._id,
+            comment: $scope.statuses.commentBoxArray[index]
         };
 
-        vm.commentBox[index] = '';
+        $scope.statuses.commentBoxArray[index] = '';
 
         feedFactory.postComment(obj).then(function(data){
             if(data.status === 200){
@@ -71,16 +62,10 @@ module.exports = function(feedFactory) {
     }
 
     function updateStatusSuccess(statusData, index){
-        vm.news[index] = statusData;
+        $scope.statuses.statuses[index] = statusData;
     }
 
     function updateStatusError(err){
         console.log('Like status error');
-    }
-
-    function createBlankCommentBoxArray(){
-        for(var i=0; i<vm.news.length; i++){
-            vm.commentBox.push('');
-        }
     }
 };

@@ -15,8 +15,8 @@ module.exports = function(headerFactory) {
     }
 
     function getUserInfo(){
-        headerFactory.getUserInfo().then(function(data){
-            vm.userInfo = data.data;
-        });
+        headerFactory.getUserObject().then(function(data){
+            vm.userInfo = data;
+        })
     }
 };

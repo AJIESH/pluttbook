@@ -35,12 +35,12 @@ app.controller('createAccountCtrl', ['createAccountFactory', createAccountCtrl])
 app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
-app.controller('feedCtrl', ['feedFactory', feedCtrl]);
+app.controller('feedCtrl', ['$scope', 'feedFactory', feedCtrl]);
 app.factory('feedFactory', ['$http', '$q', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', headerCtrl]);
-app.factory('headerFactory', ['$http', '$window', 'localStorageService', headerFactory]);
+app.factory('headerFactory', ['$q', '$http', '$window', 'localStorageService', headerFactory]);
 
 //Create news feed modules
 app.controller('newsFeedCtrl', [newsFeedCtrl]);

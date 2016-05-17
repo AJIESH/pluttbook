@@ -133,6 +133,19 @@ html {
     position: absolute;
     bottom: 24px;
 }
+
+#profile md-tabs-canvas {
+    margin-left: 5%;
+    margin-right: 35%;
+}
+
+#profile .timeline {
+    background-color: rgb(245,245,245);
+}
+
+#profile md-ink-bar {
+    background-color: #3F51B5;
+}
 #createStatus {
     margin-top: 32px;
     margin-bottom: 32px;

@@ -1,5 +1,5 @@
 <div ng-controller="feedCtrl as vm"  layout="column" layout-align="center center" layout-fill="layout-fill" id="feedContent">
-    <div class="newsItem md-whiteframe-1dp" ng-repeat="newsItem in vm.news track by $index">
+    <div class="newsItem md-whiteframe-1dp" ng-repeat="newsItem in statuses.statuses track by $index">
         <header layout="row" layout-align="space-between start" class="layout-align-space-between-start layout-row">
             <div class="user layout-align-start-center layout-row" layout="row" layout-align="start center">
                 <img class="avatar" ng-src="./avatar.jpg">
@@ -45,7 +45,7 @@
                 <div layout="column" class="add-post">
                     <div class="add-post md-whitefram-1dp">
                         <div class="form flex">
-                            <textarea placeholder="Add a comment.." ng-model="vm.commentBox[$index]"></textarea>
+                            <textarea placeholder="Add a comment.." ng-model="statuses.commentBoxArray[$index]"></textarea>
                         </div>
                     </div>
                     <div layout="row">

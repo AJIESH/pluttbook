@@ -18,8 +18,9 @@ module.exports = function($mdDialog, $mdMenu, headerFactory) {
     }
 
     function getUserInfo(){
-        headerFactory.getUserInfo().then(function(data){
-           vm.userInfo = data.data;
+        headerFactory.getUserInfo();
+        headerFactory.getUserObject().then(function(data){
+            vm.userInfo = data;
         });
     }
 

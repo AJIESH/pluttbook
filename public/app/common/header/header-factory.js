@@ -1,8 +1,11 @@
-module.exports = function($http, $window, localStorageService){
+module.exports = function($q, $http, $window, localStorageService){
+    var userInfo = $q.defer();
+
     return {
         goToNewsFeed: goToNewsFeed,
         logout : logout,
         getUserInfo: getUserInfo,
+        getUserObject: getUserObject,
         goToProfile: goToProfile
     };
 
@@ -17,7 +20,13 @@ module.exports = function($http, $window, localStorageService){
     }
 
     function getUserInfo(){
-        return $http.get('api/userInfo', {});
+        $http.get('api/userInfo', {}).then(function(data){
+            userInfo.resolve(data.data);
+        });
+    }
+
+    function getUserObject(){
+        return userInfo.promise;
     }
 
     function goToProfile(){

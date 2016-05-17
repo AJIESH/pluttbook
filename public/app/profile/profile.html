@@ -16,8 +16,15 @@
             </div>
         </div>
     </div>
-    <div class="profile-news" layout="column">
-        <div ng-include src="vm.createStatus"></div>
-        <div ng-include src="vm.feedContent"></div>
-    </div>
+    <md-content>
+        <md-tabs md-dynamic-height="" md-border-bottom="">
+            <md-tab label="Timeline">
+                <md-content class="timeline">
+                    <div class="profile-news" layout="column">
+                        <div ng-include src="vm.createStatus"></div>
+                        <div ng-include src="vm.feedContent"></div>
+                    </div>
+                </md-content>
+            </md-tab>
+    </md-content>
 </div>

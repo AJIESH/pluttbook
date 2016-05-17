@@ -1,19 +1,21 @@
 module.exports = function($http, $q){
-    var statuses = $q.defer();
+    var statuses = {
+        statuses: null,
+        commentBoxArray: []
+    };
 
     return {
         getStatuses: getStatuses,
         postLike: postLike,
         postComment: postComment,
-        setStatusPromise: setStatusPromise,
-        setStatusDefer: setStatusDefer,
-        formatStatusTime: formatStatusTime
+        formatStatusTime: formatStatusTime,
+        statuses: statuses
     };
 
     function getStatuses() {
          $http.get('api/status').then(function(data){
-             statuses.resolve(data);
-             statuses = $q.defer();
+             statuses.statuses = data.data;
+             createBlankCommentBoxArray();
          });
     }
 
@@ -23,14 +25,6 @@ module.exports = function($http, $q){
 
     function postComment(comment){
         return $http.post('api/comment', comment);
-    }
-
-    function setStatusPromise(){
-       return statuses.promise;
-    }
-
-    function setStatusDefer(){
-        statuses = $q.defer();
     }
 
     function formatStatusTime(unix){
@@ -46,6 +40,12 @@ module.exports = function($http, $q){
         }
         else if(Math.floor(difference / 86400)< 7){
             return Math.floor(difference / 86400) + ' days';
+        }
+    }
+
+    function createBlankCommentBoxArray(){
+        for(var i=0; i<statuses.statuses.length; i++){
+            statuses.commentBoxArray.push('');
         }
     }
 };
