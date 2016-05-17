@@ -51,19 +51,6 @@ html {
 #loginPage .submit-btn {
     padding-top: 20px;
 }
-#newsFeed {
-    background-color : rgb(245,245,245);
-}
-#newsFeed .newsFeed {
-    overflow: hidden;
-    padding:8px;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-* {
-    box-sizing: border-box;
-}
 #profile {
     background-color : rgb(245,245,245);
 }
@@ -145,6 +132,19 @@ html {
 
 #profile md-ink-bar {
     background-color: #3F51B5;
+}
+#newsFeed {
+    background-color : rgb(245,245,245);
+}
+#newsFeed .newsFeed {
+    overflow: hidden;
+    padding:8px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+* {
+    box-sizing: border-box;
 }
 #createStatus {
     margin-top: 32px;
