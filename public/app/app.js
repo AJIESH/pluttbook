@@ -18,7 +18,8 @@ var loginCtrl = require('./login/login-ctrl.js'),
     newsFeedCtrl = require('./news-feed/news-feed-ctrl.js'),
     createStatusCtrl = require('./common/create-status/create-status-ctrl.js'),
     createStatusFactory = require('./common/create-status/create-status-factory.js'),
-    myProfileCtrl = require('./my-profile/my-profile-ctrl.js');
+    myProfileCtrl = require('./my-profile/my-profile-ctrl.js'),
+    myProfileFactory = require('./my-profile/my-profile-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
 
@@ -36,7 +37,7 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
 app.controller('feedCtrl', ['$scope', 'feedFactory', feedCtrl]);
-app.factory('feedFactory', ['$http', '$q', feedFactory]);
+app.factory('feedFactory', ['$http', '$routeParams', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', headerCtrl]);
@@ -50,10 +51,11 @@ app.controller('createStatusCtrl', ['createStatusFactory', 'feedFactory', create
 app.factory('createStatusFactory', ['$http', createStatusFactory]);
 
 //Creates profile modules
-app.controller('myProfileCtrl', ['headerFactory', myProfileCtrl]);
+app.controller('myProfileCtrl', ['profileFactory', 'headerFactory', '$routeParams', myProfileCtrl]);
+app.factory('profileFactory', ['$http', '$routeParams', myProfileFactory]);
 
 //Interceptor modules
-app.factory('interceptor', ['$q', '$window', 'localStorageService',interceptorFactory])
+app.factory('interceptor', ['$q', '$window', 'localStorageService', interceptorFactory])
     .config(function($httpProvider){
        $httpProvider.interceptors.push('interceptor');
     });

@@ -17,7 +17,7 @@ module.exports = function($routeProvider){
           templateUrl: './app/news-feed/news-feed.html',
           controller: newsFeedCtrl
   })
-  .when('/profile', {
+  .when('/profile/userid/:userid', {
           templateUrl: './app/my-profile/my-profile.html',
           controller: profileCtrl
   })

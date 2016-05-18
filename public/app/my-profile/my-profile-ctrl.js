@@ -1,4 +1,4 @@
-module.exports = function(headerFactory) {
+module.exports = function(profileFactory, headerFactory, $routeParams) {
     var vm = this;
     //---Functions---
 
@@ -7,16 +7,24 @@ module.exports = function(headerFactory) {
     vm.createStatus = './app/common/create-status/create-status.html';
     vm.feedContent = './app/common/feed-content/feed-content.html';
     vm.userInfo = null;
+    vm.routeUserId = $routeParams.userid;
+    vm.isMyProfile = false;
 
     activate();
 
     function activate(){
-        getUserInfo();
+        getMyInfo();
     }
 
-    function getUserInfo(){
+    function getMyInfo(){
         headerFactory.getUserObject().then(function(data){
-            vm.userInfo = data;
-        })
+            vm.isMyProfile = vm.routeUserId === data.userId;
+        });
     }
+
+    //function getUserInfo(){
+    //    profileFactory.getUserInfo().then(function(data){
+    //        vm.userInfo = data
+    //    })
+    //}
 };

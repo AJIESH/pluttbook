@@ -22,6 +22,7 @@ module.exports = function($q, $http, $window, localStorageService){
     function getUserInfo(){
         $http.get('api/userInfo', {}).then(function(data){
             userInfo.resolve(data.data);
+            userInfo.resolve(data.data);
         });
     }
 
@@ -29,8 +30,8 @@ module.exports = function($q, $http, $window, localStorageService){
         return userInfo.promise;
     }
 
-    function goToProfile(){
-        $window.location.href = '/#/profile';
+    function goToProfile(userId){
+        $window.location.href = '/#/profile/userid/' + userId;
     }
 
     function redirectToLogin(){

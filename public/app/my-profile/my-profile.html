@@ -10,18 +10,18 @@
                 </div>
             </div>
         </div>
-        <!--<div class="connect-column" layout="column">-->
-            <!--<div class="connect" layout="row">-->
-                <!--<md-button class="add-friend-button">Add Friend</md-button>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div class="connect-column" layout="column" ng-hide="vm.isMyProfile">
+            <div class="connect" layout="row">
+                <md-button class="add-friend-button">Add Friend</md-button>
+            </div>
+        </div>
     </div>
     <md-content>
         <md-tabs md-dynamic-height="" md-border-bottom="">
             <md-tab label="Timeline">
                 <md-content class="timeline">
                     <div class="profile-news" layout="column">
-                        <div ng-include src="vm.createStatus"></div>
+                        <div ng-include src="vm.createStatus" ng-hide="!vm.isMyProfile"></div>
                         <div ng-include src="vm.feedContent"></div>
                     </div>
                 </md-content>

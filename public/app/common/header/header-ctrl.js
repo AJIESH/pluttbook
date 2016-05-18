@@ -37,7 +37,7 @@ module.exports = function($mdDialog, $mdMenu, headerFactory) {
     }
 
     function goToProfile(){
-        headerFactory.goToProfile();
+        headerFactory.goToProfile(vm.userInfo.userId);
     }
 
     function closeMenu(){

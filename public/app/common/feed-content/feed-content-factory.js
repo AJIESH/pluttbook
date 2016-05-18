@@ -1,4 +1,4 @@
-module.exports = function($http, $q){
+module.exports = function($http, $routeParams){
     var statuses = {
         statuses: null,
         commentBoxArray: []
@@ -13,7 +13,11 @@ module.exports = function($http, $q){
     };
 
     function getStatuses() {
-         $http.get('api/status').then(function(data){
+        var route = 'api/status';
+        if($routeParams.hasOwnProperty('userid')){
+            route = route + '?userid=' + $routeParams.userid;
+        }
+         $http.get(route).then(function(data){
              statuses.statuses = data.data;
              createBlankCommentBoxArray();
          });
@@ -43,8 +47,8 @@ module.exports = function($http, $q){
         }
     }
 
-    function createBlankCommentBoxArray(){
-        for(var i=0; i<statuses.statuses.length; i++){
+    function createBlankCommentBoxArray() {
+        for (var i = 0; i < statuses.statuses.length; i++) {
             statuses.commentBoxArray.push('');
         }
     }

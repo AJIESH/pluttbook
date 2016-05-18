@@ -37,7 +37,16 @@ module.exports.controller = function(app){
         request = req;
         result = res;
 
-        OAuthTokens.getTokensUserId(request, result, getStatus);
+        if(req.query.hasOwnProperty('userid')){
+            //Gets passed in users id statuses
+            getStatus(req.query.userid, false);
+        }
+        else{
+            //Gets current user's statuses
+            OAuthTokens.getTokensUserId(request, result, getStatus);
+        }
+
+        //Todo: Check if user has permission to access user's status
 
         function getStatus(id, err){
             if(id !== null && err === false){

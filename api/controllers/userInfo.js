@@ -8,7 +8,12 @@ module.exports.controller = function(app){
         request = req;
         result = res;
 
-        OAuthTokens.getTokensUserId(request, result, getUserInfo);
+        if(req.query.hasOwnProperty('userid')){
+            getUserInfo(req.query.userid, false);
+        }
+        else{
+            OAuthTokens.getTokensUserId(request, result, getUserInfo);
+        }
 
         //Todo: Check if user has access to this user's info and add ability to pass userId in url
 

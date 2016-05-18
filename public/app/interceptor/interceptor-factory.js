@@ -12,8 +12,7 @@ module.exports = function($q, $window, localStorageService) {
                 config.headers.Authorization = 'Bearer ' + authData.token;
             }
             else{
-                redirectToLogin();
-                config = null;
+                config.url = './app/login/login.html';
             }
         }
         else if(urlPublic(config.url) && getAuthData()){
