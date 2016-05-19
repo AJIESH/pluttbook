@@ -1,0 +1,30 @@
+<div ng-controller="profileCtrl as vm"  id="profile">
+    <div ng-include src="vm.header"></div>
+    <div class="background">
+        <div layout="column">
+            <div class="user-info"  layout="row">
+                <img class="avatar huge" src="./avatar.jpg">
+                <div class="name">
+                    <span class="firstname">{{vm.userInfo.firstName}}</span>
+                    <span class="lastname">{{vm.userInfo.lastName}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="connect-column" layout="column" ng-hide="vm.isMyProfile">
+            <div class="connect" layout="row">
+                <md-button class="add-friend-button" ng-click="vm.addFriend()">Add Friend</md-button>
+            </div>
+        </div>
+    </div>
+    <md-content>
+        <md-tabs md-dynamic-height="" md-border-bottom="">
+            <md-tab label="Timeline">
+                <md-content class="timeline">
+                    <div class="profile-news" layout="column">
+                        <div ng-include src="vm.createStatus" ng-hide="!vm.isMyProfile"></div>
+                        <div ng-include src="vm.feedContent"></div>
+                    </div>
+                </md-content>
+            </md-tab>
+    </md-content>
+</div>

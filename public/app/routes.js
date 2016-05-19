@@ -1,7 +1,7 @@
 var loginCtrl = require('./login/login-ctrl');
 var createAccountCtrl = require('./create-account/create-account-ctrl');
 var newsFeedCtrl = require('./news-feed/news-feed-ctrl');
-var profileCtrl = require('./my-profile/my-profile-ctrl');
+var profileCtrl = require('./profile/profile-ctrl');
 
 module.exports = function($routeProvider){
   $routeProvider
@@ -18,7 +18,7 @@ module.exports = function($routeProvider){
           controller: newsFeedCtrl
   })
   .when('/profile/userid/:userid', {
-          templateUrl: './app/my-profile/my-profile.html',
+          templateUrl: './app/profile/profile.html',
           controller: profileCtrl
   })
   .otherwise({redirectTo: '/login'});

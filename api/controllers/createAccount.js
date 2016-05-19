@@ -1,7 +1,8 @@
 var OAuthUsers = require('../dbFunctions/OAuthUsers.js');
 var UserInfo = require('../dbFunctions/UserInfo.js');
+var Friends = require('../dbFunctions/Friends.js');
 var bcrypt = require('bcrypt-nodejs');
-var request, result, email, password, firstName, lastName;
+var request, result, email, password, firstName, lastName, userId;
 
 module.exports.controller = function(app){
   app.post('/api/createAccount', function(req, res){
@@ -27,7 +28,12 @@ function hashPassword(err){
 }
 
 function saveUserInfo(userId, err){
-    (!err) ? UserInfo.saveUserInfo(userId, email, firstName, lastName, finish) : result.sendStatus(500);
+    this.userId = userId;
+    (!err) ? UserInfo.saveUserInfo(userId, email, firstName, lastName, createUsersFriendsSchema) : result.sendStatus(500);
+}
+
+function createUsersFriendsSchema(err){
+    (!err) ? Friends.createNewUserFriendsSchema(this.userId, finish) : result.sendStatus(500);
 }
 
 function finish(err){

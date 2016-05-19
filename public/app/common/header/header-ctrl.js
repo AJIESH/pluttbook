@@ -1,4 +1,4 @@
-module.exports = function($mdDialog, $mdMenu, headerFactory) {
+module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFactory) {
     var vm = this;
     //---Functions---
     vm.goToNewsFeed = goToNewsFeed;
@@ -18,8 +18,8 @@ module.exports = function($mdDialog, $mdMenu, headerFactory) {
     }
 
     function getUserInfo(){
-        headerFactory.getUserInfo();
-        headerFactory.getUserObject().then(function(data){
+        currentUserDataFactory.getUserInfo();
+        currentUserDataFactory.getUserObject().then(function(data){
             vm.userInfo = data;
         });
     }
