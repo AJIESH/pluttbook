@@ -1,5 +1,6 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
 var Statuses = require('../dbFunctions/Statuses.js');
+var Friends = require('../dbFunctions/Friends.js');
 var HelperFuncs = require('../common/helperFunctions.js');
 var async = require('async');
 
@@ -10,7 +11,7 @@ module.exports.controller = function(app){
         request = req;
         result = res;
 
-        if(!validPost()){
+        if(request.body.status === null){
             result.sendStatus(400);
         }
 
@@ -40,20 +41,48 @@ module.exports.controller = function(app){
         if(req.query.hasOwnProperty('userid')){
             //Gets passed in users id statuses
             getStatus(req.query.userid, false);
+
+            //Todo: Check if user has permission to access user's status
+
+            function getStatus(id, err){
+                if(id !== null && err === false){
+                    Statuses.getStatuses(id, finishGet)
+                }
+                else{
+                    result.sendStatus(500);
+                }
+            }
         }
         else{
-            //Gets current user's statuses
-            OAuthTokens.getTokensUserId(request, result, getStatus);
-        }
+            //Gets get user's network's statuses
+            OAuthTokens.getTokensUserId(request, result, getFriends);
 
-        //Todo: Check if user has permission to access user's status
-
-        function getStatus(id, err){
-            if(id !== null && err === false){
-                Statuses.getStatuses(id, finishGet)
+            function getFriends(userId, err){
+                if(userId !== null && err === false){
+                    Friends.getFriends(userId, getStatuses);
+                }
+                else{
+                    result.sendStatus(500);
+                }
             }
-            else{
-                result.sendStatus(500);
+
+            function getStatuses(friends, err){
+                if(err === false && friends.length === 1){
+                    async.map(friends[0].friends, Statuses.getStatusesAsync, function(err, result){
+                        finishGet(concatArrays(result));
+                    });
+                }
+                else{
+                    result.sendStatus(500);
+                }
+            }
+
+            function concatArrays(statuses){
+                var concated = [];
+                for(var i=0; i<statuses.length; i++){
+                    concated = concated.concat(statuses[i]);
+                }
+                return concated;
             }
         }
 
@@ -69,9 +98,6 @@ module.exports.controller = function(app){
         }
     });
 };
-function validPost(){
-    return request.body.status !== null;
-}
 
 function sortByDate(statuses){
     for(var i=0; i<statuses.length; i++){
