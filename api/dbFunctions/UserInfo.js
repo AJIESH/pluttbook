@@ -23,3 +23,14 @@ module.exports.getUserInfo = function(userId, callback){
         }
     });
 };
+
+module.exports.getUserInfoAsync = function(object, callback){
+    UserInfoModel.schema.find({userId: object.userId}, function(err, obj){
+        if(err === null && obj.length === 1){
+            return callback(null, obj[0]);
+        }
+        else{
+            return callback(true);
+        }
+    });
+};

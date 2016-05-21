@@ -35,3 +35,11 @@ module.exports.quickSort = function(arr, customSort){
     }
     return this.quickSort(left, customSort).concat(pivot, this.quickSort(right, customSort));
 };
+
+module.exports.concatArrays = function(arrays){
+    var concated = [];
+    for(var i=0; i<arrays.length; i++){
+        concated = concated.concat(arrays[i]);
+    }
+    return concated;
+}

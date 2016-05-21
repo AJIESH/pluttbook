@@ -13,22 +13,17 @@ module.exports.saveStatus = function(id, status, date, callback){
 
 module.exports.getStatuses = function(id, callback){
     Statuses.schema.find({userId: id}).select('-userId').populate('-userId').exec(function(err, obj){
-        if (err === null){
-            return callback(obj, false);
-        }
-        else{
-            return callback(null, true);
-        }
+        (err === null) ? callback(obj, false) : callback(null, true);
     });
 };
 
 module.exports.getStatusesAsync = function(id, callback){
-    Statuses.schema.find({userId: id.userId}).select('-userId').populate('-userId').exec(function(err, obj){
+    Statuses.schema.find({userId: id.userId}).exec(function(err, obj){
         if (err === null){
             return callback(null, obj);
         }
         else{
-            return callback(null, true);
+            return callback(true);
         }
     });
 };

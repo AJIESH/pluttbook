@@ -1,6 +1,7 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
 var Statuses = require('../dbFunctions/Statuses.js');
 var Friends = require('../dbFunctions/Friends.js');
+var UserInfo = require('../dbFunctions/UserInfo.js');
 var HelperFuncs = require('../common/helperFunctions.js');
 var async = require('async');
 
@@ -69,7 +70,7 @@ module.exports.controller = function(app){
             function getStatuses(friends, err){
                 if(err === false && friends.length === 1){
                     async.map(friends[0].friends, Statuses.getStatusesAsync, function(err, result){
-                        finishGet(concatArrays(result));
+                        (!err) ? getUsersInfo(HelperFuncs.concatArrays(result)) : result.sendStatus(500);
                     });
                 }
                 else{
@@ -77,20 +78,75 @@ module.exports.controller = function(app){
                 }
             }
 
-            function concatArrays(statuses){
-                var concated = [];
-                for(var i=0; i<statuses.length; i++){
-                    concated = concated.concat(statuses[i]);
-                }
-                return concated;
+            function getUsersInfo(statuses){
+                var response = [];
+                async.forEachOf(statuses, function(status, key, callback){
+                    async.parallel([
+                        function(callback) {
+                            UserInfo.getUserInfoAsync(status, callback);
+                        },
+                        function(callback){
+                            async.map(status.likes, UserInfo.getUserInfoAsync, function(err, result){
+                                callback(null, result);
+                            });
+                        },
+                        function(callback){
+                            async.map(status.comments, UserInfo.getUserInfoAsync, function(err, result){
+                                callback(null, result);
+                            });
+                        }
+                    ],
+                    function(err, results){
+                        var newObject = {
+                            userId: statuses[key].userId,
+                            status: statuses[key].status,
+                            dateTime: statuses[key].dateTime,
+                            likes: [],
+                            comments: [],
+                            userInfo: null
+                        };
+
+                        async.parallel([
+                           function(callback){
+                               var o2 = {userInfo: results[0]};
+                               newObject.userInfo = results[0];
+                           },
+                           function(callback){
+                               var statusesLikesUsersInfo = results[1];
+                               for(var i=0; i<status.likes.length; i++){
+                                   newObject.likes.push({
+                                       userId: statuses[key].likes[i].userId,
+                                       userInfo: statusesLikesUsersInfo[i]
+                                   });
+                               }
+                           },
+                           function(callback){
+                               var statusesCommentsUsersInfo = results[2];
+                               for(var i=0; i<status.comments.length; i++){
+                                   newObject.comments.push({
+                                       userId: statuses[key].comments[i].userId,
+                                       text: statuses[key].comments[i].text,
+                                       dateTime: statuses[key].comments[i].dateTime,
+                                       userInfo: statusesCommentsUsersInfo[i]
+                                   });
+                               }
+                           }
+                        ]);
+                        response.push(newObject);
+                        callback();
+                    });
+                }, function (err){
+                    finishGet(response, err);
+                });
             }
+
         }
 
         function finishGet(statuses, err){
             if(!err){
                 var sortedStatuses = sortByDate(statuses);
                 result.setHeader('Content-Type', 'application/json');
-                result.send(JSON.stringify(sortedStatuses));
+                result.send(JSON.stringify(statuses));
             }
             else{
                 result.sendStatus(500);
