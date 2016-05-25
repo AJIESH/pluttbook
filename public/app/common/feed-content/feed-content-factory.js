@@ -1,4 +1,4 @@
-module.exports = function($http, $routeParams){
+module.exports = function($q, $http, $routeParams){
     var statuses = {
         statuses: null,
         commentBoxArray: []
@@ -17,10 +17,14 @@ module.exports = function($http, $routeParams){
         if($routeParams.hasOwnProperty('userid')){
             route = route + '?userid=' + $routeParams.userid;
         }
-         $http.get(route).then(function(data){
-             statuses.statuses = data.data;
-             createBlankCommentBoxArray();
-         });
+         $http.get(route)
+             .success(function(data){
+                statuses.statuses = data;
+                createBlankCommentBoxArray();
+            })
+            .error(function(data){
+                console.log('Here');
+            });
     }
 
     function postLike(statusId){

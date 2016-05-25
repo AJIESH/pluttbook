@@ -31,7 +31,7 @@ app.config(['$routeProvider', routes]);
 
 //Login modules
 app.controller('loginCtrl', ['loginFactory', loginCtrl]);
-app.factory('loginFactory', ['$http', '$window', 'localStorageService', loginFactory]);
+app.factory('loginFactory', ['$http', '$location', 'localStorageService', loginFactory]);
 
 //Create account modules
 app.controller('createAccountCtrl', ['createAccountFactory', createAccountCtrl]);
@@ -39,11 +39,11 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
 app.controller('feedCtrl', ['$scope', 'feedFactory', feedCtrl]);
-app.factory('feedFactory', ['$http', '$routeParams', feedFactory]);
+app.factory('feedFactory', ['$q', '$http', '$routeParams', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', 'currentUserDataFactory', headerCtrl]);
-app.factory('headerFactory', ['$http', '$window', 'localStorageService', headerFactory]);
+app.factory('headerFactory', ['$http', '$location', 'localStorageService', headerFactory]);
 
 //Create news feed modules
 app.controller('newsFeedCtrl', [newsFeedCtrl]);
@@ -60,7 +60,7 @@ app.factory('profileFactory', ['$http', '$routeParams', profileFactory]);
 app.factory('currentUserDataFactory', ['$q', '$http', currentUserDataFactory]);
 
 //Interceptor modules
-app.factory('interceptor', ['$q', '$window', 'localStorageService', interceptorFactory])
+app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService', interceptorFactory])
     .config(function($httpProvider){
        $httpProvider.interceptors.push('interceptor');
     });

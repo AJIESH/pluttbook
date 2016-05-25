@@ -1,4 +1,4 @@
-module.exports = function($http, $window, localStorageService){
+module.exports = function($http, $location, localStorageService){
 
     return {
         goToNewsFeed: goToNewsFeed,
@@ -7,7 +7,7 @@ module.exports = function($http, $window, localStorageService){
     };
 
     function goToNewsFeed(){
-        $window.location.href = '/#/news-feed'
+        $location.path('/news-feed');
     }
 
     function logout(){
@@ -17,11 +17,11 @@ module.exports = function($http, $window, localStorageService){
     }
 
     function goToProfile(userId){
-        $window.location.href = '/#/profile/userid/' + userId;
+        $location.path('/profile/userid/' + userId);
     }
 
     function redirectToLogin(){
         localStorageService.clearAll();
-        $window.location.href = '/#/login';
+        $location.path('/login');
     }
 };

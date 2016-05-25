@@ -12,25 +12,25 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
 
     activate();
 
-    function activate(){
+    function activate() {
         getMyInfo();
         getUserInfo();
     }
 
-    function getMyInfo(){
-        currentUserDataFactory.getUserObject().then(function(data){
-            vm.isMyProfile = vm.routeUserId === data.userId;
+    function getMyInfo() {
+        currentUserDataFactory.getUserInfoObject().then(function (data) {
+            vm.isMyProfile = (vm.routeUserId === data.userId);
         });
     }
 
-    function getUserInfo(){
-        profileFactory.getUserInfo().then(function(data){
+    function getUserInfo() {
+        profileFactory.getUserInfo().then(function (data) {
             vm.userInfo = data.data;
-        })
+        });
     }
 
-    function addFriend(){
-        profileFactory.addFriend().then(function(data){
+    function addFriend() {
+        profileFactory.addFriend().then(function (data) {
 
         });
     }

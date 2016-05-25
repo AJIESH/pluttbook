@@ -1,7 +1,6 @@
 var OAuthTokens = require('../dbFunctions/OAuthTokens.js');
 var Statuses = require('../dbFunctions/Statuses.js');
-var async = require('async');
-
+var HelperFuncs = require('../common/helperFunctions.js');
 var request, result, userId;
 
 module.exports.controller = function(app){
@@ -25,20 +24,31 @@ function hasUserLiked(userId, err){
 
 function saveLike(obj, err){
     if(err === false && obj.length === 0){
-        Statuses.saveLike(request.body.statusId, this.userId, finishPost);
+        Statuses.saveLike(request.body.statusId, this.userId, getStatusInfo);
     }
     else if(err === false && obj.length !== 0) {
-        Statuses.removeLike(request.body.statusId, this.userId, finishPost);
+        Statuses.removeLike(request.body.statusId, this.userId, getStatusInfo);
     }
     else{
         result.sendStatus(500);
     }
 }
 
-function finishPost(likes, err){
+function getStatusInfo(status, err){
+    if(!err){
+        var statuses = [];
+        statuses.push(status);
+        Statuses.getStatusesUserInfo(statuses, finishPost);
+    }
+    else{
+        result.sendStatus(500);
+    }
+}
+
+function finishPost(status, err){
     if(!err){
         result.setHeader('Content-Type', 'application/json');
-        result.send(JSON.stringify(likes));
+        result.send(JSON.stringify(HelperFuncs.sortByDate(status)[0]));
     }
     else{
         result.sendStatus(500);

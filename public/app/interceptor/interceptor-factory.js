@@ -1,4 +1,4 @@
-module.exports = function($q, $window, localStorageService) {
+module.exports = function($q, $window, $location, localStorageService) {
     return {
         request: request,
         response: response,
@@ -12,11 +12,11 @@ module.exports = function($q, $window, localStorageService) {
                 config.headers.Authorization = 'Bearer ' + authData.token;
             }
             else{
-                config.url = './app/login/login.html';
+                redirectToLogin();
             }
         }
-        else if(urlPublic(config.url) && getAuthData()){
-            $window.location.href = '/#/news-feed'
+        else if(urlPublic(config.url) && authData){
+            $location.path('/news-feed');
         }
         return config;
     }
@@ -53,7 +53,7 @@ module.exports = function($q, $window, localStorageService) {
 
     function redirectToLogin(){
         localStorageService.clearAll();
-        $window.location.href = '/#/login';
+        $location.path('./login');
     }
 
     function getAuthData(){

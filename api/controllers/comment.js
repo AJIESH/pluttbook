@@ -15,7 +15,18 @@ module.exports.controller = function(app){
     function saveComment(userId, err){
         if(err === false && userId != null){
             var date = HelperFuncs.getUnixTime();
-            Statuses.saveComment(request.body.statusId, request.body.comment, date, userId, finishPost);
+            Statuses.saveComment(request.body.statusId, request.body.comment, date, userId, getStatusInfo);
+        }
+        else{
+            result.sendStatus(500);
+        }
+    }
+
+    function getStatusInfo(status, err){
+        if(!err){
+            var statuses = [];
+            statuses.push(status);
+            Statuses.getStatusesUserInfo(statuses, finishPost);
         }
         else{
             result.sendStatus(500);
@@ -24,16 +35,11 @@ module.exports.controller = function(app){
 
     function finishPost(status, err){
         if(!err){
-            status.comments = HelperFuncs.quickSort(status.comments, commentSort);
             result.setHeader('Content-Type', 'application/json');
-            result.send(JSON.stringify(status));
+            result.send(JSON.stringify(HelperFuncs.sortByDate(status)[0]));
         }
         else{
             result.sendStatus(500);
         }
     }
 };
-
-function commentSort(a, b){
-    return a.dateTime < b.dateTime;
-}

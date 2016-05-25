@@ -79,74 +79,16 @@ module.exports.controller = function(app){
             }
 
             function getUsersInfo(statuses){
-                var response = [];
-                async.forEachOf(statuses, function(status, key, callback){
-                    async.parallel([
-                        function(callback) {
-                            UserInfo.getUserInfoAsync(status, callback);
-                        },
-                        function(callback){
-                            async.map(status.likes, UserInfo.getUserInfoAsync, function(err, result){
-                                callback(null, result);
-                            });
-                        },
-                        function(callback){
-                            async.map(status.comments, UserInfo.getUserInfoAsync, function(err, result){
-                                callback(null, result);
-                            });
-                        }
-                    ],
-                    function(err, results){
-                        var newObject = {
-                            userId: statuses[key].userId,
-                            status: statuses[key].status,
-                            dateTime: statuses[key].dateTime,
-                            likes: [],
-                            comments: [],
-                            userInfo: null
-                        };
-
-                        async.parallel([
-                           function(callback){
-                               var o2 = {userInfo: results[0]};
-                               newObject.userInfo = results[0];
-                           },
-                           function(callback){
-                               var statusesLikesUsersInfo = results[1];
-                               for(var i=0; i<status.likes.length; i++){
-                                   newObject.likes.push({
-                                       userId: statuses[key].likes[i].userId,
-                                       userInfo: statusesLikesUsersInfo[i]
-                                   });
-                               }
-                           },
-                           function(callback){
-                               var statusesCommentsUsersInfo = results[2];
-                               for(var i=0; i<status.comments.length; i++){
-                                   newObject.comments.push({
-                                       userId: statuses[key].comments[i].userId,
-                                       text: statuses[key].comments[i].text,
-                                       dateTime: statuses[key].comments[i].dateTime,
-                                       userInfo: statusesCommentsUsersInfo[i]
-                                   });
-                               }
-                           }
-                        ]);
-                        response.push(newObject);
-                        callback();
-                    });
-                }, function (err){
-                    finishGet(response, err);
-                });
+                Statuses.getStatusesUserInfo(statuses, finishGet);
             }
 
         }
 
         function finishGet(statuses, err){
             if(!err){
-                var sortedStatuses = sortByDate(statuses);
+                var sortedStatuses = HelperFuncs.sortByDate(statuses);
                 result.setHeader('Content-Type', 'application/json');
-                result.send(JSON.stringify(statuses));
+                result.send(JSON.stringify(HelperFuncs.sortByDate(statuses)));
             }
             else{
                 result.sendStatus(500);
@@ -155,17 +97,3 @@ module.exports.controller = function(app){
     });
 };
 
-function sortByDate(statuses){
-    for(var i=0; i<statuses.length; i++){
-        statuses[i].comments = HelperFuncs.quickSort(statuses[i].comments, commentSort);
-    }
-   return HelperFuncs.quickSort(statuses, statusSort);
-}
-
-function statusSort(a, b){
-    return a.dateTime > b.dateTime;
-}
-
-function commentSort(a, b){
-    return a.dateTime < b.dateTime;
-}

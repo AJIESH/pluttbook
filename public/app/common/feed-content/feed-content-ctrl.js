@@ -32,33 +32,27 @@ module.exports = function($scope, feedFactory) {
         var obj = {
             statusId: statusId
         };
-        feedFactory.postLike(obj).then(function(data){
-            if(data.status === 200){
-                updateStatusSuccess(data.data, index);
-            }
-            else{
-                updateStatusError(data);
-            }
-        });
+        feedFactory.postLike(obj)
+            .success(function(statusData){
+                updateStatusSuccess(statusData, index);
+            })
+            .error(updateStatusError);
 
     }
 
-    function commentOnStatus(index) {
+    function commentOnStatus(statusId, index) {
         var obj = {
-            statusId: $scope.statuses.statuses[index]._id,
+            statusId: statusId,
             comment: $scope.statuses.commentBoxArray[index]
         };
 
         $scope.statuses.commentBoxArray[index] = '';
 
-        feedFactory.postComment(obj).then(function(data){
-            if(data.status === 200){
-                updateStatusSuccess(data.data, index);
-            }
-            else{
-                updateStatusError(data);
-            }
-        });
+        feedFactory.postComment(obj)
+            .success(function(statusData){
+                updateStatusSuccess(statusData, index);
+            })
+            .error(updateStatusError);
     }
 
     function updateStatusSuccess(statusData, index){

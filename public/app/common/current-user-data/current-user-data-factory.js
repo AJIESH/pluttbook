@@ -4,18 +4,21 @@ module.exports = function($q, $http){
 
     return {
         getUserInfo: getUserInfo,
-        getUserObject: getUserObject,
+        setUserInfoObject: setUserInfoObject,
+        getUserInfoObject: getUserInfoObject,
         getUserFriends: getUserFriends,
         getFriendsObject: getFriendsObject
     };
 
     function getUserInfo(){
-        $http.get('api/userInfo', {}).then(function(data){
-            userInfo.resolve(data.data);
-        });
+        return $http.get('api/userInfo', {});
     }
 
-    function getUserObject(){
+    function setUserInfoObject(info){
+        userInfo.resolve(info);
+    }
+
+    function getUserInfoObject(){
         return userInfo.promise;
     }
 

@@ -18,10 +18,14 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
     }
 
     function getUserInfo(){
-        currentUserDataFactory.getUserInfo();
-        currentUserDataFactory.getUserObject().then(function(data){
-            vm.userInfo = data;
-        });
+        currentUserDataFactory.getUserInfo()
+            .success(function(data) {
+                vm.userInfo = data;
+                currentUserDataFactory.setUserInfoObject(data);
+            })
+            .error(function(data){
+                console.log('Error retrieving user data.');
+            });
     }
 
     function goToNewsFeed(){

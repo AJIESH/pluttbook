@@ -36,10 +36,25 @@ module.exports.quickSort = function(arr, customSort){
     return this.quickSort(left, customSort).concat(pivot, this.quickSort(right, customSort));
 };
 
+module.exports.sortByDate = function(statuses){
+    for(var i=0; i<statuses.length; i++){
+        statuses[i].comments = this.quickSort(statuses[i].comments, commentSort);
+    }
+    return this.quickSort(statuses, statusSort);
+};
+
+function statusSort(a, b){
+    return a.dateTime > b.dateTime;
+};
+
+function commentSort(a, b){
+    return a.dateTime < b.dateTime;
+};
+
 module.exports.concatArrays = function(arrays){
     var concated = [];
     for(var i=0; i<arrays.length; i++){
         concated = concated.concat(arrays[i]);
     }
     return concated;
-}
+};

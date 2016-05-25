@@ -1,4 +1,4 @@
-module.exports = function($http, $window, localStorageService){
+module.exports = function($http, $location, localStorageService){
     return {
         login : login
     };
@@ -15,7 +15,8 @@ module.exports = function($http, $window, localStorageService){
 
     function loginSuccess(token, loginCredentials){
         saveTokenToLocalStorage(token,loginCredentials);
-        $window.location.href = '/#/news-feed';
+
+        $location.path('/news-feed');
     }
 
     function saveTokenToLocalStorage(token, loginCredentials){

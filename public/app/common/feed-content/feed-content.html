@@ -5,8 +5,8 @@
                 <img class="avatar" ng-src="./avatar.jpg">
                 <div layout="column" class="layout-column">
                     <div class="title" layout="row">
-                        <span class=" username md-accent-color">{{newsItem.firstName}}</span>
-                        <span class=" username md-accent-color">{{newsItem.lastName}}</span>
+                        <span class=" username md-accent-color">{{newsItem.userInfo.firstName}}</span>
+                        <span class=" username md-accent-color">{{newsItem.userInfo.lastName}}</span>
                     </div>
                     <div class="time">{{vm.formatStatusTime(newsItem.dateTime)}}</div>
                 </div>
@@ -16,7 +16,7 @@
             <div class="status">{{newsItem.status}}</div>
         </div>
         <div layout="row" layout-align="start center">
-            <md-button ng-click="vm.likeStatus(newsItem._id, $index)">
+            <md-button ng-click="vm.likeStatus(newsItem.statusId, $index)">
                 <div layout="row" layout-align="start center">
                     <i class="icon s18 material-icons md-default-theme news-feed-icon">thumb_up</i>
                     <span class="news-feed-button-text">Like(</span>
@@ -36,7 +36,13 @@
             <div class="comments" layout="row" layout-align="start-center" ng-repeat="comment in newsItem.comments track by $index">
                 <img class="avatar" ng-src="./avatar.jpg">
                 <div layout="column">
-                    <div class="time">{{vm.formatStatusTime(comment.dateTime)}}</div>
+                    <div layout="row">
+                        <span class="commentText">{{comment.userInfo.firstName}}</span>
+                        <div class="commentText"> </div>
+                        <span class="commentText">{{comment.userInfo.lastName}}</span>
+                        <div class="commentText"> </div>
+                        <span class="time">{{vm.formatStatusTime(comment.dateTime)}}</span>
+                    </div>
                     <p class="commentText">{{comment.text}}</p>
                 </div>
             </div>
@@ -49,7 +55,7 @@
                         </div>
                     </div>
                     <div layout="row">
-                        <md-button class="post-button" ng-click="vm.commentOnStatus($index)">Post Comment</md-button>
+                        <md-button class="post-button" ng-click="vm.commentOnStatus(newsItem.statusId, $index)">Post Comment</md-button>
                     </div>
                 </div>
             </div>
