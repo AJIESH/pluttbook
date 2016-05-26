@@ -6,6 +6,7 @@ module.exports = function($scope, feedFactory) {
     vm.countComments = countComments;
     vm.likeStatus = likeStatus;
     vm.commentOnStatus = commentOnStatus;
+    vm.goToProfile = goToProfile;
     //---Variables---
     $scope.statuses = feedFactory.statuses;
     vm.commentBox = [];
@@ -61,5 +62,9 @@ module.exports = function($scope, feedFactory) {
 
     function updateStatusError(err){
         console.log('Like status error');
+    }
+
+    function goToProfile(userInfo){
+        feedFactory.goToProfile(userInfo.userId);
     }
 };

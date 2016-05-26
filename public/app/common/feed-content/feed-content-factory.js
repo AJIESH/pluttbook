@@ -1,4 +1,4 @@
-module.exports = function($q, $http, $routeParams){
+module.exports = function($q, $http, $routeParams, $location){
     var statuses = {
         statuses: null,
         commentBoxArray: []
@@ -9,7 +9,8 @@ module.exports = function($q, $http, $routeParams){
         postLike: postLike,
         postComment: postComment,
         formatStatusTime: formatStatusTime,
-        statuses: statuses
+        statuses: statuses,
+        goToProfile: goToProfile
     };
 
     function getStatuses() {
@@ -55,5 +56,9 @@ module.exports = function($q, $http, $routeParams){
         for (var i = 0; i < statuses.statuses.length; i++) {
             statuses.commentBoxArray.push('');
         }
+    }
+
+    function goToProfile(userId){
+        $location.path('/profile/userid/' + userId);
     }
 };

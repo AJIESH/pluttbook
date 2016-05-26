@@ -2,6 +2,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     var vm = this;
     //---Functions---
     vm.addFriend = addFriend;
+    vm.isUserFriend = isUserFriend;
     //---Variables---
     vm.header = './app/common/header/header.html';
     vm.createStatus = './app/common/create-status/create-status.html';
@@ -9,12 +10,14 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     vm.userInfo = null;
     vm.routeUserId = $routeParams.userid;
     vm.isMyProfile = false;
+    vm.isFriend = false;
 
     activate();
 
     function activate() {
         getMyInfo();
         getUserInfo();
+        isUserFriend();
     }
 
     function getMyInfo() {
@@ -29,9 +32,23 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
         });
     }
 
-    function addFriend() {
-        profileFactory.addFriend().then(function (data) {
+    function isUserFriend(){
+        profileFactory.isUserFriend()
+            .success(function(data){
+                vm.isFriend = data;
+            })
+            .error(function(data){
+                console.log('Error isUserFriend');
+            });
+    }
 
-        });
+    function addFriend() {
+        profileFactory.addFriend()
+            .success(function(data){
+                vm.isFriend = !vm.isFriend;
+            })
+            .error(function(data){
+                console.log('Error addFriend');
+            })
     }
 };

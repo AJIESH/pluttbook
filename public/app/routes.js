@@ -7,19 +7,23 @@ module.exports = function($routeProvider){
   $routeProvider
   .when('/login', {
           templateUrl: './app/login/login.html',
-          controller: loginCtrl
+          controller: loginCtrl,
+          controllerAs: 'vm'
   })
   .when('/create-account', {
           templateUrl: './app/create-account/create-account.html',
-          controller: createAccountCtrl
+          controller: createAccountCtrl,
+          controllerAs: 'vm'
   })
   .when('/news-feed', {
           templateUrl: './app/news-feed/news-feed.html',
-          controller: newsFeedCtrl
+          controller: newsFeedCtrl,
+          controllerAs: 'vm'
   })
   .when('/profile/userid/:userid', {
           templateUrl: './app/profile/profile.html',
-          controller: profileCtrl
+          controller: profileCtrl,
+          controllerAs: 'vm'
   })
   .otherwise({redirectTo: '/login'});
 };

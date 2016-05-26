@@ -31,19 +31,6 @@ html {
 #createAccountsPage #lastName {
     float: right;
 }
-#newsFeed {
-    background-color : rgb(245,245,245);
-}
-#newsFeed .newsFeed {
-    overflow: hidden;
-    padding:8px;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-* {
-    box-sizing: border-box;
-}
 #loginPage {
    background-color : #e9eaed;
 }
@@ -63,6 +50,19 @@ html {
 
 #loginPage .submit-btn {
     padding-top: 20px;
+}
+#newsFeed {
+    background-color : rgb(245,245,245);
+}
+#newsFeed .newsFeed {
+    overflow: hidden;
+    padding:8px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+* {
+    box-sizing: border-box;
 }
 #profile {
     background-color : rgb(245,245,245);
@@ -126,7 +126,7 @@ html {
 
 #profile .connect-column {
     float: right;
-    padding-right: 120px;
+    padding-right: 150px;
 }
 
 #profile .connect {
@@ -285,7 +285,13 @@ html {
 
 #feedContent .commentText {
     margin: 0px;
-    
+}
+
+#feedContent .poster-name {
+    padding-right: 5px;
+    font-weight: bold;
+    color: #3F51B5;
+    cursor: pointer;
 }
 
 #header #layout-horizontal-navigation {

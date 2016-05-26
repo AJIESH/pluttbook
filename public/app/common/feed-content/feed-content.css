@@ -103,5 +103,11 @@
 
 #feedContent .commentText {
     margin: 0px;
-    
+}
+
+#feedContent .poster-name {
+    padding-right: 5px;
+    font-weight: bold;
+    color: #3F51B5;
+    cursor: pointer;
 }
