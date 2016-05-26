@@ -43,11 +43,18 @@ module.exports.controller = function(app){
             //Gets passed in users id statuses
             getStatus(req.query.userid, false);
 
-            //Todo: Check if user has permission to access user's status
-
             function getStatus(id, err){
                 if(id !== null && err === false){
-                    Statuses.getStatuses(id, finishGet)
+                    Statuses.getStatuses(id, getStatusesInfo)
+                }
+                else{
+                    result.sendStatus(500);
+                }
+            }
+
+            function getStatusesInfo(statuses, err){
+                if(!err){
+                    Statuses.getStatusesUserInfo(statuses, finishGet);
                 }
                 else{
                     result.sendStatus(500);

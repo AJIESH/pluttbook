@@ -14,7 +14,7 @@ module.exports.saveStatus = function(id, status, date, callback){
 };
 
 module.exports.getStatuses = function(id, callback){
-    Statuses.schema.find({userId: id}).select('-userId').populate('-userId').exec(function(err, obj){
+    Statuses.schema.find({userId: id}).exec(function(err, obj){
         (err === null) ? callback(obj, false) : callback(null, true);
     });
 };
@@ -103,7 +103,6 @@ module.exports.getStatusesUserInfo = function(statuses, callback){
 
                 async.parallel([
                     function(callback){
-                        var o2 = {userInfo: results[0]};
                         newObject.userInfo = results[0];
                     },
                     function(callback){

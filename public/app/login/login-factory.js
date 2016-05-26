@@ -15,7 +15,6 @@ module.exports = function($http, $location, localStorageService){
 
     function loginSuccess(token, loginCredentials){
         saveTokenToLocalStorage(token,loginCredentials);
-
         $location.path('/news-feed');
     }
 
