@@ -16,7 +16,7 @@ module.exports = function($q, $http, $routeParams, $location){
     function getStatuses() {
         var route = 'api/status';
         if($routeParams.hasOwnProperty('userid')){
-            route = route + '?userid=' + $routeParams.userid;
+            route = route + '/' + $routeParams.userid;
         }
          $http.get(route)
              .success(function(data){

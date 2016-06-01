@@ -25,7 +25,7 @@ module.exports = function($http, $routeParams){
     function isUserFriend(){
         var route = 'api/friends';
         if($routeParams.hasOwnProperty('userid')){
-            route = route + '?userid=' + $routeParams.userid;
+            route = route + '/' + $routeParams.userid;
         }
         return $http.get(route, {});
     }

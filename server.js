@@ -33,20 +33,19 @@ fs.readdirSync('./api/models').forEach(function(file){
     }
 });
 
-//Dynamically include database functions==================================
-//var dbFunction;
-//fs.readdirSync('./api/dbFunctions').forEach(function(file){
-//    if(file.substr(-3) == '.js'){
-//        dbFunction = require('./api/dbFunctions/' + file);
-//    }
-//});
-
 //Dynamically include routes==============================================
 var route;
 fs.readdirSync('./api/controllers').forEach(function(file){
    if(file.substr(-3) == '.js'){
        route = require('./api/controllers/' + file);
        route.controller(app);
+   }
+    else{
+       var folderRoute = './api/controllers/' + file;
+       fs.readdirSync(folderRoute).forEach(function(folderFile){
+           route = require(folderRoute + '/' + folderFile);
+           route.controller(app);
+       })
    }
 });
 
