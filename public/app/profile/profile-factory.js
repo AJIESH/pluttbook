@@ -1,6 +1,7 @@
 module.exports = function($http, $routeParams){
    return {
        getUserInfo: getUserInfo,
+       getCurrentUserInfo: getCurrentUserInfo,
        addFriend: addFriend,
        isUserFriend: isUserFriend
     };
@@ -8,10 +9,16 @@ module.exports = function($http, $routeParams){
     function getUserInfo(){
         var route = 'api/userInfo';
         if($routeParams.hasOwnProperty('userid')){
-            route = route + '?userid=' + $routeParams.userid;
+            route = route + '/' + $routeParams.userid;
         }
         return $http.get(route, {});
     }
+
+    function getCurrentUserInfo(){
+        var route = 'api/userInfo';
+        return $http.get(route, {});
+    }
+
 
     function addFriend(){
         if($routeParams.hasOwnProperty('userid')){

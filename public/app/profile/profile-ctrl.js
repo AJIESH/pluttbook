@@ -21,9 +21,10 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     }
 
     function getMyInfo() {
-        currentUserDataFactory.getUserInfoObject().then(function (data) {
-            vm.isMyProfile = (vm.routeUserId === data.userId);
-        });
+        profileFactory.getCurrentUserInfo()
+            .success(function(data){
+                vm.isMyProfile = (vm.routeUserId === data.userId);
+            });
     }
 
     function getUserInfo() {

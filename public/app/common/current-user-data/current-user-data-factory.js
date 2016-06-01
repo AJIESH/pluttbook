@@ -18,7 +18,6 @@ module.exports = function($q, $http){
     };
 
     function getUserInfo(){
-        //userInfo = $q.defer();
         return $http.get('api/userInfo', {});
     }
 
