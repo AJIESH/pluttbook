@@ -1,8 +1,6 @@
 var OAuthTokens = require('../../dbFunctions/OAuthTokens.js');
 var UserInfo = require('../../dbFunctions/UserInfo.js');
 
-var request, result;
-
 module.exports.controller = function(app){
     app.get('/api/userInfo', app.oauth.authorise(), function(request, result){
 

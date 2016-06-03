@@ -2,12 +2,17 @@ module.exports = function($http, $location, localStorageService){
 
     return {
         goToNewsFeed: goToNewsFeed,
+        search: search,
         logout : logout,
         goToProfile: goToProfile
     };
 
     function goToNewsFeed(){
         $location.path('/news-feed');
+    }
+
+    function search(query) {
+        return $http.get('api/search/' + query, {});
     }
 
     function logout(){

@@ -1,12 +1,10 @@
 var OAuthTokens = require('../../dbFunctions/OAuthTokens.js');
 var Friends = require('../../dbFunctions/Friends.js');
 
-var request, result, userId, addFriend;
+var userId, addFriend;
 
 module.exports.controller = function(app){
-    app.post('/api/friends', app.oauth.authorise(), function(req, res){
-        request = req;
-        result = res;
+    app.post('/api/friends', app.oauth.authorise(), function(request, result){
 
         OAuthTokens.getTokensUserId(request, result, isUserFriend);
 

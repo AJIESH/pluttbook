@@ -3,6 +3,7 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
     //---Functions---
     vm.goToNewsFeed = goToNewsFeed;
     vm.toggleSearch = toggleSearch;
+    vm.querySearch = querySearch;
     vm.logout = logout;
     vm.goToProfile = goToProfile;
     vm.closeMenu = closeMenu;
@@ -10,6 +11,7 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
     vm.logo = './app/common/logo/logo.html';
     vm.showSearch = false;
     vm.userInfo = null;
+    vm.query = '';
 
     activate();
 
@@ -33,15 +35,27 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
     }
 
     function toggleSearch(){
-        vm.showSearch = vm.showSearch ? false : true;
+        vm.showSearch = !vm.showSearch;
+        vm.query = '';
+    }
+
+    function querySearch(query){
+        return headerFactory.search(query).then(function(data){
+            return data.data;
+        });
     }
 
     function logout(){
         headerFactory.logout();
     }
 
-    function goToProfile(){
-        headerFactory.goToProfile(vm.userInfo.userId);
+    function goToProfile(userId){
+        if(userId){
+            headerFactory.goToProfile(userId);
+        }
+        else{
+            headerFactory.goToProfile(vm.userInfo.userId);
+        }
     }
 
     function closeMenu(){

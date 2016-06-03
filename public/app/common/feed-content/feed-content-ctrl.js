@@ -22,11 +22,21 @@ module.exports = function($scope, feedFactory) {
     }
 
     function countLikes(index){
-        return $scope.statuses.statuses[index].likes.length;
+        if($scope.statuses.statuses[index].hasOwnProperty('likes')){
+            return $scope.statuses.statuses[index].likes.length;
+        }
+        else{
+            return 0;
+        }
     }
 
     function countComments(index){
-        return $scope.statuses.statuses[index].comments.length;
+        if($scope.statuses.statuses[index].hasOwnProperty('comments')){
+            return $scope.statuses.statuses[index].comments.length;
+        }
+        else{
+            return 0;
+        }
     }
 
     function likeStatus(statusId, index) {

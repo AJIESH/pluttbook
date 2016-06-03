@@ -79,17 +79,23 @@
     border-right: medium;
 }
 
-#header #search-bar {
-    height: 32px;
+#header #search-bar, md-autocomplete {
+    height: 64px;
+    background-color: white;
 }
 
-#header #input {
-    border-color: transparent;
+#header md-autocomplete-wrap {
+    background-color: white;
+    height: 64px;
+}
+
+#header input {
+    font-size: 22px;
+    height: 64px;
 }
 
 .md-open-menu-container {
     top: 64px;
-    /*left: 84%;*/
     transform-origin: left top 0px;
     position: fixed;
     z-index: 100;
@@ -110,4 +116,30 @@
 
 #header .home-icon {
     cursor: pointer;
+}
+
+#header .layout-align-start-center {
+    width: 100%;
+}
+
+#header .icon {
+    margin: 0px;
+    padding: 0px;
+    min-width: 0px;
+}
+
+#header md-autocomplete button {
+    width: 0px;
+    margin: 0px;
+}
+
+#header md-autocomplete svg {
+    width: 0px;
+}
+
+#header .searchResult {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
 }

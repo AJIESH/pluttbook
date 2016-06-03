@@ -6,15 +6,24 @@
                     <div ng-include src="vm.logo" ng-click="vm.goToNewsFeed()" class="home-icon"></div>
                     <div class="toolbar-separator"></div>
                     <div flex-layout="row" layout-align="start center" class="layout-align-start-center layout-row flex">
-                        <label>
+                        <md-button class="icon">
                             <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-expander" ng-click="vm.toggleSearch()" ng-show="!vm.showSearch">search</i>
                             <i class="icon s24 material-icons md-default-theme" id="ms-search-bar-clear" ng-click="vm.toggleSearch()" ng-show="vm.showSearch">clear</i>
-                        </label>
-                        <md-input-container md-no-float flex id="search-bar" ng-show="vm.showSearch">
-                            <input placeholder="Search" id="input">
-                        </md-input-container>
+                        </md-button>
+                        <div class="toolbar-separator" ng-show="!vm.showSearch"></div>
+                        <div md-no-float flex id="search-bar" ng-show="vm.showSearch">
+                            <md-autocomplete md-search-text="vm.query"
+                                             md-items="item in vm.querySearch(vm.query)"
+                                             md-menu-class="search-dropdown"
+                                             placeholder="Search Pluttbook">
+                                <md-item-template>
+                                    <div class="searchResult" ng-click="vm.goToProfile(item.userId)">
+                                        <span md-highlight-text="searchText">{{item.firstName + ' ' + item.lastName}}</span>
+                                    </div>
+                                </md-item-template>
+                            </md-autocomplete>
+                        </div>
                     </div>
-                    <div class="toolbar-separator" ng-show="!vm.showSearch"></div>
                 </div>
                 <div layout="row" layout-align="start center" class="layout-align-start-center header-row" id="optionsRow" ng-show="!vm.showSearch">
                     <md-menu-bar id="user-menu">

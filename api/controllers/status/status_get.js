@@ -1,11 +1,8 @@
 var OAuthTokens = require('../../dbFunctions/OAuthTokens.js');
 var Statuses = require('../../dbFunctions/Statuses.js');
 var Friends = require('../../dbFunctions/Friends.js');
-var UserInfo = require('../../dbFunctions/UserInfo.js');
 var HelperFuncs = require('../../common/helperFunctions.js');
 var async = require('async');
-
-var request, result;
 
 module.exports.controller = function(app){
     app.get('/api/status', app.oauth.authorise(), function(request, result){

@@ -7,6 +7,7 @@ module.exports.saveUserInfo = function(userId, email, firstName, lastName, callb
         firstName: firstName,
         lastName: lastName
     });
+    userInfo.schema.index({firstName: 'text', lastName: 'text'});
     userInfo.save(function(err){
         err === null ? callback(false) : callback(true);
     })
@@ -33,4 +34,15 @@ module.exports.getUserInfoAsync = function(object, callback){
             return callback(true);
         }
     });
+};
+
+module.exports.search = function(query, callback){
+    UserInfoModel.schema.find(
+        {$text: {$search : query}},
+        {score: {$meta: 'textScore'}}
+        )
+        .sort({score: {$meta: 'textScore'}})
+        .exec(function(err, obj){
+            (err === null) ? callback(obj, false) : callback(null, true);
+        });
 };
