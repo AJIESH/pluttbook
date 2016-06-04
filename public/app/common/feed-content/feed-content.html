@@ -7,7 +7,7 @@
                     <div class="title" layout="row">
                         <span class="poster-name" ng-click="vm.goToProfile(newsItem.userInfo)">{{newsItem.userInfo.firstName + ' ' + newsItem.userInfo.lastName}}</span>
                     </div>
-                    <div class="time">{{vm.formatStatusTime(newsItem.dateTime) + ' ago'}}</div>
+                    <div class="time">{{vm.formatStatusTime(newsItem.dateTime)}}</div>
                 </div>
             </div>
         </header>
@@ -37,7 +37,7 @@
                     <div layout="column">
                         <div layout="row">
                             <div class="poster-name" ng-click="vm.goToProfile(comment.userInfo)">{{comment.userInfo.firstName + ' ' + comment.userInfo.lastName}}</div>
-                            <div class="time">{{vm.formatStatusTime(comment.dateTime) + ' ago'}}</div>
+                            <div class="time">{{vm.formatStatusTime(comment.dateTime)}}</div>
                         </div>
                         <p class="commentText">{{comment.text}}</p>
                     </div>

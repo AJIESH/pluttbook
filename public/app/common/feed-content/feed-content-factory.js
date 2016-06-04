@@ -42,13 +42,21 @@ module.exports = function($q, $http, $routeParams, $location){
         var difference = currentTime - unix;
         //Converts to minutes if less than 60
         if(Math.floor(difference / 60) < 60){
-            return Math.floor(difference / 60).toString() + ' mins';
+            return Math.floor(difference / 60).toString() + ' mins ago';
         }
         else if(Math.floor(difference / 3600) < 24){
-            return Math.floor(difference / 3600).toString() + ' hrs';
+            return Math.floor(difference / 3600).toString() + ' hrs ago';
         }
         else if(Math.floor(difference / 86400)< 7){
-            return Math.floor(difference / 86400) + ' days';
+            return Math.floor(difference / 86400) + ' days ago';
+        }
+        else{
+            var date = new Date(unix * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var year = date.getFullYear();
+            var month = months[date.getMonth()];
+            var day = date.getDate();
+            return month + ' ' + day + ' ' + year;
         }
     }
 

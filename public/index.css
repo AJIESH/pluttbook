@@ -245,6 +245,7 @@ html {
 
 #feedContent .time {
     color: rgba(0, 0, 0, 0.54);
+    font-size: 13px;
 }
 
 #feedContent .status {
