@@ -1,0 +1,38 @@
+#friendsList {
+    background-color : rgb(245,245,245);
+    width: 100%;
+}
+
+#friendsList .friends-header {
+    margin: 0px;
+    padding-left: 16px;
+    background-color: #3F51B5;
+}
+
+#friendsList .friends-text {
+    color: white;
+}
+
+#friendsList .friends-count {
+    color: white;
+    padding-right: 16px;
+}
+
+#friendsList .list-text {
+    padding-left: 16px;
+}
+
+#friendsList .list-separator {
+    height: 1px;
+    width: 100%;
+    background: rgba(0,0,0,.12);
+}
+
+#friendsList .md-list-item-text {
+    width: 100%;
+}
+
+#friendsList md-list {
+    padding: 0px;
+    height: 350px;
+}

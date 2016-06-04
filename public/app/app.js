@@ -20,7 +20,9 @@ var loginCtrl = require('./login/login-ctrl.js'),
     createStatusFactory = require('./common/create-status/create-status-factory.js'),
     profileCtrl = require('./profile/profile-ctrl.js'),
     profileFactory = require('./profile/profile-factory.js'),
-    currentUserDataFactory = require('./common/current-user-data/current-user-data-factory.js');
+    currentUserDataFactory = require('./common/current-user-data/current-user-data-factory.js'),
+    friendsListCtrl = require('./common/friends-list/friends-list-ctrl.js'),
+    friendsListFactory = require('./common/friends-list/friends-list-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
 
@@ -58,6 +60,10 @@ app.factory('profileFactory', ['$http', '$routeParams', profileFactory]);
 
 //Creates current user data factory
 app.factory('currentUserDataFactory', ['$q', '$http', currentUserDataFactory]);
+
+//Creates friends list modules
+app.controller('friendsListCtrl', ['friendsListFactory', 'feedFactory', friendsListCtrl]);
+app.factory('friendsListFactory', ['$http', '$routeParams', friendsListFactory]);
 
 //Interceptor modules
 app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService', interceptorFactory])

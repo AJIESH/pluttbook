@@ -6,10 +6,10 @@ var email, password, firstName, lastName, userId;
 
 module.exports.controller = function(app){
   app.post('/api/createAccount', function(request, result){
-      firstName = req.body.firstName;
-      lastName = req.body.lastName;
-      email = req.body.email;
-      password = req.body.password;
+      firstName = request.body.firstName;
+      lastName = request.body.lastName;
+      email = request.body.email;
+      password = request.body.password;
 
       OAuthUsers.emailUnique(email, hashPassword);
 

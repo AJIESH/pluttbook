@@ -7,6 +7,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     vm.header = './app/common/header/header.html';
     vm.createStatus = './app/common/create-status/create-status.html';
     vm.feedContent = './app/common/feed-content/feed-content.html';
+    vm.friendsList = './app/common/friends-list/friends-list.html';
     vm.userInfo = null;
     vm.routeUserId = $routeParams.userid;
     vm.isMyProfile = false;

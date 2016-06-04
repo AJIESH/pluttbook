@@ -1,4 +1,6 @@
 var Friends = require('../models/Friends.js');
+var UserInfo = require('./UserInfo.js');
+var async = require('async');
 
 module.exports.createNewUserFriendsSchema = function(userId, callback){
     var friends = Friends.schema({
@@ -44,5 +46,24 @@ module.exports.removeFriend = function(userId, friendId, callback){
         {new: true, runValidators: true}
     ).exec(function(err, obj){
             (err === null) ? callback(obj, false) : callback(null, true);
+    });
+};
+
+module.exports.getFriendsUserInfoAsync = function(friends, callback){
+    var response = [];
+    async.forEachOf(friends, function(friend, key, callback){
+
+        async.parallel([
+                function(callback) {
+                    UserInfo.getUserInfoAsync(friend, callback);
+                }
+            ],
+            function(err, results) {
+                response.push(results[0]);
+                callback();
+            });
+    },
+    function(err){
+        callback(response, err);
     });
 };

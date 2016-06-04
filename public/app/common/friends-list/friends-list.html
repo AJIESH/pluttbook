@@ -1,0 +1,17 @@
+<div ng-controller="friendsListCtrl as vm" class="md-whiteframe-1dp" id="friendsList">
+    <header class="friends-header" layout="row">
+        <p class="friends-text">Friends</p>
+        <span flex></span>
+        <p class="friends-count">{{vm.countFriends()}}</p>
+    </header>
+    <md-content layout="column">
+        <md-list>
+            <md-list-item class="md-1-line" layout="column" ng-repeat="friend in vm.friends | orderBy: 'friend.firstName': true">
+                <div class="md-list-item-text" ng-click="vm.goToProfile(friend)">
+                    <p class="list-text">{{friend.firstName + ' ' + friend.lastName}}</p>
+                </div>
+                <div class="list-separator"></div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>

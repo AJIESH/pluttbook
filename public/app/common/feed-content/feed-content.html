@@ -29,6 +29,7 @@
             </md-button>
         </div>
         <footer layout="column">
+            <a class="hide-comments" ng-hide="vm.hideHideCommentsButton($index)" ng-click="vm.toggleComments($index)">{{'Hide ' + vm.numberOfCommentsToShow($index) + ' comments'}}</a>
             <a class="hide-comments" ng-hide="vm.hideCommentsButton($index)" ng-click="vm.toggleComments($index)">{{'View ' + vm.numberOfCommentsToShow($index) + ' more comments'}}</a>
             <div layout-align="start-center" ng-repeat="comment in newsItem.comments">
                 <div class="comments" layout="row" ng-hide="comment.hideComment">

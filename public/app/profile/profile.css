@@ -5,7 +5,7 @@
     overflow: hidden;
     padding:8px;
     margin-left: 5%;
-    margin-right: 35%;
+    margin-right: 10%;
 }
 
 * {
@@ -79,4 +79,10 @@
 
 #profile md-ink-bar {
     background-color: #3F51B5;
+}
+
+#profile .friends-list {
+    width: 60%;
+    padding-right: 30px;
+    padding-top: 40px;
 }
