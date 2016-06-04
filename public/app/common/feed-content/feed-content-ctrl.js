@@ -7,6 +7,9 @@ module.exports = function($scope, feedFactory) {
     vm.likeStatus = likeStatus;
     vm.commentOnStatus = commentOnStatus;
     vm.goToProfile = goToProfile;
+    vm.numberOfCommentsToShow = numberOfCommentsToShow;
+    vm.hideCommentsButton = hideCommentsButton;
+    vm.toggleComments = toggleComments;
     //---Variables---
     $scope.statuses = feedFactory.statuses;
     vm.commentBox = [];
@@ -76,5 +79,34 @@ module.exports = function($scope, feedFactory) {
 
     function goToProfile(userInfo){
         feedFactory.goToProfile(userInfo.userId);
+    }
+
+    function numberOfCommentsToShow(index){
+        if($scope.statuses.statuses[index].hasOwnProperty('comments')){
+            return $scope.statuses.statuses[index].comments.length - 3;
+        }
+    }
+
+    function hideCommentsButton(index){
+        if($scope.statuses.statuses[index].hasOwnProperty('comments')){
+            return $scope.statuses.statuses[index].comments.length < 3;
+        }
+    }
+
+    function toggleComments(index){
+        if($scope.statuses.statuses[index].hasOwnProperty('comments')) {
+            if(!$scope.statuses.statuses[index].comments[0].hideComment){
+                //Hide comments
+                for(var i=0; i<$scope.statuses.statuses[index].comments.length-3; i++){
+                    $scope.statuses.statuses[index].comments[i].hideComment = true;
+                }
+            }
+            else{
+                for(var i=0; i<$scope.statuses.statuses[index].comments.length; i++){
+                    $scope.statuses.statuses[index].comments[i].hideComment = false;
+                }
+            }
+        }
+
     }
 };

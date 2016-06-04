@@ -121,7 +121,8 @@ module.exports.getStatusesUserInfo = function(statuses, callback){
                                 userId: statuses[key].comments[i].userId,
                                 text: statuses[key].comments[i].text,
                                 dateTime: statuses[key].comments[i].dateTime,
-                                userInfo: statusesCommentsUsersInfo[i]
+                                userInfo: statusesCommentsUsersInfo[i],
+                                hideComment: status.comments.length - 3 > i
                             });
                         }
                     }

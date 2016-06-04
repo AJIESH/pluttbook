@@ -57,8 +57,8 @@ html {
 #newsFeed .newsFeed {
     overflow: hidden;
     padding:8px;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
 }
 
 * {
@@ -243,7 +243,6 @@ html {
 
 #feedContent .status {
     padding-bottom: 8px;
-    padding-top: 8px;
     padding-left: 16px;
     padding-right: 16px;
 }
@@ -261,9 +260,9 @@ html {
 #feedContent textarea {
     font-size: 13px;
     width: 100%;
-    height: 60px;
+    height: 40px;
     border: none;
-    padding: 16px;
+    padding: 11px;
     resize: vertical;
 }
 
@@ -294,6 +293,34 @@ html {
     cursor: pointer;
 }
 
+#feedContent .hide-comments {
+    margin: 0px;
+    font-size: 13px;
+    padding-bottom: 10px;
+    color: #3F51B5;
+    cursor: pointer;
+}
+
+#logo {
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+}
+
+#logo .logo-image {
+    display: block;
+    background: #3F51B5;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFF;
+    border-radius: 2px;
+}
 #header #layout-horizontal-navigation {
     height: 100%;
     max-height: 100%;
@@ -438,25 +465,4 @@ html {
     width: 100%;
     padding: 0px;
     margin: 0px;
-}
-
-#logo {
-    padding-top: 16px;
-    padding-right: 16px;
-    padding-bottom: 16px;
-    padding-left: 16px;
-}
-
-#logo .logo-image {
-    display: block;
-    background: #3F51B5;
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #FFF;
-    border-radius: 2px;
 }

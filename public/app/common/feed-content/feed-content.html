@@ -29,14 +29,17 @@
             </md-button>
         </div>
         <footer layout="column">
-            <div class="comments" layout="row" layout-align="start-center" ng-repeat="comment in newsItem.comments track by $index">
-                <img class="avatar" ng-src="./avatar.jpg">
-                <div layout="column">
-                    <div layout="row">
-                        <div class="poster-name" ng-click="vm.goToProfile(comment.userInfo)">{{comment.userInfo.firstName + ' ' + comment.userInfo.lastName}}</div>
-                        <div class="time">{{vm.formatStatusTime(comment.dateTime) + ' ago'}}</div>
+            <a class="hide-comments" ng-hide="vm.hideCommentsButton($index)" ng-click="vm.toggleComments($index)">{{'View ' + vm.numberOfCommentsToShow($index) + ' more comments'}}</a>
+            <div layout-align="start-center" ng-repeat="comment in newsItem.comments">
+                <div class="comments" layout="row" ng-hide="comment.hideComment">
+                    <img class="avatar" ng-src="./avatar.jpg">
+                    <div layout="column">
+                        <div layout="row">
+                            <div class="poster-name" ng-click="vm.goToProfile(comment.userInfo)">{{comment.userInfo.firstName + ' ' + comment.userInfo.lastName}}</div>
+                            <div class="time">{{vm.formatStatusTime(comment.dateTime) + ' ago'}}</div>
+                        </div>
+                        <p class="commentText">{{comment.text}}</p>
                     </div>
-                    <p class="commentText">{{comment.text}}</p>
                 </div>
             </div>
             <div layout="row" class="comment">
