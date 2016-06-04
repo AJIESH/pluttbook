@@ -90,13 +90,13 @@ module.exports = function($scope, feedFactory) {
 
     function hideCommentsButton(index){
         if($scope.statuses.statuses[index].hasOwnProperty('comments')){
-            return $scope.statuses.statuses[index].comments.length < 3 || !$scope.statuses.statuses[index].comments[0].hideComment;
+            return $scope.statuses.statuses[index].comments.length <= 3 || !$scope.statuses.statuses[index].comments[0].hideComment;
         }
     }
 
     function hideHideCommentsButton(index){
         if($scope.statuses.statuses[index].hasOwnProperty('comments')){
-            return $scope.statuses.statuses[index].comments.length < 3 || $scope.statuses.statuses[index].comments[0].hideComment;
+            return $scope.statuses.statuses[index].comments.length <= 3 || $scope.statuses.statuses[index].comments[0].hideComment;
         }
     }
 
