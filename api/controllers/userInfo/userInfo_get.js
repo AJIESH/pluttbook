@@ -6,7 +6,7 @@ module.exports.controller = function(app){
 
         OAuthTokens.getTokensUserId(request, result, getUserInfo);
 
-        //Todo: Check if user has access to this user's info and add ability to pass userId in ur
+        //Todo: Check if user has access to this user's info and add ability to pass userId in ura
 
         function getUserInfo(id, err){
             if(id !== null && err === false){

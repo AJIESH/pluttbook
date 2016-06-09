@@ -3,7 +3,7 @@ var Friends = require('../../dbFunctions/Friends.js');
 
 
 module.exports.controller = function(app){
-    app.get('/api/friends/:userid', app.oauth.authorise(), function(request, result){
+    app.get('/api/isfriend/:userid', app.oauth.authorise(), function(request, result){
 
         OAuthTokens.getTokensUserId(request, result, isUserFriend);
 

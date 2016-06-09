@@ -30,7 +30,7 @@ module.exports = function($http, $routeParams){
     }
 
     function isUserFriend(){
-        var route = 'api/friends';
+        var route = 'api/isfriend';
         if($routeParams.hasOwnProperty('userid')){
             route = route + '/' + $routeParams.userid;
         }

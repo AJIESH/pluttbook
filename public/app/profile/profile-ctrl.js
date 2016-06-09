@@ -1,8 +1,11 @@
-module.exports = function($scope, profileFactory, currentUserDataFactory, $routeParams) {
+var editPicturesCtrl = require('./edit-pictures-ctrl.js');
+
+module.exports = function($scope, profileFactory, currentUserDataFactory, $routeParams, $mdPanel) {
     var vm = this;
     //---Functions---
     vm.addFriend = addFriend;
     vm.isUserFriend = isUserFriend;
+    vm.showPanel = showPanel;
     //---Variables---
     vm.header = './app/common/header/header.html';
     vm.createStatus = './app/common/create-status/create-status.html';
@@ -12,6 +15,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     vm.routeUserId = $routeParams.userid;
     vm.isMyProfile = false;
     vm.isFriend = false;
+    vm.mdPanel = $mdPanel;
 
     activate();
 
@@ -52,5 +56,28 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
             .error(function(data){
                 console.log('Error addFriend');
             })
+    }
+
+    function showPanel(){
+        var position = vm.mdPanel.newPanelPosition()
+            .absolute()
+            .center()
+            .centerHorizontally();
+
+        var config = {
+            attachTo: angular.element(document.body),
+            controller: editPicturesCtrl,
+            controllerAs: 'vm',
+            disableParentScroll: this.disableParentScroll,
+            templateUrl: './app/profile/edit-pictures.html',
+            hasBackdrop: true,
+            panelClass: 'edit-pictures',
+            position: position,
+            trapFocus: true,
+            zIndex: 150,
+            focusOnOpen: true
+        };
+
+        this.mdPanel.open(config);
     }
 };
