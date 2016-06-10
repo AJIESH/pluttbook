@@ -5,6 +5,7 @@ require('angular-animate');
 require('angular-aria');
 require('angular-messages');
 require('angular-local-storage');
+require('ng-file-upload');
 
 var loginCtrl = require('./login/login-ctrl.js'),
     loginFactory = require('./login/login-factory.js'),
@@ -25,7 +26,7 @@ var loginCtrl = require('./login/login-ctrl.js'),
     friendsListFactory = require('./common/friends-list/friends-list-factory.js'),
     editPicturesCtrl = require('./profile/edit-pictures-ctrl.js');
 
-var app = angular.module('app',['ngRoute', 'ngMaterial', 'LocalStorageModule']);
+var app = angular.module('app',['ngRoute', 'ngMaterial', 'ngFileUpload', 'LocalStorageModule']);
 
 
 //Adds routes
@@ -59,7 +60,6 @@ app.factory('createStatusFactory', ['$http', createStatusFactory]);
 app.controller('profileCtrl', ['$scope', 'profileFactory', 'currentUserDataFactory', '$routeParams', '$mdPanel', profileCtrl]);
 app.factory('profileFactory', ['$http', '$routeParams', profileFactory]);
 
-
 //Creates current user data factory
 app.factory('currentUserDataFactory', ['$q', '$http', currentUserDataFactory]);
 
@@ -67,8 +67,8 @@ app.factory('currentUserDataFactory', ['$q', '$http', currentUserDataFactory]);
 app.controller('friendsListCtrl', ['friendsListFactory', 'feedFactory', friendsListCtrl]);
 app.factory('friendsListFactory', ['$http', '$routeParams', friendsListFactory]);
 
-//Creates animation modules
-app.controller('editPicturesCtrl', ['mdPanelRef', editPicturesCtrl]);
+//Creates edit profile modules
+app.controller('editPicturesCtrl', ['mdPanelRef', 'Upload', editPicturesCtrl]);
 
 //Interceptor modules
 app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService', interceptorFactory])

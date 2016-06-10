@@ -1,23 +1,26 @@
-<div role="dialog" aria-label="Eat me!" layout="column" layout-align="center center">
+<div id="edit-pictures" role="dialog" layout="column" layout-align="center center">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Surprise!</h2>
+            <h2>Edit Profile</h2>
         </div>
     </md-toolbar>
-
-    <div class="demo-dialog-content">
-        <p>
-            You hit the secret button. Here's a donut:
-        </p>
-
-        <div layout="row" >
-            <!--<img flex alt="Delicious donut" src="img/donut.jpg">-->
-        </div>
-    </div>
-
-    <div layout="row" class="demo-dialog-button">
-        <md-button md-autofocus flex class="md-primary" ng-click="vm.closePanel()">
-            Close
-        </md-button>
+    <md-content class="profile-picture" layout="row">
+        <md-button class="upload-button md-primary" ngf-select="upload($file)">Upload</md-button>
+        <md-input-container class="upload-container">
+            <label for="profile-picture">Profile photo</label>
+            <input id="profile-picture" label="Upload Images" name="vm.profilePhoto" ngf-select="vm.save($file)" ng-model="vm.profilePhoto" accept="image/*" ngf-max-size="5MB">
+        </md-input-container>
+    </md-content>
+    <md-content class="profile-picture" layout="row">
+        <md-button class="upload-button md-primary" ngf-select="upload($file)">Upload</md-button>
+        <md-input-container class="upload-container">
+            <label for="cover-picture">Cover photo</label>
+            <input id="cover-picture" label="Upload Images" name="picture" ngf-select="vm.save($file)" ng-model="vm.coverPhoto" accept="image/*" ngf-max-size="5MB">
+        </md-input-container>
+    </md-content>
+    <div layout="row" class="buttons">
+        <span flex></span>
+        <md-button class="md-primary" ng-click="vm.save()">Save</md-button>
+        <md-button class="md-primary" ng-click="vm.cancel()">Cancel</md-button>
     </div>
 </div>

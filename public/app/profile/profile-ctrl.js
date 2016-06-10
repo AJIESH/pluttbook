@@ -68,14 +68,15 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
             attachTo: angular.element(document.body),
             controller: editPicturesCtrl,
             controllerAs: 'vm',
-            disableParentScroll: this.disableParentScroll,
+            disableParentScroll: true,
             templateUrl: './app/profile/edit-pictures.html',
             hasBackdrop: true,
             panelClass: 'edit-pictures',
             position: position,
             trapFocus: true,
             zIndex: 150,
-            focusOnOpen: true
+            focusOnOpen: true,
+            clickOutsideToClose: true
         };
 
         this.mdPanel.open(config);
