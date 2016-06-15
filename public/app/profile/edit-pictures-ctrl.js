@@ -1,4 +1,4 @@
-module.exports = function(mdPanelRef, Upload){
+module.exports = function(mdPanelRef, editPicturesFactory, Upload){
     vm = this;
     //---Functions---
     vm.cancel = cancel;
@@ -12,7 +12,22 @@ module.exports = function(mdPanelRef, Upload){
         vm.mdPanelRef.close();
     }
 
-    function save(file){
-
+    function save(){
+        Upload.base64DataUrl([vm.profilePhoto, vm.coverPhoto]).then(function(data){
+            var body = {
+                profilePhotoName: vm.profilePhoto.name,
+                profilePhoto: data[0],
+                coverPhotoName: vm.coverPhoto.name,
+                coverPhoto: data[1]
+            };
+            editPicturesFactory.savePictures(body)
+                .success(function(data){
+                    vm.profilePhoto = data.profilePhoto;
+                    vm.coverPhoto = data.coverPhoto;
+                })
+                .error(function(data){
+                    console.log('Error retrieving pictures');
+                });
+        });
     }
 };

@@ -24,7 +24,8 @@ var loginCtrl = require('./login/login-ctrl.js'),
     currentUserDataFactory = require('./common/current-user-data/current-user-data-factory.js'),
     friendsListCtrl = require('./common/friends-list/friends-list-ctrl.js'),
     friendsListFactory = require('./common/friends-list/friends-list-factory.js'),
-    editPicturesCtrl = require('./profile/edit-pictures-ctrl.js');
+    editPicturesCtrl = require('./profile/edit-pictures-ctrl.js'),
+    editPicturesFactory = require('./profile/edit-pictures-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'ngFileUpload', 'LocalStorageModule']);
 
@@ -68,7 +69,8 @@ app.controller('friendsListCtrl', ['friendsListFactory', 'feedFactory', friendsL
 app.factory('friendsListFactory', ['$http', '$routeParams', friendsListFactory]);
 
 //Creates edit profile modules
-app.controller('editPicturesCtrl', ['mdPanelRef', 'Upload', editPicturesCtrl]);
+app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload', editPicturesCtrl]);
+app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
 
 //Interceptor modules
 app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService', interceptorFactory])

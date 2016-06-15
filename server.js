@@ -1,12 +1,10 @@
 var express = require('express');
 var app = express();
-var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var oauthServer = require('oauth2-server');
 var validate = require('express-validation');
-var async = require('async');
 var port = 4000;
 
 //Database configuration =================================================
@@ -15,10 +13,12 @@ var db = mongoose.connect('localhost:27017/nodetest1');
 
 //Configuration ==========================================================
 app.use(express.static('./public'));     //Sets the static files location
-app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({
     extended: true
 })); // to support URL-encoded bodies
+app.use(bodyParser.json({
+    limit: 1000000
+})); //to suport uploading images
 app.oauth = oauthServer({
     model: require('./api/dbFunctions/OAuth.js'),
     grants: ['password']

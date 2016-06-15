@@ -4,19 +4,13 @@
             <h2>Edit Profile</h2>
         </div>
     </md-toolbar>
-    <md-content class="profile-picture" layout="row">
-        <md-button class="upload-button md-primary" ngf-select="upload($file)">Upload</md-button>
-        <md-input-container class="upload-container">
-            <label for="profile-picture">Profile photo</label>
-            <input id="profile-picture" label="Upload Images" name="vm.profilePhoto" ngf-select="vm.save($file)" ng-model="vm.profilePhoto" accept="image/*" ngf-max-size="5MB">
-        </md-input-container>
+    <md-content class="profile-picture" layout="row" layout-padding>
+        <span>Profile Photo: </span>
+        <input type="file" ngf-select="" ng-model="vm.profilePhoto" name="file1" ngf-accept="'image/*'" ngf-max-size="5MB" required="">
     </md-content>
-    <md-content class="profile-picture" layout="row">
-        <md-button class="upload-button md-primary" ngf-select="upload($file)">Upload</md-button>
-        <md-input-container class="upload-container">
-            <label for="cover-picture">Cover photo</label>
-            <input id="cover-picture" label="Upload Images" name="picture" ngf-select="vm.save($file)" ng-model="vm.coverPhoto" accept="image/*" ngf-max-size="5MB">
-        </md-input-container>
+    <md-content class="profile-picture" layout="row" layout-padding>
+        <span>Profile Photo: </span>
+        <input type="file" ngf-select="" ng-model="vm.coverPhoto" name="file1" ngf-accept="'image/*'" ngf-max-size="5MB" required="">
     </md-content>
     <div layout="row" class="buttons">
         <span flex></span>
