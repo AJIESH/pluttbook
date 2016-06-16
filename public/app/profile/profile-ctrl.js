@@ -6,6 +6,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     vm.addFriend = addFriend;
     vm.isUserFriend = isUserFriend;
     vm.showPanel = showPanel;
+    vm.getPictures = getPictures;
     //---Variables---
     vm.header = './app/common/header/header.html';
     vm.createStatus = './app/common/create-status/create-status.html';
@@ -16,6 +17,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     vm.isMyProfile = false;
     vm.isFriend = false;
     vm.mdPanel = $mdPanel;
+    $scope.pictureData = profileFactory.pictureData;
 
     activate();
 
@@ -23,6 +25,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
         getMyInfo();
         getUserInfo();
         isUserFriend();
+        getPictures();
     }
 
     function getMyInfo() {
@@ -36,6 +39,16 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
         profileFactory.getUserInfo().then(function (data) {
             vm.userInfo = data.data;
         });
+    }
+
+    function getPictures(){
+        profileFactory.getPictures()
+            .success(function(data){
+                profileFactory.setPictureData(data);
+            })
+            .error(function(data){
+                console.log('Error retrieving profile photos!');
+            });
     }
 
     function isUserFriend(){

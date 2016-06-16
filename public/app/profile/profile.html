@@ -1,9 +1,10 @@
 <div id="profile">
     <div ng-include src="vm.header"></div>
     <div class="background">
+        <img class="background background-image" ng-src="data:image/jpg;base64,{{pictureData.pictures.coverPhoto}}">
         <div layout="column">
             <div class="user-info"  layout="row">
-                <img class="avatar huge" src="./avatar.jpg">
+                <img class="avatar huge" ng-src="data:image/jpg;base64,{{pictureData.pictures.profilePhoto}}">
                 <div class="name">
                     <span class="firstname">{{vm.userInfo.firstName}}</span>
                     <span class="lastname">{{vm.userInfo.lastName}}</span>

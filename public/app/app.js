@@ -69,7 +69,7 @@ app.controller('friendsListCtrl', ['friendsListFactory', 'feedFactory', friendsL
 app.factory('friendsListFactory', ['$http', '$routeParams', friendsListFactory]);
 
 //Creates edit profile modules
-app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload', editPicturesCtrl]);
+app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload', 'profileFactory', editPicturesCtrl]);
 app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
 
 //Interceptor modules

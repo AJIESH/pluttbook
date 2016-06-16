@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 })); // to support URL-encoded bodies
 app.use(bodyParser.json({
-    limit: 1000000
+    limit: 2000000
 })); //to suport uploading images
 app.oauth = oauthServer({
     model: require('./api/dbFunctions/OAuth.js'),

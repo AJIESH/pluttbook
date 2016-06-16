@@ -9,7 +9,7 @@ module.exports = function($scope, feedFactory) {
     vm.goToProfile = goToProfile;
     vm.numberOfCommentsToShow = numberOfCommentsToShow;
     vm.hideCommentsButton = hideCommentsButton;
-    vm.hideHideCommentsButton = hideHideCommentsButton
+    vm.hideHideCommentsButton = hideHideCommentsButton;
     vm.toggleComments = toggleComments;
     //---Variables---
     $scope.statuses = feedFactory.statuses;

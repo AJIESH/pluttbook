@@ -1,9 +1,16 @@
 module.exports = function($http, $routeParams){
-   return {
+    var pictureData = {
+        pictures: null
+    };
+
+    return {
        getUserInfo: getUserInfo,
        getCurrentUserInfo: getCurrentUserInfo,
        addFriend: addFriend,
-       isUserFriend: isUserFriend
+       isUserFriend: isUserFriend,
+       getPictures: getPictures,
+       setPictureData: setPictureData,
+       pictureData: pictureData
     };
 
     function getUserInfo(){
@@ -35,5 +42,14 @@ module.exports = function($http, $routeParams){
             route = route + '/' + $routeParams.userid;
         }
         return $http.get(route, {});
+    }
+
+    function getPictures(){
+        var route = 'api/photos' + '/' + $routeParams.userid;
+        return $http.get(route, {});
+    }
+
+    function setPictureData(pictures){
+        pictureData.pictures = pictures;
     }
 };

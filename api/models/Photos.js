@@ -2,9 +2,9 @@ module.exports.model = function(db){
     var schema =  new db.Schema({
         userId: {type: String},
         profilePhotoName: {type: String},
-        profilePhoto: {type: Buffer},
+        profilePhoto: {type: String},
         coverPhotoName: {type: String},
-        coverPhoto: {type: Buffer}
+        coverPhoto: {type: String}
     }, {collection: 'photos'});
 
     module.exports.schema = db.model('photos', schema);
