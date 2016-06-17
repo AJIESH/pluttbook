@@ -24,8 +24,8 @@ var loginCtrl = require('./login/login-ctrl.js'),
     currentUserDataFactory = require('./common/current-user-data/current-user-data-factory.js'),
     friendsListCtrl = require('./common/friends-list/friends-list-ctrl.js'),
     friendsListFactory = require('./common/friends-list/friends-list-factory.js'),
-    editPicturesCtrl = require('./profile/edit-pictures-ctrl.js'),
-    editPicturesFactory = require('./profile/edit-pictures-factory.js');
+    editPicturesCtrl = require('./profile/edit-pictures/edit-pictures-ctrl.js'),
+    editPicturesFactory = require('./profile/edit-pictures/edit-pictures-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'ngFileUpload', 'LocalStorageModule']);
 
@@ -44,7 +44,7 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
 app.controller('feedCtrl', ['$scope', 'feedFactory', feedCtrl]);
-app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', feedFactory]);
+app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', 'profileFactory', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', 'currentUserDataFactory', headerCtrl]);

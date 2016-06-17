@@ -12,11 +12,11 @@
             </div>
         </div>
         <div class="connect-column" layout="column">
-            <div class="connect" layout="row" ng-hide="vm.isMyProfile">
-                <md-button class="add-friend-button" ng-click="vm.addFriend()" ng-hide="vm.isFriend">Add Friend</md-button>
-                <md-button class="add-friend-button" ng-click="vm.addFriend()" ng-hide="!vm.isFriend">Remove Friend</md-button>
+            <div class="connect" layout="row" ng-if="!vm.isMyProfile">
+                <md-button class="add-friend-button" ng-click="vm.addFriend()" ng-if="!vm.isFriend">Add Friend</md-button>
+                <md-button class="add-friend-button" ng-click="vm.addFriend()" ng-if="vm.isFriend">Remove Friend</md-button>
             </div>
-            <md-button class="edit-profile-button" layout="row" ng-hide="!vm.isMyProfile" ng-click="vm.showPanel($event)">
+            <md-button class="edit-profile-button" layout="row" ng-if="vm.isMyProfile" ng-click="vm.showPanel($event)">
                 <i class="icon s24 material-icons md-default-theme edit-profile-icon">edit</i>
                  Edit Profile
             </md-button>
@@ -29,7 +29,7 @@
                 <md-tab-body>
                     <div class="timeline" layout="row">
                         <div class="profile-news" layout="column">
-                            <div ng-include src="vm.createStatus" ng-hide="!vm.isMyProfile"></div>
+                            <div ng-include src="vm.createStatus" ng-if="vm.isMyProfile"></div>
                             <div ng-include src="vm.feedContent"></div>
                         </div>
                         <div class="friends-list" layout="column">

@@ -2,7 +2,7 @@
     <div class="newsItem md-whiteframe-1dp" ng-repeat="newsItem in statuses.statuses track by $index">
         <header layout="row" layout-align="space-between start" class="layout-align-space-between-start layout-row">
             <div class="user layout-align-start-center layout-row" layout="row" layout-align="start center">
-                <img class="avatar" ng-src="./avatar.jpg">
+                <img class="avatar" ng-src="data:image/jpg;base64,{{vm.profilePictures[newsItem.userId].profilePhoto}}">
                 <div layout="column" class="layout-column">
                     <div class="title" layout="row">
                         <span class="poster-name" ng-click="vm.goToProfile(newsItem.userInfo)">{{newsItem.userInfo.firstName + ' ' + newsItem.userInfo.lastName}}</span>
@@ -33,7 +33,7 @@
             <a class="hide-comments" ng-hide="vm.hideCommentsButton($index)" ng-click="vm.toggleComments($index)">{{'View ' + vm.numberOfCommentsToShow($index) + ' more comments'}}</a>
             <div layout-align="start-center" ng-repeat="comment in newsItem.comments">
                 <div class="comments" layout="row" ng-hide="comment.hideComment">
-                    <img class="avatar" ng-src="./avatar.jpg">
+                    <img class="avatar" ng-src="data:image/jpg;base64,{{vm.profilePictures[comment.userId].profilePhoto}}">
                     <div layout="column">
                         <div layout="row">
                             <div class="poster-name" ng-click="vm.goToProfile(comment.userInfo)">{{comment.userInfo.firstName + ' ' + comment.userInfo.lastName}}</div>

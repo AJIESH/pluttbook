@@ -1,6 +1,7 @@
 module.exports = function($scope, feedFactory) {
     var vm = this;
-    //---Functions---
+    //---Functions---]
+    vm.getProfilePictures = getProfilePictures;
     vm.formatStatusTime = formatStatusTime;
     vm.countLikes = countLikes;
     vm.countComments = countComments;
@@ -14,11 +15,21 @@ module.exports = function($scope, feedFactory) {
     //---Variables---
     $scope.statuses = feedFactory.statuses;
     vm.commentBox = [];
+    vm.profilePictures = null;
 
     activate();
 
     function activate() {
+        feedFactory.deferNewProfilePictures();
         feedFactory.getStatuses();
+        getProfilePictures();
+    }
+
+    function getProfilePictures(){
+        feedFactory.getNewProfilePictures().then(function(data){
+            vm.profilePictures = data;
+        });
+
     }
 
     function formatStatusTime(unix) {

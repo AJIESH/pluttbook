@@ -42,3 +42,14 @@ module.exports.getPhotos = function(userId, callback){
         }
     });
 };
+
+module.exports.getProfilePhoto = function(userId, callback){
+    Photo.schema.find({userId: userId}, 'profilePhoto', function(err, obj) {
+        if (err === null && obj.length < 2) {
+            callback(obj[0], false);
+        }
+        else {
+            callback(null, true);
+        }
+    });
+};

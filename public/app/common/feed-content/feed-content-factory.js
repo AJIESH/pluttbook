@@ -1,8 +1,11 @@
-module.exports = function($q, $http, $routeParams, $location){
+module.exports = function($q, $http, $routeParams, $location, profileFactory){
     var statuses = {
         statuses: null,
         commentBoxArray: []
     };
+
+    var profilePhotos = {};
+    var newProfilePhotos = $q.defer();
 
     return {
         getStatuses: getStatuses,
@@ -10,7 +13,9 @@ module.exports = function($q, $http, $routeParams, $location){
         postComment: postComment,
         formatStatusTime: formatStatusTime,
         statuses: statuses,
-        goToProfile: goToProfile
+        goToProfile: goToProfile,
+        getNewProfilePictures: getNewProfilePictures,
+        deferNewProfilePictures: deferNewProfilePictures
     };
 
     function getStatuses() {
@@ -21,6 +26,7 @@ module.exports = function($q, $http, $routeParams, $location){
          $http.get(route)
              .success(function(data){
                 statuses.statuses = data;
+                getProfilePictures();
                 createBlankCommentBoxArray();
             })
             .error(function(data){
@@ -68,5 +74,78 @@ module.exports = function($q, $http, $routeParams, $location){
 
     function goToProfile(userId){
         $location.path('/profile/userid/' + userId);
+    }
+
+    function getNewProfilePictures(){
+        return newProfilePhotos.promise;
+    }
+
+    function deferNewProfilePictures(){
+        newProfilePhotos = $q.defer();
+    }
+
+    function getProfilePictures(){
+        var userIds = getUniqueUserIds();
+        removeUnNeededProfilePictures(userIds);
+        if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
+            newProfilePhotos = $q.defer();
+        }
+        angular.forEach(userIds, function(userId){
+            if(profilePhotos[userId] === undefined){
+                $http.get('api/profile_photo/' + userId)
+                    .success(function(data){
+                        profilePhotos[userId] =
+                        {
+                            profilePhoto: data.profilePhoto,
+                            userId: userId
+                        };
+                        if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
+                            newProfilePhotos.resolve(profilePhotos);
+                        }
+                    })
+                    .error(function(data){
+                        profilePhotos[userId] =
+                        {
+                            profilePhoto: null,
+                            userId: userId
+                        };
+                        if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
+                            newProfilePhotos.resolve(profilePhotos);
+                        }
+                        console.log('Error getting timeline profile pictures');
+                    });
+            }
+        });
+    }
+
+    function removeUnNeededProfilePictures(userIds){
+        angular.forEach(profilePhotos, function(profilePhoto){
+            var needed = false;
+            angular.forEach(userIds, function(userId){
+               if(userId === profilePhoto.userId){
+                   needed = true;
+               }
+            });
+            if(!needed){
+                delete profilePhotos[profilePhoto.userId];
+            }
+        });
+    }
+
+    function getUniqueUserIds(){
+        var userIds = {};
+        //Gets the unique userIds from statuses
+        for(var i=0; i<statuses.statuses.length; i++){
+            if(userIds[statuses.statuses[i].userId] === undefined){
+                userIds[statuses.statuses[i].userId] = statuses.statuses[i].userId;
+            }
+            //Gets userIds from comments
+            for(var c=0; c<statuses.statuses[i].comments.length; c++){
+                if(userIds[statuses.statuses[i].comments[c].userId] === undefined){
+                    userIds[statuses.statuses[i].comments[c].userId] = statuses.statuses[i].comments[c].userId;
+                }
+            }
+        }
+        return userIds;
     }
 };

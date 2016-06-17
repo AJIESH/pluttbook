@@ -1,0 +1,20 @@
+<div id="edit-pictures" role="dialog" layout="column" layout-align="center center">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Edit Profile</h2>
+        </div>
+    </md-toolbar>
+    <md-content class="profile-picture" layout="row" layout-padding>
+        <span>Profile Photo: </span>
+        <input type="file" ngf-select="" ng-model="vm.profilePhoto" name="file1" ngf-accept="'image/*'" ngf-max-size="5MB" required="">
+    </md-content>
+    <md-content class="profile-picture" layout="row" layout-padding>
+        <span>Cover Photo: </span>
+        <input type="file" ngf-select="" ng-model="vm.coverPhoto" name="file1" ngf-accept="'image/*'" ngf-max-size="5MB" required="">
+    </md-content>
+    <div layout="row" class="buttons">
+        <span flex></span>
+        <md-button class="md-primary" ng-click="vm.save()">Save</md-button>
+        <md-button class="md-primary" ng-click="vm.close()">Cancel</md-button>
+    </div>
+</div>

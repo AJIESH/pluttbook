@@ -1,4 +1,4 @@
-var editPicturesCtrl = require('./edit-pictures-ctrl.js');
+var editPicturesCtrl = require('./edit-pictures/edit-pictures-ctrl.js');
 
 module.exports = function($scope, profileFactory, currentUserDataFactory, $routeParams, $mdPanel) {
     var vm = this;
@@ -82,7 +82,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
             controller: editPicturesCtrl,
             controllerAs: 'vm',
             disableParentScroll: true,
-            templateUrl: './app/profile/edit-pictures.html',
+            templateUrl: './app/profile/edit-pictures/edit-pictures.html',
             hasBackdrop: true,
             panelClass: 'edit-pictures',
             position: position,
