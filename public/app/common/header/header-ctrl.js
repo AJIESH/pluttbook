@@ -7,16 +7,19 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
     vm.logout = logout;
     vm.goToProfile = goToProfile;
     vm.closeMenu = closeMenu;
+    vm.getUsersProfilePictures = getUsersProfilePictures;
     //---Variables---
     vm.logo = './app/common/logo/logo.html';
     vm.showSearch = false;
     vm.userInfo = null;
     vm.query = '';
+    vm.userProfilePicture = null;
 
     activate();
 
     function activate(){
         getUserInfo();
+        getUsersProfilePictures();
     }
 
     function getUserInfo(){
@@ -28,6 +31,12 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
             .error(function(data){
                 console.log('Error retrieving user data.');
             });
+    }
+
+    function getUsersProfilePictures(){
+        currentUserDataFactory.getProfilePictureObject().then(function(data){
+            vm.userProfilePicture = data.profilePhoto;
+        });
     }
 
     function goToNewsFeed(){

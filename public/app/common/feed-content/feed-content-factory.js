@@ -1,4 +1,4 @@
-module.exports = function($q, $http, $routeParams, $location, profileFactory){
+module.exports = function($q, $http, $routeParams, $location){
     var statuses = {
         statuses: null,
         commentBoxArray: []
@@ -88,34 +88,36 @@ module.exports = function($q, $http, $routeParams, $location, profileFactory){
         var userIds = getUniqueUserIds();
         removeUnNeededProfilePictures(userIds);
         if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
-            newProfilePhotos = $q.defer();
+            newProfilePhotos.resolve(profilePhotos);
         }
-        angular.forEach(userIds, function(userId){
-            if(profilePhotos[userId] === undefined){
-                $http.get('api/profile_photo/' + userId)
-                    .success(function(data){
-                        profilePhotos[userId] =
-                        {
-                            profilePhoto: data.profilePhoto,
-                            userId: userId
-                        };
-                        if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
-                            newProfilePhotos.resolve(profilePhotos);
-                        }
-                    })
-                    .error(function(data){
-                        profilePhotos[userId] =
-                        {
-                            profilePhoto: null,
-                            userId: userId
-                        };
-                        if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
-                            newProfilePhotos.resolve(profilePhotos);
-                        }
-                        console.log('Error getting timeline profile pictures');
-                    });
-            }
-        });
+        else{
+            angular.forEach(userIds, function(userId){
+                if(profilePhotos[userId] === undefined){
+                    $http.get('api/profile_photo/' + userId)
+                        .success(function(data){
+                            profilePhotos[userId] =
+                            {
+                                profilePhoto: data.profilePhoto,
+                                userId: userId
+                            };
+                            if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
+                                newProfilePhotos.resolve(profilePhotos);
+                            }
+                        })
+                        .error(function(data){
+                            profilePhotos[userId] =
+                            {
+                                profilePhoto: null,
+                                userId: userId
+                            };
+                            if(Object.keys(userIds).length === Object.keys(profilePhotos).length){
+                                newProfilePhotos.resolve(profilePhotos);
+                            }
+                            console.log('Error getting timeline profile pictures');
+                        });
+                }
+            });
+        }
     }
 
     function removeUnNeededProfilePictures(userIds){

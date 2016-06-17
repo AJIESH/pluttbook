@@ -43,8 +43,8 @@ app.controller('createAccountCtrl', ['createAccountFactory', createAccountCtrl])
 app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
-app.controller('feedCtrl', ['$scope', 'feedFactory', feedCtrl]);
-app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', 'profileFactory', feedFactory]);
+app.controller('feedCtrl', ['$scope', 'feedFactory', 'currentUserDataFactory', feedCtrl]);
+app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', feedFactory]);
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', 'currentUserDataFactory', headerCtrl]);

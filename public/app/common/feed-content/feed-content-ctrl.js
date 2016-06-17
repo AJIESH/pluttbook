@@ -1,7 +1,8 @@
-module.exports = function($scope, feedFactory) {
+module.exports = function($scope, feedFactory, currentUserDataFactory) {
     var vm = this;
     //---Functions---]
     vm.getProfilePictures = getProfilePictures;
+    vm.getUsersProfilePictures = getUsersProfilePictures;
     vm.formatStatusTime = formatStatusTime;
     vm.countLikes = countLikes;
     vm.countComments = countComments;
@@ -16,6 +17,7 @@ module.exports = function($scope, feedFactory) {
     $scope.statuses = feedFactory.statuses;
     vm.commentBox = [];
     vm.profilePictures = null;
+    vm.userProfilePicture = null;
 
     activate();
 
@@ -23,6 +25,7 @@ module.exports = function($scope, feedFactory) {
         feedFactory.deferNewProfilePictures();
         feedFactory.getStatuses();
         getProfilePictures();
+        getUsersProfilePictures();
     }
 
     function getProfilePictures(){
@@ -30,6 +33,12 @@ module.exports = function($scope, feedFactory) {
             vm.profilePictures = data;
         });
 
+    }
+
+    function getUsersProfilePictures(){
+        currentUserDataFactory.getProfilePictureObject().then(function(data){
+            vm.userProfilePicture = data.profilePhoto;
+        });
     }
 
     function formatStatusTime(unix) {

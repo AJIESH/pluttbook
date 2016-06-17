@@ -31,7 +31,7 @@
                             <md-button id="optionsButton" ng-click="$mdOpenMenu()">
                                 <div layout="row">
                                     <div class="avatar-wrapper">
-                                        <img class="avatar" ng-src="./avatar.jpg">
+                                        <img class="avatar" ng-src="data:image/jpg;base64,{{vm.userProfilePicture}}">
                                     </div>
                                     <span class="username">{{vm.userInfo.firstName + ' ' + vm.userInfo.lastName}}</span>
                                     <i class="icon s24 material-icons md-default-theme" id="down">arrow_drop_down</i>
