@@ -8,6 +8,13 @@
     margin-right: 25%;
 }
 
+#newsFeed .chat {
+    position: fixed;
+    right: 0;
+    top: 64px;
+    width: 14em;
+}
+
 * {
     box-sizing: border-box;
 }

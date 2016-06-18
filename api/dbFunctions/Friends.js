@@ -52,7 +52,6 @@ module.exports.removeFriend = function(userId, friendId, callback){
 module.exports.getFriendsUserInfoAsync = function(friends, callback){
     var response = [];
     async.forEachOf(friends, function(friend, key, callback){
-
         async.parallel([
                 function(callback) {
                     UserInfo.getUserInfoAsync(friend, callback);

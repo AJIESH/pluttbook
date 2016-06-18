@@ -25,7 +25,9 @@ var loginCtrl = require('./login/login-ctrl.js'),
     friendsListCtrl = require('./common/friends-list/friends-list-ctrl.js'),
     friendsListFactory = require('./common/friends-list/friends-list-factory.js'),
     editPicturesCtrl = require('./profile/edit-pictures/edit-pictures-ctrl.js'),
-    editPicturesFactory = require('./profile/edit-pictures/edit-pictures-factory.js');
+    editPicturesFactory = require('./profile/edit-pictures/edit-pictures-factory.js'),
+    chatController = require('./common/chat/chat-controller.js'),
+    chatFactory = require('./common/chat/chat-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'ngFileUpload', 'LocalStorageModule']);
 
@@ -71,6 +73,10 @@ app.factory('friendsListFactory', ['$http', '$routeParams', friendsListFactory])
 //Creates edit profile modules
 app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload', 'profileFactory', editPicturesCtrl]);
 app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
+
+//Creates chat modules
+app.controller('chatCtrl', ['chatFactory', chatController]);
+app.factory('chatFactory', ['$http', chatFactory]);
 
 //Interceptor modules
 app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService', interceptorFactory])

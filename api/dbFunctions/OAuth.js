@@ -10,19 +10,21 @@ module.exports.getAccessToken = function(bearerToken, callback) {
     OAuthTokensModel.schema.findOne({ accessToken: bearerToken })
         .exec(function(err, obj){
             if(err === null){
-                ////Adds another hour to the experation date if the token is not expired
-                //if(obj.expires > new Date()){
-                //    var experationDate = new Date();
-                //    experationDate.setSeconds(experationDate.getSeconds() + 3600);
-                //    OAuthTokensModel.schema.findOneAndUpdate(
-                //        { accessToken: bearerToken },
-                //        {$set:{expires: experationDate}},
-                //        {new: true}
-                //    ).exec(function(err, obj){
-                //            err === null ?  callback(false, obj) : callback(false);
-                //    });
-                //}
-                callback(false, obj);
+                //Adds another hour to the experation date if the token is not expired
+                if(obj.expires > new Date()){
+                    var experationDate = new Date();
+                    experationDate.setSeconds(experationDate.getSeconds() + 3600);
+                    OAuthTokensModel.schema.findOneAndUpdate(
+                        { accessToken: bearerToken },
+                        {$set:{expires: experationDate}},
+                        {new: true}
+                    ).exec(function(err, obj){
+                            err === null ?  callback(false, obj) : callback(false);
+                    });
+                }
+                else{
+                    callback(false, obj);
+                }
             }
             else{
                 callback(false);

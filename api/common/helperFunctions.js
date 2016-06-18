@@ -1,3 +1,5 @@
+var async = require('async');
+
 module.exports.getAuthTokenFromHeader = function(request, result){
     if(request.get('Authorization').indexOf('Bearer') === 0){
         return request.get('Authorization').substring(7, request.get('Authorization').length);
@@ -57,4 +59,35 @@ module.exports.concatArrays = function(arrays){
         concated = concated.concat(arrays[i]);
     }
     return concated;
+};
+
+module.exports.isUserActive = function(users, callback){
+    var activeUsers = [];
+    async.each(users, function(user, callback){
+            var cutOffDate = new Date();
+            //55 minutes because token experation date is ahead by 60 min// Invalid if no activity in last 5 min
+            cutOffDate = addMinutes(cutOffDate, 55);
+            console.log((user.expires > cutOffDate) + ' ' + user.expires + ' ' + user.userId);
+            if(user.expires > cutOffDate){
+                activeUsers.push(user);
+            }
+            callback();
+        },
+        function(err){
+            callback(activeUsers, err);
+        });
+};
+
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+}
+
+module.exports.removeUserFromArray = function(array, userId){
+    for(var i=0; i<array.length; i++){
+        if(array[i].userId === userId){
+            array.splice(i, 1);
+            break;
+        }
+    }
+    return array;
 };

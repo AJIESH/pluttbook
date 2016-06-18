@@ -61,6 +61,13 @@ html {
     margin-right: 25%;
 }
 
+#newsFeed .chat {
+    position: fixed;
+    right: 0;
+    top: 64px;
+    width: 14em;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -167,6 +174,39 @@ html {
     width: 60%;
     padding-right: 30px;
     padding-top: 40px;
+}
+#chat {
+    background-color : rgb(245,245,245);
+    width: 100%;
+}
+
+#chat .available-users-header {
+    margin: 0px;
+    padding-left: 16px;
+    background-color: #3F51B5;
+}
+
+#chat .chat-header-text {
+    color: white;
+}
+
+#chat .list-text {
+    padding-left: 16px;
+}
+
+#chat .list-separator {
+    height: 1px;
+    width: 100%;
+    background: rgba(0,0,0,.12);
+}
+
+#chat .md-list-item-text {
+    width: 100%;
+}
+
+#chat md-list {
+    padding: 0px;
+    height: 100vh;
 }
 #createStatus {
     margin-top: 32px;
@@ -363,26 +403,6 @@ html {
     padding: 0px;
     height: 350px;
 }
-#logo {
-    padding-top: 16px;
-    padding-right: 16px;
-    padding-bottom: 16px;
-    padding-left: 16px;
-}
-
-#logo .logo-image {
-    display: block;
-    background: #3F51B5;
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #FFF;
-    border-radius: 2px;
-}
 #header #layout-horizontal-navigation {
     height: 100%;
     max-height: 100%;
@@ -529,6 +549,26 @@ html {
     margin: 0px;
 }
 
+#logo {
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+}
+
+#logo .logo-image {
+    display: block;
+    background: #3F51B5;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFF;
+    border-radius: 2px;
+}
 .edit-pictures {
     background: white;
     border-radius: 4px;
