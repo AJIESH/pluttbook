@@ -26,8 +26,10 @@ var loginCtrl = require('./login/login-ctrl.js'),
     friendsListFactory = require('./common/friends-list/friends-list-factory.js'),
     editPicturesCtrl = require('./profile/edit-pictures/edit-pictures-ctrl.js'),
     editPicturesFactory = require('./profile/edit-pictures/edit-pictures-factory.js'),
-    chatController = require('./common/chat/chat-controller.js'),
-    chatFactory = require('./common/chat/chat-factory.js');
+    availableUsersCtrl = require('./common/chat/available-users/available-users-ctrl.js'),
+    availableUsersFactory = require('./common/chat/available-users/available-users-factory.js'),
+    chatWindowCtrl = require('./common/chat/chat-window/chat-window-ctrl.js'),
+    chatWindowFactory = require('./common/chat/chat-window/chat-window-factory.js');
 
 var app = angular.module('app',['ngRoute', 'ngMaterial', 'ngFileUpload', 'LocalStorageModule']);
 
@@ -75,8 +77,11 @@ app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload
 app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
 
 //Creates chat modules
-app.controller('chatCtrl', ['chatFactory', chatController]);
-app.factory('chatFactory', ['$http', chatFactory]);
+app.controller('availableUsersCtrl', ['$timeout', '$mdPanel', 'availableUsersFactory', availableUsersCtrl]);
+app.factory('availableUsersFactory', ['$http', availableUsersFactory]);
+app.controller('chatWindowCtrl', ['mdPanelRef', 'userInfo', chatWindowCtrl]);
+app.factory('chatWindowFactory', ['$http', chatWindowFactory]);
+
 
 //Interceptor modules
 app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService', interceptorFactory])

@@ -1,0 +1,33 @@
+#chat {
+    background-color : rgb(245,245,245);
+    width: 100%;
+}
+
+#chat .available-users-header {
+    margin: 0px;
+    padding-left: 16px;
+    background-color: #3F51B5;
+}
+
+#chat .chat-header-text {
+    color: white;
+}
+
+#chat .list-text {
+    padding-left: 16px;
+}
+
+#chat .list-separator {
+    height: 1px;
+    width: 100%;
+    background: rgba(0,0,0,.12);
+}
+
+#chat .md-list-item-text {
+    width: 100%;
+}
+
+#chat md-list {
+    padding: 0px;
+    height: 100vh;
+}
