@@ -33,7 +33,7 @@ module.exports = function($timeout, $mdPanel, availableUsersFactory) {
     function addChatWindow(userInfo){
         var position = $mdPanel.newPanelPosition()
             .right(vm.right)
-            .bottom('0px');
+            .bottom('5px');
 
         var config = {
             attachTo: angular.element(document.body),
@@ -46,7 +46,7 @@ module.exports = function($timeout, $mdPanel, availableUsersFactory) {
             trapFocus: true,
             zIndex: 150,
             focusOnOpen: true,
-            locals: {userInfo: userInfo},
+            locals: {userInfo: userInfo, index: vm.numberWindowsOpen},
             onRemoving: removeChatWindow,
             onOpenComplete: openChatWindow
         };
@@ -58,15 +58,21 @@ module.exports = function($timeout, $mdPanel, availableUsersFactory) {
 
     function removeChatWindow(){
         vm.numberWindowsOpen --;
-        var offset = 225 + vm.numberWindowsOpen * 260;
-        vm.right = '600px';
+        setOffSet();
+        var chatWindows = angular.element($('.chat-window'));
+        var index = availableUsersFactory.getSetIndex();
+        for(var i=index+1; i<chatWindows.length; i++){
+            var req = $(chatWindows[i]);
+            req.css('right', (225 + (i-1) * 260).toString() + 'px');
+        }
     }
 
     function openChatWindow(){
         vm.numberWindowsOpen ++;
+        setOffSet();
     }
 
-    function getOffSet(){
-        return 225 + vm.numberWindowsOpen * 260;
+    function setOffSet(){
+        vm.right = (225 + vm.numberWindowsOpen * 260).toString() + 'px';
     }
 };

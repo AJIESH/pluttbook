@@ -6,6 +6,7 @@ require('angular-aria');
 require('angular-messages');
 require('angular-local-storage');
 require('ng-file-upload');
+var $ = require('jquery-browserify');
 
 var loginCtrl = require('./login/login-ctrl.js'),
     loginFactory = require('./login/login-factory.js'),
@@ -79,7 +80,7 @@ app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
 //Creates chat modules
 app.controller('availableUsersCtrl', ['$timeout', '$mdPanel', 'availableUsersFactory', availableUsersCtrl]);
 app.factory('availableUsersFactory', ['$http', availableUsersFactory]);
-app.controller('chatWindowCtrl', ['mdPanelRef', 'userInfo', chatWindowCtrl]);
+app.controller('chatWindowCtrl', ['mdPanelRef', 'userInfo', 'index', 'availableUsersFactory', chatWindowCtrl]);
 app.factory('chatWindowFactory', ['$http', chatWindowFactory]);
 
 
@@ -88,3 +89,18 @@ app.factory('interceptor', ['$q', '$window', '$location', 'localStorageService',
     .config(function($httpProvider){
        $httpProvider.interceptors.push('interceptor');
     });
+
+
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
