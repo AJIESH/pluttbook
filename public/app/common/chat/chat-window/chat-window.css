@@ -49,7 +49,7 @@
 
 .chat-window .chat-text{
     height: 270px;
-    width: 100%;
+    width: 260px;
 }
 
 .chat-window .input {
@@ -61,5 +61,18 @@
 
 .chat-window textarea {
     width: 100%;
+    font-size: 12px;
+}
+
+.chat-window .current-user{
+    font-size: 12px;
+    padding-left: 4px;
+    width: auto;
+    max-width: 60%;
+    background-color: #90B8DA;
+    float: right;
+}
+
+.chat-window .friend {
     font-size: 12px;
 }

@@ -332,6 +332,44 @@ html {
     cursor: pointer;
 }
 
+#friendsList {
+    background-color : rgb(245,245,245);
+    width: 100%;
+}
+
+#friendsList .friends-header {
+    margin: 0px;
+    padding-left: 16px;
+    background-color: #3F51B5;
+}
+
+#friendsList .friends-text {
+    color: white;
+}
+
+#friendsList .friends-count {
+    color: white;
+    padding-right: 16px;
+}
+
+#friendsList .list-text {
+    padding-left: 16px;
+}
+
+#friendsList .list-separator {
+    height: 1px;
+    width: 100%;
+    background: rgba(0,0,0,.12);
+}
+
+#friendsList .md-list-item-text {
+    width: 100%;
+}
+
+#friendsList md-list {
+    padding: 0px;
+    height: 350px;
+}
 #header #layout-horizontal-navigation {
     height: 100%;
     max-height: 100%;
@@ -498,44 +536,6 @@ html {
     color: #FFF;
     border-radius: 2px;
 }
-#friendsList {
-    background-color : rgb(245,245,245);
-    width: 100%;
-}
-
-#friendsList .friends-header {
-    margin: 0px;
-    padding-left: 16px;
-    background-color: #3F51B5;
-}
-
-#friendsList .friends-text {
-    color: white;
-}
-
-#friendsList .friends-count {
-    color: white;
-    padding-right: 16px;
-}
-
-#friendsList .list-text {
-    padding-left: 16px;
-}
-
-#friendsList .list-separator {
-    height: 1px;
-    width: 100%;
-    background: rgba(0,0,0,.12);
-}
-
-#friendsList .md-list-item-text {
-    width: 100%;
-}
-
-#friendsList md-list {
-    padding: 0px;
-    height: 350px;
-}
 .edit-pictures {
     background: white;
     border-radius: 4px;
@@ -649,7 +649,7 @@ html {
 
 .chat-window .chat-text{
     height: 270px;
-    width: 100%;
+    width: 260px;
 }
 
 .chat-window .input {
@@ -661,5 +661,18 @@ html {
 
 .chat-window textarea {
     width: 100%;
+    font-size: 12px;
+}
+
+.chat-window .current-user{
+    font-size: 12px;
+    padding-left: 4px;
+    width: auto;
+    max-width: 60%;
+    background-color: #90B8DA;
+    float: right;
+}
+
+.chat-window .friend {
     font-size: 12px;
 }

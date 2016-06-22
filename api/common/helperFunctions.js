@@ -67,7 +67,6 @@ module.exports.isUserActive = function(users, callback){
             var cutOffDate = new Date();
             //55 minutes because token experation date is ahead by 60 min// Invalid if no activity in last 5 min
             cutOffDate = addMinutes(cutOffDate, 55);
-            console.log((user.expires > cutOffDate) + ' ' + user.expires + ' ' + user.userId);
             if(user.expires > cutOffDate){
                 activeUsers.push(user);
             }

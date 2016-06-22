@@ -33,7 +33,6 @@ module.exports.savePhotos = function(userId, profilePhotoName, profilePhoto, cov
 
 module.exports.getPhotos = function(userId, callback){
     Photo.schema.find({userId: userId}, function(err, obj) {
-        console.log(obj.length);
         if (err === null && obj.length === 1) {
             callback(obj[0], false);
         }

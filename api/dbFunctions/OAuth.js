@@ -6,7 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 //Get access token
 module.exports.getAccessToken = function(bearerToken, callback) {
-    console.log('in getAccessToken (bearerToken: ' + bearerToken + ')');
+    //console.log('in getAccessToken (bearerToken: ' + bearerToken + ')');
     OAuthTokensModel.schema.findOne({ accessToken: bearerToken })
         .exec(function(err, obj){
             if(err === null){
@@ -34,7 +34,7 @@ module.exports.getAccessToken = function(bearerToken, callback) {
 
 //Get client
 module.exports.getClient = function(clientId, clientSecret, callback) {
-    console.log('in getClient (clientId: ' + clientId + ', clientSecret: ' + clientSecret + ')');
+    //console.log('in getClient (clientId: ' + clientId + ', clientSecret: ' + clientSecret + ')');
 
     OAuthClientsModel.schema.findOne({ clientId: clientId, clientSecret: clientSecret }, function(err, obj){
         err == null ?  callback(false, obj) : callback(false);
@@ -43,7 +43,7 @@ module.exports.getClient = function(clientId, clientSecret, callback) {
 
 //Get refresh token
 module.exports.getRefreshToken = function(refreshToken, callback) {
-    console.log('in getRefreshToken (refreshToken: ' + refreshToken + ')');
+    //console.log('in getRefreshToken (refreshToken: ' + refreshToken + ')');
 
     OAuthTokensModel.schema.findOne({ refreshToken: refreshToken }, function(err, obj){
         err == null ?  callback(false, obj) : callback(false);
@@ -52,7 +52,7 @@ module.exports.getRefreshToken = function(refreshToken, callback) {
 
 //Get user
 module.exports.getUser = function(email, password, callback) {
-    console.log('in getUser (username: ' + email + ', password: ' + password + ')');
+    //console.log('in getUser (username: ' + email + ', password: ' + password + ')');
 
     OAuthUsersModel.schema.findOne({ email: email }, function(err, obj){
         if(obj !== null){
@@ -72,7 +72,7 @@ module.exports.grantTypeAllowed = function (clientId, grantType, callback) {
 
 //Save token
 module.exports.saveAccessToken = function(token, client, expires, user, callback) {
-    console.log('in saveToken (token: ' + token + ')');
+    //console.log('in saveToken (token: ' + token + ')');
 
     console.dir(expires);
     var accessToken = new OAuthTokensModel.schema({

@@ -7,7 +7,9 @@
         </div>
     </md-toolbar>
     <md-content class="chat-text">
-
+        <div class="messages" ng-repeat="message in vm.messages">
+            <div ng-class="vm.isCurrentUser(message)?'current-user':'friend'">{{message.message}}</div>
+        </div>
     </md-content>
     <div class="form flex input">
         <textarea placeholder="Type a message.." ng-enter="vm.sendMessage(vm.messageText)" ng-model="vm.messageText"></textarea>
