@@ -1,4 +1,4 @@
-module.exports = function($q, $http, $routeParams, $location){
+module.exports = function($q, $http, $routeParams, $location, $window){
     var statuses = {
         statuses: null,
         commentBoxArray: []
@@ -28,6 +28,7 @@ module.exports = function($q, $http, $routeParams, $location){
                 statuses.statuses = data;
                 getProfilePictures();
                 createBlankCommentBoxArray();
+                $window.scrollTo(0,0);
             })
             .error(function(data){
                 console.log('Here');

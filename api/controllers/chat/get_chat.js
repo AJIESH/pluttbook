@@ -1,21 +1,13 @@
 var OAuthTokens = require('../../dbFunctions/OAuthTokens.js');
 var Friends = require('../../dbFunctions/Friends.js');
 var Chat = require('../../dbFunctions/Chat.js');
+var HelperFuncs = require('../../common/helperFunctions.js');
 
 module.exports.controller = function(app){
     app.get('/api/chat/:userid', app.oauth.authorise(), function(request, result){
 
         var currentUserId = '';
         var friendId = request.params.userid;
-        var offset = 0;
-        var count = 50;
-
-        if(request.query.offset !== null){
-            offset = request.query.offset;
-        }
-        if(request.query.count !== null){
-            count = request.query.count;
-        }
 
         OAuthTokens.getTokensUserId(request, result, getFriends);
 
@@ -40,7 +32,7 @@ module.exports.controller = function(app){
                     }
                 }
                 if(isFriend){
-                    Chat.getMessages(currentUserId, friendId, count, offset, finishGet)
+                    Chat.getMessages(currentUserId, friendId, finishGet)
                 }
                 else{
                     result.sendStatus(400);
@@ -54,11 +46,15 @@ module.exports.controller = function(app){
         function finishGet(messages, err){
             if(!err){
                 result.setHeader('Content-Type', 'application/json');
-                result.send(JSON.stringify(messages));
+                result.send(JSON.stringify(HelperFuncs.quickSort(messages, reverseDateSort)));
             }
             else{
                 result.sendStatus(500);
             }
         }
     });
+
+    function reverseDateSort(a, b){
+        return a.dateTime < b.dateTime;
+    }
 };

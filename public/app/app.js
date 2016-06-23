@@ -49,10 +49,10 @@ app.factory('createAccountFactory', ['$http', createAccountFactory]);
 
 //Create content feed modules
 app.controller('feedCtrl', ['$scope', 'feedFactory', 'currentUserDataFactory', feedCtrl]);
-app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', feedFactory]);
+app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', '$window', feedFactory]);
 
 //Creates header modules
-app.controller('headerCtrl', ['$mdDialog', '$mdMenu', 'headerFactory', 'currentUserDataFactory', headerCtrl]);
+app.controller('headerCtrl', ['$mdDialog', '$mdMenu', '$routeParams', 'headerFactory', 'currentUserDataFactory', 'feedFactory', headerCtrl]);
 app.factory('headerFactory', ['$http', '$location', 'localStorageService', headerFactory]);
 
 //Create news feed modules
@@ -103,4 +103,17 @@ app.directive('ngEnter', function () {
             }
         });
     };
+});
+
+app.directive('scroll', function($timeout) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attr) {
+            scope.$watchCollection(attr.scroll, function(newVal) {
+                $timeout(function() {
+                    element[0].scrollTop = element[0].scrollHeight;
+                });
+            });
+        }
+    }
 });

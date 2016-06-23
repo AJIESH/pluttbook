@@ -6,9 +6,9 @@
             <i class="icon s24 material-icons md-default-theme close" ng-click="vm.close()">close</i>
         </div>
     </md-toolbar>
-    <md-content class="chat-text">
-        <div class="messages" ng-repeat="message in vm.messages">
-            <div ng-class="vm.isCurrentUser(message)?'current-user':'friend'">{{message.message}}</div>
+    <md-content class="chat-text" scroll="vm.messages">
+        <div ng-class="vm.isCurrentUser(message)?'current-user':'friend'" ng-repeat="message in vm.messages track by message._id">
+            <div ng-class="vm.isCurrentUser(message)?'current-user-message':'friend-message'">{{message.message}}</div>
         </div>
     </md-content>
     <div class="form flex input">

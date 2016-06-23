@@ -12,6 +12,7 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
     vm.messageText = '';
     vm.messages = null;
     vm.currentUserInfo = null;
+    vm.continueLoop = true;
 
     activate();
 
@@ -25,14 +26,18 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
     function getMessagesLoop(){
         getMessages();
 
-        $timeout(function(){
-            getMessagesLoop();
-        }, 5000);
+        if(vm.continueLoop){
+            $timeout(function(){
+                getMessagesLoop();
+            }, 5000);
+        }
     }
 
     function close(){
         availableUsersFactory.getSetIndex(index);
+        vm.continueLoop = false;
         mdPanelRef.close();
+        mdPanelRef.destroy();
     }
 
     function getName(){
@@ -51,7 +56,7 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
     }
 
     function getMessages(){
-        chatWindowFactory.getMessages(userInfo.userId, 50, 0)
+        chatWindowFactory.getMessages(userInfo.userId)
             .success(function(data){
                 vm.messages = data;
             })

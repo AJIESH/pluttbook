@@ -12,13 +12,16 @@ module.exports.saveChat = function(senderId, receiverId, message, callback){
     });
 };
 
-module.exports.getMessages = function(currentUserId, friendId, count, offset, callback){
+module.exports.getMessages = function(currentUserId, friendId, callback){
     Chat.schema.find({
         $or: [
             {$and: [{senderId: currentUserId}, {receiverId: friendId}]},
             {$and: [{senderId: friendId}, {receiverId: currentUserId}]}
         ]
-    }).exec(function(err, obj){
+        })
+        .sort({'dateTime': -1})
+        .limit(100)
+        .exec(function(err, obj){
         (err === null) ? callback(obj, false) : callback(null, true);
     });
 };

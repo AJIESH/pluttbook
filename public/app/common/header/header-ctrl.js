@@ -1,4 +1,4 @@
-module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFactory) {
+module.exports = function($mdDialog, $mdMenu, $routeParams, headerFactory, currentUserDataFactory, feedFactory) {
     var vm = this;
     //---Functions---
     vm.goToNewsFeed = goToNewsFeed;
@@ -41,6 +41,9 @@ module.exports = function($mdDialog, $mdMenu, headerFactory, currentUserDataFact
 
     function goToNewsFeed(){
         headerFactory.goToNewsFeed();
+        if(!$routeParams.hasOwnProperty('userid')){
+           feedFactory.getStatuses();
+        }
     }
 
     function toggleSearch(){

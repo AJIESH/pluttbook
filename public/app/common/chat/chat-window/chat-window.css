@@ -50,6 +50,10 @@
 .chat-window .chat-text{
     height: 270px;
     width: 260px;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    background-color: rgba(0,0,0,.06);
+    padding-bottom: 12px;
 }
 
 .chat-window .input {
@@ -66,13 +70,34 @@
 
 .chat-window .current-user{
     font-size: 12px;
-    padding-left: 4px;
+    padding-top: 12px;
+    padding-right: 6px;
     width: auto;
-    max-width: 60%;
-    background-color: #90B8DA;
-    float: right;
+    margin-left: 30%;
+    text-align: right;
 }
 
 .chat-window .friend {
     font-size: 12px;
+    padding-top: 12px;
+    padding-left: 6px;
+    width: auto;
+    margin-right: 30%;
+    text-align: left;
+}
+
+.chat-window .current-user-message {
+    display: inline-block;
+    background-color: #90B8DA;
+    padding: 3px;
+    word-break: break-word;
+    border-radius: 8px;
+}
+
+.chat-window .friend-message {
+    display: inline-block;
+    background-color: white;
+    padding: 3px;
+    word-break: break-word;
+    border-radius: 8px;
 }

@@ -31,3 +31,8 @@
     padding: 0px;
     height: 100vh;
 }
+
+#chat .no-click-list {
+    pointer-events: none;
+    background-color: #D7D4D4;
+}

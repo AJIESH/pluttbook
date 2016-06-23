@@ -47,11 +47,11 @@ module.exports.sortByDate = function(statuses){
 
 function statusSort(a, b){
     return a.dateTime > b.dateTime;
-};
+}
 
 function commentSort(a, b){
     return a.dateTime < b.dateTime;
-};
+}
 
 module.exports.concatArrays = function(arrays){
     var concated = [];
@@ -86,6 +86,14 @@ module.exports.removeUserFromArray = function(array, userId){
         if(array[i].userId === userId){
             array.splice(i, 1);
         }
+    }
+    return array;
+};
+
+module.exports.pageArray = function(array, count, offset){
+    array.splice(0, offset);
+    if(array.length > count){
+        array.splice(count, messages.length);
     }
     return array;
 };

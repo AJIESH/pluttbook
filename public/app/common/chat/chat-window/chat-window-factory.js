@@ -12,7 +12,7 @@ module.exports = function($http){
         return $http.post('api/chat', body);
     }
 
-    function getMessages(userId, count, offset){
-        return $http.get('api/chat/' + userId + '?' + 'count=' + count + '&offset=' + offset);
+    function getMessages(userId){
+        return $http.get('api/chat/' + userId);
     }
 };
