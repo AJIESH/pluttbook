@@ -98,7 +98,7 @@ module.exports = function($q, $http, $routeParams, $location, $window){
                         .success(function(data){
                             profilePhotos[userId] =
                             {
-                                profilePhoto: data.profilePhoto,
+                                profilePhoto: data.profilePhotoThumbnail,
                                 userId: userId
                             };
                             if(Object.keys(userIds).length === Object.keys(profilePhotos).length){

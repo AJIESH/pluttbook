@@ -37,7 +37,7 @@ module.exports = function($scope, feedFactory, currentUserDataFactory) {
 
     function getUsersProfilePictures(){
         currentUserDataFactory.getProfilePictureObject().then(function(data){
-            vm.userProfilePicture = data.profilePhoto;
+            vm.userProfilePicture = data.profilePhotoThumbnail;
         });
     }
 

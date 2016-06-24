@@ -9,7 +9,7 @@ module.exports.controller = function(app){
 
         function savePhoto(userId, err){
             if(err === false && userId != null) {
-                Photos.savePhotos(userId, request.body.profilePhotoName, request.body.profilePhoto, request.body.coverPhotoName, request.body.coverPhoto, finishPost);
+                Photos.savePhotos(userId, request.body.profilePhotoName, request.body.profilePhoto, request.body.profilePhotoThumbnail, request.body.coverPhotoName, request.body.coverPhoto, finishPost);
             }
             else{
                 result.sendStatus(500);

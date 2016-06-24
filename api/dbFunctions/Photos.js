@@ -1,19 +1,21 @@
 var Photo = require('../models/Photos.js');
 
-module.exports.savePhotos = function(userId, profilePhotoName, profilePhoto, coverPhotoName, coverPhoto, callback){
+module.exports.savePhotos = function(userId, profilePhotoName, profilePhoto, profilePhotoThumbnail, coverPhotoName, coverPhoto, callback){
     var insertObject;
-    if(profilePhoto && profilePhotoName && coverPhoto && coverPhotoName){
+    if(profilePhoto && profilePhotoThumbnail && profilePhotoName && coverPhoto && coverPhotoName){
         insertObject = {
             profilePhotoName: profilePhotoName,
             profilePhoto: profilePhoto,
+            profilePhotoThumbnail: profilePhotoThumbnail,
             coverPhotoName: coverPhotoName,
             coverPhoto: coverPhoto
         };
     }
-    else if(profilePhoto && profilePhotoName && !coverPhoto && !coverPhotoName){
+    else if(profilePhoto && profilePhotoThumbnail && profilePhotoName && !coverPhoto && !coverPhotoName){
         insertObject = {
             profilePhotoName: profilePhotoName,
-            profilePhoto: profilePhoto
+            profilePhoto: profilePhoto,
+            profilePhotoThumbnail: profilePhotoThumbnail
         };
     }
     else if(!profilePhoto && !profilePhotoName && coverPhoto && coverPhotoName){
@@ -43,7 +45,7 @@ module.exports.getPhotos = function(userId, callback){
 };
 
 module.exports.getProfilePhoto = function(userId, callback){
-    Photo.schema.find({userId: userId}, 'profilePhoto', function(err, obj) {
+    Photo.schema.find({userId: userId}, 'profilePhotoThumbnail', function(err, obj) {
         if (err === null && obj.length < 2) {
             callback(obj[0], false);
         }

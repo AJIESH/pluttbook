@@ -35,7 +35,7 @@ module.exports = function($mdDialog, $mdMenu, $routeParams, headerFactory, curre
 
     function getUsersProfilePictures(){
         currentUserDataFactory.getProfilePictureObject().then(function(data){
-            vm.userProfilePicture = data.profilePhoto;
+            vm.userProfilePicture = data.profilePhotoThumbnail;
         });
     }
 

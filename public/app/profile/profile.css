@@ -1,6 +1,15 @@
 #profile {
     background-color : rgb(245,245,245);
+    padding-top: 64px;
 }
+
+.header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+}
+
 #profile .profile-news {
     overflow: hidden;
     padding:8px;

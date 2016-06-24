@@ -26,44 +26,50 @@ module.exports = function(mdPanelRef, editPicturesFactory, Upload, profileFactor
 
 
     function saveAllPhotos(){
-        Upload.base64DataUrl([vm.profilePhoto, vm.coverPhoto]).then(function(data){
-            var body = {
-                profilePhotoName: vm.profilePhoto.name,
-                profilePhoto: data[0].substring((data[0].indexOf('jpeg;base64')+12)),
-                coverPhotoName: vm.coverPhoto.name,
-                coverPhoto: data[1].substring((data[1].indexOf('jpeg;base64')+12))
-            };
-            editPicturesFactory.savePictures(body)
-                .success(function(data){
-                    vm.profilePhoto = null;
-                    vm.coverPhoto = null;
-                    updatePhotos();
-                    close();
-                })
-                .error(function(data){
-                    console.log('Error retrieving pictures');
-                    close();
-                });
+        Upload.resize(vm.profilePhoto, 100, 100, .8).then(function(thumbnail){
+            Upload.base64DataUrl([vm.profilePhoto, thumbnail, vm.coverPhoto]).then(function(data){
+                var body = {
+                    profilePhotoName: vm.profilePhoto.name,
+                    profilePhoto: data[0].substring((data[0].indexOf('jpeg;base64')+12)),
+                    profilePhotoThumbnail:  data[1].substring((data[1].indexOf('jpeg;base64')+12)),
+                    coverPhotoName: vm.coverPhoto.name,
+                    coverPhoto: data[2].substring((data[2].indexOf('jpeg;base64')+12))
+                };
+                editPicturesFactory.savePictures(body)
+                    .success(function(data){
+                        vm.profilePhoto = null;
+                        vm.coverPhoto = null;
+                        updatePhotos();
+                        close();
+                    })
+                    .error(function(data){
+                        console.log('Error retrieving pictures');
+                        close();
+                    });
+            });
         });
     }
 
     function saveProfilePhoto(){
-        Upload.base64DataUrl([vm.profilePhoto]).then(function(data){
-            var body = {
-                profilePhotoName: vm.profilePhoto.name,
-                profilePhoto: data[0].substring((data[0].indexOf('jpeg;base64')+12))
-            };
-            editPicturesFactory.savePictures(body)
-                .success(function(data){
-                    vm.profilePhoto = null;
-                    vm.coverPhoto = null;
-                    updatePhotos();
-                    close();
-                })
-                .error(function(data){
-                    console.log('Error retrieving pictures');
-                    close();
-                });
+        Upload.resize(vm.profilePhoto, 100, 100, .8).then(function(thumbnail){
+            Upload.base64DataUrl([vm.profilePhoto, thumbnail]).then(function(data){
+                var body = {
+                    profilePhotoName: vm.profilePhoto.name,
+                    profilePhoto: data[0].substring((data[0].indexOf('jpeg;base64')+12)),
+                    profilePhotoThumbnail:  data[1].substring((data[1].indexOf('jpeg;base64')+12))
+                };
+                editPicturesFactory.savePictures(body)
+                    .success(function(data){
+                        vm.profilePhoto = null;
+                        vm.coverPhoto = null;
+                        updatePhotos();
+                        close();
+                    })
+                    .error(function(data){
+                        console.log('Error retrieving pictures');
+                        close();
+                    });
+            });
         });
     }
 
