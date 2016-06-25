@@ -1,4 +1,5 @@
 var Chat = require('../models/Chat.js');
+var notifications = require('./Notifications.js');
 
 module.exports.saveChat = function(senderId, receiverId, message, callback){
     var chat = Chat.schema({
@@ -8,7 +9,12 @@ module.exports.saveChat = function(senderId, receiverId, message, callback){
         dateTime: new Date()
     });
     chat.save(function(err){
-        err === null ? callback(false) : callback(true);
+        if(err === null){
+            notifications.addNotification(receiverId, senderId, 'message', callback);
+        }
+        else{
+            callback(true);
+        }
     });
 };
 
@@ -21,7 +27,7 @@ module.exports.getMessages = function(currentUserId, friendId, callback){
         })
         .sort({'dateTime': -1})
         .limit(100)
-        .exec(function(err, obj){
-        (err === null) ? callback(obj, false) : callback(null, true);
+    .exec(function(err, obj){
+            (err === null) ? callback(obj, false) : callback(null, true);
     });
 };

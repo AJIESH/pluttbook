@@ -11,7 +11,7 @@ module.exports.getAccessToken = function(bearerToken, callback) {
         .exec(function(err, obj){
             if(err === null){
                 //Adds another hour to the experation date if the token is not expired
-                if(obj.expires > new Date()){
+                if(obj !== null && obj.expires > new Date()){
                     var experationDate = new Date();
                     experationDate.setSeconds(experationDate.getSeconds() + 3600);
                     OAuthTokensModel.schema.findOneAndUpdate(

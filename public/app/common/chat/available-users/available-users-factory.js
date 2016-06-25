@@ -4,7 +4,8 @@ module.exports = function($http){
 
     return {
         getAvailableFriends: getAvailableFriends,
-        getSetIndex: getSetIndex
+        getSetIndex: getSetIndex,
+        getNotifications: getNotifications
     };
 
     function getAvailableFriends(){
@@ -19,5 +20,9 @@ module.exports = function($http){
         else{
             return currentIndex;
         }
+    }
+
+    function getNotifications(){
+        return $http.get('api/notifications');
     }
 };
