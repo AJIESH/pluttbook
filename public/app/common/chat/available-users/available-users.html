@@ -5,8 +5,10 @@
     <md-content layout="column" ng-class="vm.numberWindowsOpen > 0 ? 'no-click-list':''">
         <md-list>
             <md-list-item class="md-1-line" layout="column" ng-repeat="friend in vm.availableFriends | orderBy: 'friend.firstName': true">
-                <div class="md-list-item-text" ng-click="vm.addChatWindow(friend)">
+                <div class="md-list-item-text" ng-click="vm.addChatWindow(friend)" layout="row">
                     <p class="list-text">{{friend.firstName + ' ' + friend.lastName}}</p>
+                    <span flex></span>
+                    <i class="icon s24 material-icons md-default-theme message-icon" ng-if="friend.newMessages">message</i>
                 </div>
                 <div class="list-separator"></div>
             </md-list-item>

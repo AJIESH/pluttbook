@@ -36,3 +36,7 @@
     pointer-events: none;
     background-color: #D7D4D4;
 }
+
+#chat .message-icon {
+    padding: 13px 10px 0px 0px;
+}

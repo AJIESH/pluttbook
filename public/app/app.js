@@ -78,7 +78,7 @@ app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload
 app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
 
 //Creates chat modules
-app.controller('availableUsersCtrl', ['$timeout', '$mdPanel', 'availableUsersFactory', availableUsersCtrl]);
+app.controller('availableUsersCtrl', ['$timeout', '$mdPanel', '$q', 'availableUsersFactory', availableUsersCtrl]);
 app.factory('availableUsersFactory', ['$http', availableUsersFactory]);
 app.controller('chatWindowCtrl', ['mdPanelRef', 'userInfo', 'index', 'availableUsersFactory', 'chatWindowFactory', '$timeout', 'currentUserDataFactory', chatWindowCtrl]);
 app.factory('chatWindowFactory', ['$http', chatWindowFactory]);

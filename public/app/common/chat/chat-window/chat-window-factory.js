@@ -1,8 +1,7 @@
 module.exports = function($http){
     return {
         sendMessage: sendMessage,
-        getMessages: getMessages,
-        setMessagesToRead: setMessagesToRead
+        getMessages: getMessages
     };
 
     function sendMessage(text, receiverId){
@@ -15,12 +14,5 @@ module.exports = function($http){
 
     function getMessages(userId){
         return $http.get('api/chat/' + userId);
-    }
-
-    function setMessagesToRead(userId){
-        var body = {
-            userId: userId
-        };
-        return $http.post('api/notifications', body);
     }
 };

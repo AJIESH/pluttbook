@@ -1,6 +1,6 @@
 var chatWindowCtrl = require('../chat-window/chat-window-ctrl.js');
 
-module.exports = function($timeout, $mdPanel, availableUsersFactory) {
+module.exports = function($timeout, $mdPanel, $q, availableUsersFactory) {
     var vm = this;
     //---Functions---
     vm.addChatWindow = addChatWindow;
@@ -9,28 +9,39 @@ module.exports = function($timeout, $mdPanel, availableUsersFactory) {
     vm.panelRef = undefined;
     vm.right = '225px';
     vm.numberWindowsOpen = 0;
+    vm.chatWindowUserId = '';
 
     activate();
 
     function activate(){
-        getAvailableFriends();
+        getAvailableFriendsAndNotifications();
+        getChatWindowData();
     }
 
-    function getAvailableFriends(){
-        availableUsersFactory.getAvailableFriends()
-           .success(function(data){
-                vm.availableFriends = data;
-           })
-           .error(function(){
-               console.log('Error retrieving available friends');
-           });
+    function getAvailableFriendsAndNotifications(){
+        $q.all([availableUsersFactory.getAvailableFriends(), availableUsersFactory.getNotifications()]).then(function(data){
+            vm.availableFriends = data[0].data;
+            var notifications = data[1].data;
+
+            for(var i=0; i<vm.availableFriends.length; i++){
+                vm.availableFriends[i].newMessages = userHasNotifications(vm.availableFriends[i].userId, notifications);
+            }
+        });
 
         $timeout(function(){
-            getAvailableFriends();
-        }, 60000);
+            getAvailableFriendsAndNotifications();
+        }, 15000);
+    }
+
+    function getChatWindowData(){
+        var chatWindowData = availableUsersFactory.getChatWindowData();
+        vm.numberWindowsOpen = chatWindowData.numberWindowsOpen;
+        vm.chatWindowUserId = chatWindowData.userId;
     }
 
     function addChatWindow(userInfo){
+        vm.chatWindowUserId = userInfo.userId;
+
         var position = $mdPanel.newPanelPosition()
             .right(vm.right)
             .bottom('5px');
@@ -59,6 +70,8 @@ module.exports = function($timeout, $mdPanel, availableUsersFactory) {
     function removeChatWindow(){
         vm.numberWindowsOpen --;
         setOffSet();
+        setMessagesToRead();
+        availableUsersFactory.setChatWindowData(vm.numberWindowsOpen, '');
         var chatWindows = angular.element($('.chat-window'));
         var index = availableUsersFactory.getSetIndex();
         for(var i=index+1; i<chatWindows.length; i++){
@@ -69,10 +82,38 @@ module.exports = function($timeout, $mdPanel, availableUsersFactory) {
 
     function openChatWindow(){
         vm.numberWindowsOpen ++;
+        availableUsersFactory.setChatWindowData(vm.numberWindowsOpen, vm.chatWindowUserId);
         setOffSet();
+        setMessagesToRead();
     }
 
     function setOffSet(){
         vm.right = (225 + vm.numberWindowsOpen * 260).toString() + 'px';
+    }
+
+    function setMessagesToRead(){
+        availableUsersFactory.setMessagesToRead(vm.chatWindowUserId)
+            .success(function(data){
+                for(var i=0; i<vm.availableFriends.length; i++){
+                    if(vm.availableFriends[i].userId === vm.chatWindowUserId){
+                        vm.availableFriends[i].newMessages = false;
+                        break;
+                    }
+                }
+            })
+            .error(function(data){
+                console.log('Error setting messages read to true')
+            })
+    }
+
+    function userHasNotifications(userId, notificatons){
+        var hasNotification = false;
+        for(var i=0; i<notificatons.length; i++){
+            if(notificatons[i].fromUserId === userId){
+                hasNotification = true;
+                break;
+            }
+        }
+        return hasNotification;
     }
 };

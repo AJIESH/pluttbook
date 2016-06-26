@@ -8,7 +8,6 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
     vm.sendMessage = sendMessage;
     vm.getMessages = getMessages;
     vm.isCurrentUser = isCurrentUser;
-    vm.setMessagesToRead = setMessagesToRead;
     //---Variables---
     vm.messageText = '';
     vm.messages = null;
@@ -66,17 +65,7 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
             })
     }
 
-    function isCurrentUser(message){
+    function isCurrentUser(message) {
         return message.senderId === vm.currentUserInfo.userId;
-    }
-
-    function setMessagesToRead(){
-        chatWindowFactory.setMessagesToRead(userInfo.userId)
-            .success(function(data){
-
-            })
-            .error(function(data){
-                console.log('Error setting messages read to true')
-            })
     }
 };
