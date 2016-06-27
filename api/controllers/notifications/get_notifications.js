@@ -20,6 +20,10 @@ module.exports.controller = function(app){
                 result.setHeader('Content-Type', 'application/json');
                 result.send(JSON.stringify(notifications[0].notifications));
             }
+            else if(!err){
+                result.setHeader('Content-Type', 'application/json');
+                result.send(JSON.stringify(notifications));
+            }
             else{
                 result.sendStatus(500);
             }

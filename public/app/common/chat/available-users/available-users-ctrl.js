@@ -33,6 +33,7 @@ module.exports = function($rootScope, $timeout, $mdPanel, $q, availableUsersFact
                 vm.availableFriends = data[0].data;
                 var notifications = data[1].data;
 
+
                 for(var i=0; i<vm.availableFriends.length; i++){
                     vm.availableFriends[i].newMessages = userHasNotifications(vm.availableFriends[i].userId, notifications);
                 }

@@ -1,7 +1,9 @@
 var OAuthUsers = require('../../dbFunctions/OAuthUsers.js');
 var UserInfo = require('../../dbFunctions/UserInfo.js');
 var Friends = require('../../dbFunctions/Friends.js');
+var Photos = require('../../dbFunctions/Photos.js');
 var bcrypt = require('bcrypt-nodejs');
+var fs = require('fs');
 var email, password, firstName, lastName, userId;
 
 module.exports.controller = function(app){
@@ -34,10 +36,22 @@ module.exports.controller = function(app){
       }
 
       function createUsersFriendsSchema(err){
-          (!err) ? Friends.createNewUserFriendsSchema(this.userId, finish) : result.sendStatus(500);
+          (!err) ? Friends.createNewUserFriendsSchema(this.userId, creatUsersPhotots) : result.sendStatus(500);
       }
 
-      function finish(err){
+      function creatUsersPhotots(err){
+          if(!err){
+              var profileThumbnail = fs.readFileSync('./api/images/default-profile-thumbnail.txt');
+              var profilePhoto = fs.readFileSync('./api/images/default-profile-photo.txt');
+              var coverPhoto = fs.readFileSync('./api/images/default-cover-photo.txt');
+              Photos.savePhotos(this.userId, 'default-cover-photo.jpg', profilePhoto, profileThumbnail, 'default-cover-photo.jpg', coverPhoto, finish);
+          }
+          else{
+              result.sendStatus(500);
+          }
+      }
+
+      function finish(obj, err){
           (!err) ? result.sendStatus(200) : result.sendStatus(500);
       }
   });
