@@ -1,4 +1,4 @@
-<div ng-controller="feedCtrl as vm"  layout="column" layout-align="center center" layout-fill="layout-fill" id="feedContent">
+<div ng-controller="feedCtrl as vm" layout="column" layout-align="center center" layout-fill="layout-fill" id="feedContent" ng-bottom="vm.getPagedStatuses()">
     <div class="newsItem md-whiteframe-1dp" ng-repeat="newsItem in statuses.statuses track by $index">
         <header layout="row" layout-align="space-between start" class="layout-align-space-between-start layout-row">
             <div class="user layout-align-start-center layout-row" layout="row" layout-align="start center">

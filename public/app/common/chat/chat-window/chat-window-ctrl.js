@@ -1,4 +1,4 @@
-module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, chatWindowFactory, $timeout, currentUserDataFactory){
+module.exports = function($rootScope, mdPanelRef, userInfo, index, availableUsersFactory, chatWindowFactory, $timeout, currentUserDataFactory){
     vm = this;
     //---Functions---
     vm.activate = activate;
@@ -24,9 +24,9 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
     }
 
     function getMessagesLoop(){
-        getMessages();
-
         if(vm.continueLoop){
+            getMessages();
+
             $timeout(function(){
                 getMessagesLoop();
             }, 5000);
@@ -68,4 +68,8 @@ module.exports = function(mdPanelRef, userInfo, index, availableUsersFactory, ch
     function isCurrentUser(message) {
         return message.senderId === vm.currentUserInfo.userId;
     }
+
+    $rootScope.$on('stop-loops', function(){
+        close();
+    });
 };

@@ -1,15 +1,24 @@
 var chatWindowCtrl = require('../chat-window/chat-window-ctrl.js');
 
-module.exports = function($timeout, $mdPanel, $q, availableUsersFactory) {
+module.exports = function($rootScope, $timeout, $mdPanel, $q, availableUsersFactory) {
     var vm = this;
     //---Functions---
+    vm.activate = activate;
+    vm.getAvailableFriendsAndNotifications = getAvailableFriendsAndNotifications;
+    vm.getChatWindowData = getChatWindowData;
     vm.addChatWindow = addChatWindow;
+    vm.removeChatWindow = removeChatWindow;
+    vm.openChatWindow = openChatWindow;
+    vm.setMessagesToRead = setMessagesToRead;
+    vm.userHasNotifications = userHasNotifications;
+    vm.getNumberWindowsOpen = getNumberWindowsOpen;
     //---Variables---
     vm.availableFriends = null;
     vm.panelRef = undefined;
     vm.right = '225px';
     vm.numberWindowsOpen = 0;
     vm.chatWindowUserId = '';
+    vm.continueLoop = true;
 
     activate();
 
@@ -19,18 +28,20 @@ module.exports = function($timeout, $mdPanel, $q, availableUsersFactory) {
     }
 
     function getAvailableFriendsAndNotifications(){
-        $q.all([availableUsersFactory.getAvailableFriends(), availableUsersFactory.getNotifications()]).then(function(data){
-            vm.availableFriends = data[0].data;
-            var notifications = data[1].data;
+        if(vm.continueLoop){
+            $q.all([availableUsersFactory.getAvailableFriends(), availableUsersFactory.getNotifications()]).then(function(data){
+                vm.availableFriends = data[0].data;
+                var notifications = data[1].data;
 
-            for(var i=0; i<vm.availableFriends.length; i++){
-                vm.availableFriends[i].newMessages = userHasNotifications(vm.availableFriends[i].userId, notifications);
-            }
-        });
+                for(var i=0; i<vm.availableFriends.length; i++){
+                    vm.availableFriends[i].newMessages = userHasNotifications(vm.availableFriends[i].userId, notifications);
+                }
+            });
 
-        $timeout(function(){
-            getAvailableFriendsAndNotifications();
-        }, 15000);
+            $timeout(function(){
+                getAvailableFriendsAndNotifications();
+            }, 15000);
+        }
     }
 
     function getChatWindowData(){
@@ -68,27 +79,16 @@ module.exports = function($timeout, $mdPanel, $q, availableUsersFactory) {
     //Todo: after each panel added increment css right, and after each panel that is removed, use jquery to set the css to move the panels to the right
 
     function removeChatWindow(){
-        vm.numberWindowsOpen --;
-        setOffSet();
+        vm.numberWindowsOpen = 0;
         setMessagesToRead();
         availableUsersFactory.setChatWindowData(vm.numberWindowsOpen, '');
-        var chatWindows = angular.element($('.chat-window'));
-        var index = availableUsersFactory.getSetIndex();
-        for(var i=index+1; i<chatWindows.length; i++){
-            var req = $(chatWindows[i]);
-            req.css('right', (225 + (i-1) * 260).toString() + 'px');
-        }
+        getChatWindowData();
     }
 
     function openChatWindow(){
         vm.numberWindowsOpen ++;
         availableUsersFactory.setChatWindowData(vm.numberWindowsOpen, vm.chatWindowUserId);
-        setOffSet();
         setMessagesToRead();
-    }
-
-    function setOffSet(){
-        vm.right = (225 + vm.numberWindowsOpen * 260).toString() + 'px';
     }
 
     function setMessagesToRead(){
@@ -109,11 +109,20 @@ module.exports = function($timeout, $mdPanel, $q, availableUsersFactory) {
     function userHasNotifications(userId, notificatons){
         var hasNotification = false;
         for(var i=0; i<notificatons.length; i++){
-            if(notificatons[i].fromUserId === userId){
+            if(notificatons[i].fromUserId === userId && notificatons[i].fromUserId !== vm.chatWindowUserId){
                 hasNotification = true;
                 break;
             }
         }
         return hasNotification;
     }
+
+    function getNumberWindowsOpen(){
+        var chatWindowData = availableUsersFactory.getChatWindowData();
+        return chatWindowData.numberWindowsOpen;
+    }
+
+    $rootScope.$on('stop-loops', function(){
+        vm.continueLoop = false;
+    });
 };

@@ -10,7 +10,7 @@ module.exports.getAllAvailableFriends = function(userId, result, callback){
     Friends.getFriends(userId, getFriendsTokens);
 
     function getFriendsTokens(friends, err){
-        if(!err){
+        if(!err && friends.length === 1){
             OAuthTokens.getTokenByUserIdAsync(friends[0].friends, getAvailableFriends);
         }
         else{

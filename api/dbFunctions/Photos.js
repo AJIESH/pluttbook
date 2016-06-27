@@ -46,7 +46,7 @@ module.exports.getPhotos = function(userId, callback){
 
 module.exports.getProfilePhoto = function(userId, callback){
     Photo.schema.find({userId: userId}, 'profilePhotoThumbnail', function(err, obj) {
-        if (err === null && obj.length < 2) {
+        if (err === null && obj.length === 1) {
             callback(obj[0], false);
         }
         else {

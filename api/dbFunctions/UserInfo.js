@@ -20,7 +20,7 @@ module.exports.getUserInfo = function(userId, callback){
             callback(obj[0], false);
         }
         else{
-            callback(true);
+            callback(obj, true);
         }
     });
 };

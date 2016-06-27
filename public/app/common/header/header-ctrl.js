@@ -41,9 +41,6 @@ module.exports = function($mdDialog, $mdMenu, $routeParams, headerFactory, curre
 
     function goToNewsFeed(){
         headerFactory.goToNewsFeed();
-        if(!$routeParams.hasOwnProperty('userid')){
-           feedFactory.getStatuses();
-        }
     }
 
     function toggleSearch(){
@@ -61,7 +58,12 @@ module.exports = function($mdDialog, $mdMenu, $routeParams, headerFactory, curre
         headerFactory.logout();
     }
 
-    function goToProfile(userId){
+    function goToProfile(userId, searchUsed){
+        //This is here because of Angular material bug... breaks search bar but stops search from breaking whole app
+        if(searchUsed){
+            var scrollMask = angular.element($('.md-scroll-mask'));
+            scrollMask.remove();
+        }
         if(userId){
             headerFactory.goToProfile(userId);
         }

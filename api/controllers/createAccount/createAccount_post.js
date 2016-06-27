@@ -11,6 +11,10 @@ module.exports.controller = function(app){
       email = request.body.email;
       password = request.body.password;
 
+      if(firstName === undefined || lastName === undefined || email === undefined || password === undefined){
+          result.sendStatus(400);
+      }
+
       OAuthUsers.emailUnique(email, hashPassword);
 
       function hashPassword(err){
@@ -20,7 +24,7 @@ module.exports.controller = function(app){
               });
           }
           else{
-              result.sendStatus(500);
+              result.sendStatus(400);
           }
       }
 

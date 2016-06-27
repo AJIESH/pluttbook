@@ -16,7 +16,7 @@ module.exports.controller = function(app){
         }
 
         function finishGet(notifications, err){
-            if(!err){
+            if(!err && notifications.length === 1){
                 result.setHeader('Content-Type', 'application/json');
                 result.send(JSON.stringify(notifications[0].notifications));
             }

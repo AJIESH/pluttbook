@@ -6,6 +6,9 @@ module.exports = function($q, $http, $routeParams, $location, $window){
 
     var profilePhotos = {};
     var newProfilePhotos = $q.defer();
+    var count = 25;
+    var offset = 0;
+    var pagingAllowed = true;
 
     return {
         getStatuses: getStatuses,
@@ -18,21 +21,41 @@ module.exports = function($q, $http, $routeParams, $location, $window){
         deferNewProfilePictures: deferNewProfilePictures
     };
 
-    function getStatuses() {
+    function getStatuses(paged) {
         var route = 'api/status';
         if($routeParams.hasOwnProperty('userid')){
             route = route + '/' + $routeParams.userid;
         }
-         $http.get(route)
-             .success(function(data){
-                statuses.statuses = data;
-                getProfilePictures();
-                createBlankCommentBoxArray();
-                $window.scrollTo(0,0);
-            })
-            .error(function(data){
-                console.log('Here');
-            });
+        if(paged){
+            offset += count;
+        }
+        else{
+            offset = 0;
+            pagingAllowed = true;
+        }
+        route = route + '?count=' + count + '&offset=' + offset;
+
+        if(pagingAllowed){
+            $http.get(route)
+                .success(function(data){
+                    if(paged){
+                        statuses.statuses = statuses.statuses.concat(data);
+                        if(data.length !== count){
+                            pagingAllowed = false;
+                        }
+                    }
+                    else {
+                        offset = 0;
+                        $window.scrollTo(0,0);
+                        statuses.statuses = data;
+                    }
+                    getProfilePictures();
+                    createBlankCommentBoxArray();
+                })
+                .error(function(data){
+                    console.log('Here');
+                });
+        }
     }
 
     function postLike(statusId){

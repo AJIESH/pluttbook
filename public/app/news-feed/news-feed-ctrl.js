@@ -1,5 +1,6 @@
 module.exports = function() {
     var vm = this;
+    //---Functions---
     //---Variables---
     vm.header = './app/common/header/header.html';
     vm.createStatus = './app/common/create-status/create-status.html';

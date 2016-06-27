@@ -1,6 +1,7 @@
 module.exports = function($scope, feedFactory, currentUserDataFactory) {
     var vm = this;
     //---Functions---]
+    vm.getPagedStatuses = getPagedStatuses;
     vm.getProfilePictures = getProfilePictures;
     vm.getUsersProfilePictures = getUsersProfilePictures;
     vm.formatStatusTime = formatStatusTime;
@@ -23,16 +24,19 @@ module.exports = function($scope, feedFactory, currentUserDataFactory) {
 
     function activate() {
         feedFactory.deferNewProfilePictures();
-        feedFactory.getStatuses();
+        feedFactory.getStatuses(false);
         getProfilePictures();
         getUsersProfilePictures();
+    }
+
+    function getPagedStatuses(){
+        feedFactory.getStatuses(true);
     }
 
     function getProfilePictures(){
         feedFactory.getNewProfilePictures().then(function(data){
             vm.profilePictures = data;
         });
-
     }
 
     function getUsersProfilePictures(){

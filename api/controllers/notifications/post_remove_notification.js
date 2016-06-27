@@ -4,9 +4,6 @@ var Notifications = require('../../dbFunctions/Notifications.js');
 module.exports.controller = function(app){
     app.post('/api/notifications', app.oauth.authorise(), function(request, result){
 
-        var currentUserId = null;
-        var friendUserId = null;
-
         if(request.body.userId === null || request.body.type === null){
             result.sendStatus(400);
         }
@@ -15,7 +12,6 @@ module.exports.controller = function(app){
 
         function removeNotifications(userId, err){
             if(!err){
-                currentUserId = userId;
                 Notifications.removeNotification(userId, request.body.userId, request.body.type, finishPost)
             }
             else{

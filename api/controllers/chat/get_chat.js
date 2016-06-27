@@ -22,7 +22,7 @@ module.exports.controller = function(app){
         }
 
         function getMessages(friendsArray, err){
-            if(!err){
+            if(!err && friendsArray.length === 1){
                 var friends = friendsArray[0].friends;
                 var isFriend = false;
                 for(var i=0; i<friends.length; i++){

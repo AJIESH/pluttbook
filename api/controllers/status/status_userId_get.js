@@ -8,6 +8,16 @@ module.exports.controller = function(app){
 
         var userId = request.params.userid;
 
+        var offset = 0;
+        var count = 25;
+
+        if(request.query.offset !== null && request.query.offset !== undefined){
+            offset = request.query.offset;
+        }
+        if(request.query.count !== null && request.query.count !== undefined){
+            count = request.query.count;
+        }
+
         //Gets passed in users id statuses
         getStatus(userId, false);
 
@@ -32,8 +42,9 @@ module.exports.controller = function(app){
         function finishGet(statuses, err){
             if(!err){
                 var sortedStatuses = HelperFuncs.sortByDate(statuses);
+                sortedStatuses = HelperFuncs.pageArray(sortedStatuses, count, offset);
                 result.setHeader('Content-Type', 'application/json');
-                result.send(JSON.stringify(HelperFuncs.sortByDate(statuses)));
+                result.send(JSON.stringify(sortedStatuses));
             }
             else{
                 result.sendStatus(500);

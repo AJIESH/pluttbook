@@ -1,4 +1,4 @@
-module.exports = function($http, $location, localStorageService){
+module.exports = function($rootScope, $http, $location, localStorageService){
 
     return {
         goToNewsFeed: goToNewsFeed,
@@ -16,6 +16,7 @@ module.exports = function($http, $location, localStorageService){
     }
 
     function logout(){
+        $rootScope.$broadcast('stop-loops');
         return  $http.post('api/logout',{})
             .success(redirectToLogin)
             .error(redirectToLogin);

@@ -2,7 +2,7 @@
     <header class="available-users-header" layout="row">
         <p class="chat-header-text">Available Friends</p>
     </header>
-    <md-content layout="column" ng-class="vm.numberWindowsOpen > 0 ? 'no-click-list':''">
+    <md-content layout="column" ng-class="vm.getNumberWindowsOpen() > 0 ? 'no-click-list':''">
         <md-list>
             <md-list-item class="md-1-line" layout="column" ng-repeat="friend in vm.availableFriends | orderBy: 'friend.firstName': true">
                 <div class="md-list-item-text" ng-click="vm.addChatWindow(friend)" layout="row">

@@ -8,7 +8,7 @@ module.exports = function(createStatusFactory, feedFactory) {
     function postStatus(){
         createStatusFactory.postStatus(bundleStatus()).then(function(data){
                 vm.status = '';
-                feedFactory.getStatuses();
+                feedFactory.getStatuses(false);
         });
     }
 

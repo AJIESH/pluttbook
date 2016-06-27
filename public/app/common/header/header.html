@@ -15,7 +15,8 @@
                             <md-autocomplete md-search-text="vm.query"
                                              md-items="item in vm.querySearch(vm.query)"
                                              md-menu-class="search-dropdown"
-                                             placeholder="Search Pluttbook">
+                                             placeholder="Search Pluttbook"
+                                             md-selected-item-change="vm.goToProfile(vm.query.userId, true)">
                                 <md-item-template>
                                     <div class="searchResult" ng-click="vm.goToProfile(item.userId)">
                                         <span md-highlight-text="searchText">{{item.firstName + ' ' + item.lastName}}</span>

@@ -24,7 +24,6 @@ module.exports.removeNotification = function(userId, senderId, type, callback){
             }
         }}, {upsert: true, new: true, runValidators: true})
     .exec(function(err, obj){
-            console.log(err);
         err === null ? callback(obj, false) : callback(null, true);
     });
 };

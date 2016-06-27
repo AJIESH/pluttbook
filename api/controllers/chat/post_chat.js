@@ -50,7 +50,7 @@ module.exports.controller = function(app){
             }
         }
 
-        function finishPost(err){
+        function finishPost(obj, err){
             if(!err){
                 result.setHeader('Content-Type', 'application/json');
                 result.sendStatus(200);

@@ -40,7 +40,7 @@ var routes = require('./routes.js');
 app.config(['$routeProvider', routes]);
 
 //Login modules
-app.controller('loginCtrl', ['loginFactory', loginCtrl]);
+app.controller('loginCtrl', ['$location', 'loginFactory', loginCtrl]);
 app.factory('loginFactory', ['$http', '$location', 'localStorageService', loginFactory]);
 
 //Create account modules
@@ -53,7 +53,7 @@ app.factory('feedFactory', ['$q', '$http', '$routeParams', '$location', '$window
 
 //Creates header modules
 app.controller('headerCtrl', ['$mdDialog', '$mdMenu', '$routeParams', 'headerFactory', 'currentUserDataFactory', 'feedFactory', headerCtrl]);
-app.factory('headerFactory', ['$http', '$location', 'localStorageService', headerFactory]);
+app.factory('headerFactory', ['$rootScope', '$http', '$location', 'localStorageService', headerFactory]);
 
 //Create news feed modules
 app.controller('newsFeedCtrl', [newsFeedCtrl]);
@@ -78,9 +78,9 @@ app.controller('editPicturesCtrl', ['mdPanelRef', 'editPicturesFactory', 'Upload
 app.factory('editPicturesFactory', ['$http', editPicturesFactory]);
 
 //Creates chat modules
-app.controller('availableUsersCtrl', ['$timeout', '$mdPanel', '$q', 'availableUsersFactory', availableUsersCtrl]);
+app.controller('availableUsersCtrl', ['$rootScope', '$timeout', '$mdPanel', '$q', 'availableUsersFactory', availableUsersCtrl]);
 app.factory('availableUsersFactory', ['$http', availableUsersFactory]);
-app.controller('chatWindowCtrl', ['mdPanelRef', 'userInfo', 'index', 'availableUsersFactory', 'chatWindowFactory', '$timeout', 'currentUserDataFactory', chatWindowCtrl]);
+app.controller('chatWindowCtrl', ['$rootScope', 'mdPanelRef', 'userInfo', 'index', 'availableUsersFactory', 'chatWindowFactory', '$timeout', 'currentUserDataFactory', chatWindowCtrl]);
 app.factory('chatWindowFactory', ['$http', chatWindowFactory]);
 
 
@@ -117,3 +117,18 @@ app.directive('scroll', function($timeout) {
         }
     }
 });
+
+app.directive('ngBottom', function() {
+    return function (scope, elm, attr) {
+        var raw = elm[0];
+
+        var funCheckBounds = function (evt) {
+            var rectObject = raw.getBoundingClientRect();
+            if (rectObject.bottom - window.innerHeight < 0) {
+                scope.$apply(attr.ngBottom);
+            }
+        };
+        angular.element(window).bind('scroll load', funCheckBounds);
+    }
+});
+

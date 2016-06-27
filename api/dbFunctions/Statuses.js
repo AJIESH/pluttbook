@@ -20,7 +20,18 @@ module.exports.getStatuses = function(id, callback){
 };
 
 module.exports.getStatusesAsync = function(id, callback){
-    Statuses.schema.find({userId: id.userId}).exec(function(err, obj){
+    var cutOffDate = new Date();
+    cutOffDate.setDate(cutOffDate.getDate()-30);
+    cutOffDate = Date.parse(cutOffDate)/1000;
+
+    Statuses.schema.find({
+        $and: [
+            {userId: id.userId},
+            {dateTime:{
+                $gte: cutOffDate
+            }}
+        ]
+    }).exec(function(err, obj){
         if (err === null){
             return callback(null, obj);
         }

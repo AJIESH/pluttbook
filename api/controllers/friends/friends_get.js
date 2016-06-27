@@ -9,7 +9,7 @@ module.exports.controller = function(app){
         Friends.getFriends(userId, getFriendsUserInfo);
 
         function getFriendsUserInfo(friends, err){
-            if(!err){
+            if(!err && friends.length === 1){
                 Friends.getFriendsUserInfoAsync(friends[0].friends, finishGet);
             }
             else{

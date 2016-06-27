@@ -31,6 +31,11 @@ html {
 #createAccountsPage #lastName {
     float: right;
 }
+
+#createAccountsPage .error {
+    color: red;
+    font-size: 12px;
+}
 #loginPage {
    background-color : #e9eaed;
 }
@@ -85,12 +90,21 @@ html {
 #profile {
     background-color : rgb(245,245,245);
     padding-top: 64px;
+    margin-right: 225px;
 }
 
 .header {
     position: fixed;
     top: 0px;
     width: 100%;
+    z-index: 1;
+}
+
+.chat {
+    position: fixed;
+    right: 0;
+    top: 64px;
+    width: 225px;
     z-index: 1;
 }
 
@@ -390,26 +404,6 @@ html {
     padding: 0px;
     height: 350px;
 }
-#logo {
-    padding-top: 16px;
-    padding-right: 16px;
-    padding-bottom: 16px;
-    padding-left: 16px;
-}
-
-#logo .logo-image {
-    display: block;
-    background: #3F51B5;
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #FFF;
-    border-radius: 2px;
-}
 #header #layout-horizontal-navigation {
     height: 100%;
     max-height: 100%;
@@ -556,6 +550,26 @@ html {
     margin: 0px;
 }
 
+#logo {
+    padding-top: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+}
+
+#logo .logo-image {
+    display: block;
+    background: #3F51B5;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFF;
+    border-radius: 2px;
+}
 .edit-pictures {
     background: white;
     border-radius: 4px;

@@ -92,8 +92,9 @@ module.exports.removeUserFromArray = function(array, userId){
 
 module.exports.pageArray = function(array, count, offset){
     array.splice(0, offset);
+    console.log(count);
     if(array.length > count){
-        array.splice(count, messages.length);
+        array.splice(count, array.length);
     }
     return array;
 };

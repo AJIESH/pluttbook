@@ -1,12 +1,21 @@
 #profile {
     background-color : rgb(245,245,245);
     padding-top: 64px;
+    margin-right: 225px;
 }
 
 .header {
     position: fixed;
     top: 0px;
     width: 100%;
+    z-index: 1;
+}
+
+.chat {
+    position: fixed;
+    right: 0;
+    top: 64px;
+    width: 225px;
     z-index: 1;
 }
 

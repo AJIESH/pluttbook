@@ -12,6 +12,7 @@ module.exports = function($scope, profileFactory, currentUserDataFactory, $route
     vm.createStatus = './app/common/create-status/create-status.html';
     vm.feedContent = './app/common/feed-content/feed-content.html';
     vm.friendsList = './app/common/friends-list/friends-list.html';
+    vm.chat = './app/common/chat/available-users/available-users.html';
     vm.userInfo = null;
     vm.routeUserId = $routeParams.userid;
     vm.isMyProfile = false;

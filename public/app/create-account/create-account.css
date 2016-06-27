@@ -22,3 +22,8 @@
 #createAccountsPage #lastName {
     float: right;
 }
+
+#createAccountsPage .error {
+    color: red;
+    font-size: 12px;
+}
