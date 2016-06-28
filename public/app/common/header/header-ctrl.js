@@ -62,7 +62,7 @@ module.exports = function($mdDialog, $mdMenu, $routeParams, headerFactory, curre
         //This is here because of Angular material bug... breaks search bar but stops search from breaking whole app
         if(searchUsed){
             var scrollMask = angular.element($('.md-scroll-mask'));
-            scrollMask.remove();
+            scrollMask.attr('style', 'z-index: -1;')
         }
         if(userId){
             headerFactory.goToProfile(userId);

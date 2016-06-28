@@ -18,7 +18,8 @@ module.exports = function($q, $http, $routeParams, $location, $window){
         statuses: statuses,
         goToProfile: goToProfile,
         getNewProfilePictures: getNewProfilePictures,
-        deferNewProfilePictures: deferNewProfilePictures
+        deferNewProfilePictures: deferNewProfilePictures,
+        setProfilePicturesToEmpty: setProfilePicturesToEmpty
     };
 
     function getStatuses(paged) {
@@ -173,5 +174,9 @@ module.exports = function($q, $http, $routeParams, $location, $window){
             }
         }
         return userIds;
+    }
+
+    function setProfilePicturesToEmpty(){
+        profilePhotos = {};
     }
 };

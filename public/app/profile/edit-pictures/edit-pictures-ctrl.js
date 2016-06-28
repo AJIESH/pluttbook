@@ -1,4 +1,4 @@
-module.exports = function(mdPanelRef, editPicturesFactory, Upload, profileFactory){
+module.exports = function(mdPanelRef, editPicturesFactory, Upload, profileFactory, feedFactory, currentUserDataFactory){
     vm = this;
     //---Functions---
     vm.close = close;
@@ -101,5 +101,11 @@ module.exports = function(mdPanelRef, editPicturesFactory, Upload, profileFactor
             .error(function(data){
                 console.log('Error retrieving pictures');
             });
+
+        feedFactory.setProfilePicturesToEmpty();
+        feedFactory.getStatuses(false);
+        currentUserDataFactory.getUserInfoObject().then(function(data){
+            currentUserDataFactory.getProfilePicture(data.userId);
+        });
     }
 };
