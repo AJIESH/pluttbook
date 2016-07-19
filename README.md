@@ -4,9 +4,9 @@ Features:
 - OAuth login
 - Post statuses and photos
 - Comment and like statuses and photos
-- Encrypted chat
+- Chat
 - Friend requests
-- Key by key search
+- Full text search
 - Create events and invite people to them
 
-Host on AWS server and develop build and deployment process
+Host on AWS Linux server
